@@ -14,8 +14,6 @@ class MultiSelectPromptRenderer extends Renderer
      */
     public function __invoke(MultiSelectPrompt $prompt): string
     {
-        $prompt->scroll = min($prompt->scroll, $prompt->terminal()->lines() - 5);
-
         return match ($prompt->state) {
             'submit' => $this
                 ->box(
@@ -44,11 +42,7 @@ class MultiSelectPromptRenderer extends Renderer
                     $this->cyan($this->truncate($prompt->label, $prompt->terminal()->cols() - 6)),
                     $this->renderOptions($prompt),
                 )
-                ->when(
-                    $prompt->hint,
-                    fn () => $this->hint($prompt->hint),
-                    fn () => $this->newLine() // Space for errors
-                ),
+                ->newLine(), // Space for errors
         };
     }
 
@@ -57,11 +51,11 @@ class MultiSelectPromptRenderer extends Renderer
      */
     protected function renderOptions(MultiSelectPrompt $prompt): string
     {
-        return $this->scrollbar(
-            collect($prompt->visible())
-                ->map(fn ($label) => $this->truncate($label, $prompt->terminal()->cols() - 12))
-                ->map(function ($label, $key) use ($prompt) {
-                    $index = array_search($key, array_keys($prompt->options));
+        return $this->scroll(
+            collect($prompt->options)
+                ->values()
+                ->map(fn ($label) => $this->truncate($this->format($label), $prompt->terminal()->cols() - 12))
+                ->map(function ($label, $index) use ($prompt) {
                     $active = $index === $prompt->highlighted;
                     if (array_is_list($prompt->options)) {
                         $value = $prompt->options[$index];
@@ -85,11 +79,9 @@ class MultiSelectPromptRenderer extends Renderer
                         $selected => "  {$this->cyan('◼')} {$this->dim($label)}  ",
                         default => "  {$this->dim('◻')} {$this->dim($label)}  ",
                     };
-                })
-                ->values(),
-            $prompt->firstVisible,
-            $prompt->scroll,
-            count($prompt->options),
+                }),
+            $prompt->highlighted,
+            min($prompt->scroll, $prompt->terminal()->lines() - 5),
             min($this->longest($prompt->options, padding: 6), $prompt->terminal()->cols() - 6),
             $prompt->state === 'cancel' ? 'dim' : 'cyan'
         )->implode(PHP_EOL);
@@ -105,7 +97,7 @@ class MultiSelectPromptRenderer extends Renderer
         }
 
         return implode("\n", array_map(
-            fn ($label) => $this->truncate($label, $prompt->terminal()->cols() - 6),
+            fn ($label) => $this->truncate($this->format($label), $prompt->terminal()->cols() - 6),
             $prompt->labels()
         ));
     }

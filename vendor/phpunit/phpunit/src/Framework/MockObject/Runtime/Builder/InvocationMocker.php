@@ -17,7 +17,6 @@ use function count;
 use function is_string;
 use function strtolower;
 use PHPUnit\Framework\Constraint\Constraint;
-use PHPUnit\Framework\InvalidArgumentException;
 use PHPUnit\Framework\MockObject\ConfigurableMethod;
 use PHPUnit\Framework\MockObject\IncompatibleReturnValueException;
 use PHPUnit\Framework\MockObject\InvocationHandler;
@@ -143,6 +142,10 @@ final class InvocationMocker implements InvocationStubber, MethodNameMatch
         return $this->will($stub);
     }
 
+    /**
+     * @deprecated Use <code>$double->willReturn(1, 2, 3)</code> instead of <code>$double->willReturnOnConsecutiveCalls(1, 2, 3)</code>
+     * @see https://github.com/sebastianbergmann/phpunit/issues/5425
+     */
     public function willReturnOnConsecutiveCalls(mixed ...$values): self
     {
         $stub = new ConsecutiveCalls($values);
@@ -199,7 +202,7 @@ final class InvocationMocker implements InvocationStubber, MethodNameMatch
     }
 
     /**
-     * @throws InvalidArgumentException
+     * @throws \PHPUnit\Framework\InvalidArgumentException
      * @throws MethodCannotBeConfiguredException
      * @throws MethodNameAlreadyConfiguredException
      *
@@ -212,12 +215,10 @@ final class InvocationMocker implements InvocationStubber, MethodNameMatch
         }
 
         if (is_string($constraint)) {
-            $this->configurableMethodNames ??= array_flip(
-                array_map(
-                    static fn (ConfigurableMethod $configurable) => strtolower($configurable->name()),
-                    $this->configurableMethods,
-                ),
-            );
+            $this->configurableMethodNames ??= array_flip(array_map(
+                static fn (ConfigurableMethod $configurable) => strtolower($configurable->name()),
+                $this->configurableMethods,
+            ));
 
             if (!array_key_exists(strtolower($constraint), $this->configurableMethodNames)) {
                 throw new MethodCannotBeConfiguredException($constraint);

@@ -21,7 +21,6 @@ class ConfirmPrompt extends Prompt
         public string $no = 'No',
         public bool|string $required = false,
         public ?Closure $validate = null,
-        public string $hint = ''
     ) {
         $this->confirmed = $default;
 
