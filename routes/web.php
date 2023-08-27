@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\DokterController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Compro\HomeController;
 use App\Http\Controllers\LocalizationController;
 
 /*
@@ -19,6 +20,8 @@ use App\Http\Controllers\LocalizationController;
 
 // Localization
 Route::get('/lang/{language}', [LocalizationController::class, '__invoke'])->name('lang');
+
+Route::get('/',[HomeController::class,'index']);
 
 // Auth
 Route::get('/login', [AuthController::class, 'index'])->name('login');
