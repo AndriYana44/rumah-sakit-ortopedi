@@ -37,3 +37,9 @@ Breadcrumbs::for('dashboard_dokter_create', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard_dokter');
     $trail->push('Tambah', route('dokter.create'));
 });
+
+// home > jadwal > create
+Breadcrumbs::for('dashboard_dokter_jadwal_create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_dokter_jadwal');
+    $trail->push('Tambah', route('dokter.jadwal.create'));
+});

@@ -8,13 +8,13 @@
 @section('content')
     <h3>Jadwal Dokter</h3>
     <hr>
-    <a href="{{ route('dokter.create') }}" class="btn btn-primary my-2">+ Tambah Jadwal</a>
+    <a href="{{ route('dokter.jadwal.create') }}" class="btn btn-primary my-2">+ Tambah Jadwal</a>
     <table id="table-jadwal-dokter" class="table table-bordered">
         <thead>
             <tr>
                 <th>No.</th>
                 <th>Nama</th>
-                <th>Hari</th>
+                <th>Hari Kerja</th>
                 <th>Jam Mulai</th>
                 <th>Jam Selesai</th>
                 <th>Aksi</th>

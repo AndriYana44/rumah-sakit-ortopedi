@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [DokterController::class, 'index'])->name('dokter');
         Route::get('/jadwal', [DokterController::class, 'jadwal'])->name('dokter.jadwal');
         Route::get('/create', [DokterController::class, 'create'])->name('dokter.create');
+        Route::get('/jadwal/create', [DokterController::class, 'createJadwal'])->name('dokter.jadwal.create');
     });
 });
 

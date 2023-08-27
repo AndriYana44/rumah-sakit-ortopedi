@@ -23,4 +23,10 @@ class DokterController extends Controller
     {
         return view('admin.dokter.create');
     }
+
+    // create jadwal
+    public function createJadwal()
+    {
+        return view('admin.dokter.create_jadwal');
+    }
 }
