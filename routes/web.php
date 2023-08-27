@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\DokterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LocalizationController;
 
@@ -25,8 +26,17 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::group(['prefix' => 'dashboard'], function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    
+    });
+
+    Route::prefix('dokter')->group(function () {
+        Route::get('/', [DokterController::class, 'index'])->name('dokter');
+        Route::get('/jadwal', [DokterController::class, 'jadwal'])->name('dokter.jadwal');
+        Route::get('/create', [DokterController::class, 'create'])->name('dokter.create');
+    });
 });
 
 // Route::middleware(['auth'])->group(function () {

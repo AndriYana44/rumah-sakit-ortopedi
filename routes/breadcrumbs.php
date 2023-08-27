@@ -8,6 +8,8 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
+
+// ============ Dashboard Admin ============
 // Home
 Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
     $trail->push('Dashboard', route('dashboard'));
@@ -18,14 +20,20 @@ Breadcrumbs::for('dashboard_home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('dashboard'));
 });
 
-// // Home > Blog
-// Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
-//     $trail->parent('home');
-//     $trail->push('Blog', route('blog'));
-// });
+// Home > Dokter
+Breadcrumbs::for('dashboard_dokter', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Dokter', route('dokter'));
+});
 
-// // Home > Blog > [Category]
-// Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
-//     $trail->parent('blog');
-//     $trail->push($category->title, route('category', $category));
-// });
+// home > doker > jadwal
+Breadcrumbs::for('dashboard_dokter_jadwal', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_dokter');
+    $trail->push('Jadwal', route('dokter.jadwal'));
+});
+
+// home > doker > create
+Breadcrumbs::for('dashboard_dokter_create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_dokter');
+    $trail->push('Tambah', route('dokter.create'));
+});

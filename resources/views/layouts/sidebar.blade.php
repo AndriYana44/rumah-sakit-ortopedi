@@ -10,7 +10,7 @@
       <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
         <ul id="sidebarnav">
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./index.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('dashboard') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-layout-dashboard"></i>
               </span>
@@ -22,25 +22,41 @@
             <span class="hide-menu">MASTER</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('dokter') }}" aria-expanded="false">
               <span>
-                <i class="ti ti-article"></i>
+                <i class="fa fa-user-md"></i>
               </span>
-              <span class="hide-menu">Posts</span>
+              <span class="hide-menu">Dokter</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('dokter.jadwal') }}" aria-expanded="false">
+              <span>
+                <i class="fa fa-calendar"></i>
+              </span>
+              <span class="hide-menu">Jadwal Dokter</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="#" aria-expanded="false">
+              <span>
+                <i class="fa fa-address-card"></i>
+              </span>
+              <span class="hide-menu">Postingan</span>
             </a>
           </li>
           <li class="sidebar-item">
             <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
               <span>
-                <i class="ti ti-alert-circle"></i>
+                <i class="fa fa-list"></i>
               </span>
-              <span class="hide-menu">Categories</span>
+              <span class="hide-menu">Kategori</span>
             </a>
           </li>
           <li class="sidebar-item">
             <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
               <span>
-                <i class="ti ti-cards"></i>
+                <i class="fa fa-tags"></i>
               </span>
               <span class="hide-menu">Tags</span>
             </a>
