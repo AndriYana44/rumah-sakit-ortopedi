@@ -43,3 +43,15 @@ Breadcrumbs::for('dashboard_dokter_jadwal_create', function (BreadcrumbTrail $tr
     $trail->parent('dashboard_dokter_jadwal');
     $trail->push('Tambah', route('dokter.jadwal.create'));
 });
+
+// home > user
+Breadcrumbs::for('dashboard_user', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('User', route('user'));
+});
+
+// home > user > create
+Breadcrumbs::for('dashboard_user_create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_user');
+    $trail->push('Tambah', route('user.create'));
+});

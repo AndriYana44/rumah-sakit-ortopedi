@@ -49,7 +49,7 @@
                 <textarea class="form-control" id="alamat" placeholder="..."></textarea>
             </div>
         </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
             <button type="submit" class="btn btn-primary">Submit</button>
             <button type="button" class="btn btn-dark">Cancel</button>
         </div>

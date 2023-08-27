@@ -43,4 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // get all users
+    public static function getAll()
+    {
+        return self::all();
+    }
 }

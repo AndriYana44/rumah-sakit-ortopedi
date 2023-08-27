@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin\Hari;
+use App\Models\Admin\Jam;
 
 class DokterController extends Controller
 {
@@ -27,6 +29,11 @@ class DokterController extends Controller
     // create jadwal
     public function createJadwal()
     {
-        return view('admin.dokter.create_jadwal');
+        $hari = Hari::getAll();
+        $jam = Jam::getAll();
+        return view('admin.dokter.create_jadwal', [
+            'hari' => $hari,
+            'jam' => $jam
+        ]);
     }
 }

@@ -3,7 +3,7 @@
     <!-- Sidebar scroll-->
     <div>
       <div class="brand-logo d-flex align-items-center justify-content-center mt-4">
-        <img src="{{ asset('assets/images/logos/logo.png') }}" width="200" alt="logos">
+        <img src="{{ asset('assets/images/logos/logo.png') }}" width="230" alt="logos">
       </div>
       <hr>
       <!-- Sidebar navigation-->
@@ -46,7 +46,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+            <a class="sidebar-link" href="#" aria-expanded="false">
               <span>
                 <i class="fa fa-list"></i>
               </span>
@@ -54,7 +54,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+            <a class="sidebar-link" href="#" aria-expanded="false">
               <span>
                 <i class="fa fa-tags"></i>
               </span>
@@ -67,7 +67,7 @@
             <span class="hide-menu">USER PERMISSION</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('user') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-user"></i>
               </span>
@@ -79,7 +79,7 @@
               <span>
                 <i class="ti ti-user-plus"></i>
               </span>
-              <span class="hide-menu">Role</span>
+              <span class="hide-menu">User Akses</span>
             </a>
           </li>
           

@@ -26,13 +26,11 @@
             <div class="col-6">
                 <div class="mb-3">
                     <div class="form-group">
-                        <label for="hari" >Hari Kerja</label>
+                        <label for="hari" class="form-label">Hari Kerja</label>
                         <select id="hari" class="form-control" name="hari" multiple="multiple">
-                            <option value="1" data-code="AO">Senin</option>
-                            <option value="2" data-code="AR">Selasa</option>
-                            <option value="3" data-code="AU">Rabu</option>
-                            <option value="4" data-code="BI">Kamis</option>
-                            <option value="5" data-code="BJ">Jumat</option>
+                            @foreach ($hari as $item)
+                                <option value="{{ $item->id }}" data-code="BJ">{{ $item->hari }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -44,9 +42,9 @@
                     <label for="spesialis" class="form-label">Jam Mulai</label>
                     <select name="jam_mulai" id="jam_mulai" class="form-control">
                         <option value=""></option>
-                        @for ($i = 0; $i < 24; $i++)
-                            <option value="{{ $i < 10 ? '0'.$i : $i }}">{{ $i < 10 ? '0'.$i : $i }}.00</option>
-                        @endfor
+                        @foreach ($jam as $item)
+                            <option value="{{ $item->id }}">{{ $item->jam }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -57,9 +55,9 @@
                     <label for="spesialis" class="form-label">Jam Selesai</label>
                     <select name="jam_selesai" id="jam_selesai" class="form-control">
                         <option value=""></option>
-                        @for ($i = 0; $i < 24; $i++)
-                            <option value="{{ $i < 10 ? '0'.$i : $i }}">{{ $i < 10 ? '0'.$i : $i }}.00</option>
-                        @endfor
+                        @foreach ($jam as $item)
+                            <option value="{{ $item->id }}">{{ $item->jam }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

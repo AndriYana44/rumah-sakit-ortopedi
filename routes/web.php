@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DokterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Compro\HomeController;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/jadwal', [DokterController::class, 'jadwal'])->name('dokter.jadwal');
         Route::get('/create', [DokterController::class, 'create'])->name('dokter.create');
         Route::get('/jadwal/create', [DokterController::class, 'createJadwal'])->name('dokter.jadwal.create');
+    });
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('user');
+        Route::get('/create', [UserController::class, 'create'])->name('user.create');
     });
 });
 
