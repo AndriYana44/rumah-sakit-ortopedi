@@ -33,7 +33,7 @@ Route::middleware(['guest'])->group(function() {
     Route::get('/register', [AuthController::class, 'register'])->name('register');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
 
     Route::middleware(['admin'])->group(function() {
@@ -46,12 +46,22 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('/', [DokterController::class, 'index'])->name('dokter');
             Route::get('/jadwal', [DokterController::class, 'jadwal'])->name('dokter.jadwal');
             Route::get('/create', [DokterController::class, 'create'])->name('dokter.create');
-            Route::get('/jadwal/create', [DokterController::class, 'createJadwal'])->name('dokter.jadwal.create');
+            Route::get('/edit/{id}', [DokterController::class, 'edit'])->name('dokter.edit');
+            Route::post('/store', [DokterController::class, 'store'])->name('dokter.store');
+            Route::put('/update', [DokterController::class, 'update'])->name('dokter.update');
+            Route::delete('/delete/{id}', [DokterController::class, 'destroy'])->name('dokter.delete');
+            Route::prefix('jadwal')->group(function () {
+                Route::get('/create', [DokterController::class, 'createJadwal'])->name('dokter.jadwal.create');
+            });
         });
     
         Route::prefix('user')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('user');
             Route::get('/create', [UserController::class, 'create'])->name('user.create');
+            Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+            Route::post('/store', [UserController::class, 'store'])->name('user.store');
+            Route::put('/update', [UserController::class, 'update'])->name('user.update');
+            Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
         });
     });
 });

@@ -8,36 +8,37 @@
 @section('content')
     <h3>Tambah User</h3>
     <hr>
-    <form action="">
+    <form action="{{ route('user.store') }}" method="POST">
+        @csrf
         <div class="row">
             <div class="col-6">
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
-                    <input type="text" class="form-control" id="nama" placeholder="...">
+                    <input type="text" class="form-control" name="nama" id="nama" placeholder="...">
                 </div>
             </div>
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="nama" class="form-label">NIP</label>
-                    <input type="text" class="form-control" id="nama" placeholder="...">
+                    <label for="nip" class="form-label">NIP</label>
+                    <input type="text" class="form-control" name="nip" id="nip" placeholder="...">
                 </div>
             </div>
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="nama" class="form-label">Jabatan</label>
-                    <input type="text" class="form-control" id="nama" placeholder="...">
+                    <label for="jabatan" class="form-label">Jabatan</label>
+                    <input type="text" class="form-control" name="jabatan" id="jabatan" placeholder="...">
                 </div>
             </div>
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="nip" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="nip" placeholder="...">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="...">
                 </div>
             </div>
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="spesialis" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="spesialis" placeholder="...">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" name="email" id="email" placeholder="...">
                 </div>
             </div>
             <div class="col-6">
@@ -53,20 +54,20 @@
             </div>
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Password</label>
-                    <input type="text" class="form-control" id="password1"  placeholder="***">
+                    <label for="password1" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password1" id="password1"  placeholder="***">
                 </div>
             </div>
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Konfirmasi Password</label>
-                    <input type="text" class="form-control" id="password2" placeholder="***">
+                    <label for="password2" class="form-label">Konfirmasi Password</label>
+                    <input type="password" class="form-control" name="password2" id="password2" placeholder="***">
                 </div>
             </div>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-dark">Cancel</button>
+            <button type="button" onclick="history.back()" class="btn btn-dark">Cancel</button>
         </div>
     </form>
 @endsection
@@ -76,6 +77,17 @@
         $(document).ready(function() {
             $('#role').select2({
                 placeholder: "Pilih Role"
+            });
+
+            // validate password match
+            $('#password2').on('keyup', function() {
+                if ($('#password1').val() == $('#password2').val()) {
+                    $('#password2').removeClass('is-invalid');
+                    $('#password2').addClass('is-valid');
+                } else {
+                    $('#password2').removeClass('is-valid');
+                    $('#password2').addClass('is-invalid');
+                }
             });
         });
     </script>

@@ -29,9 +29,12 @@
                 <td>{{ $user->jabatan }}</td>
                 <td>{{ ($user->role == 1 ? 'Admin' : $user->role == 2) ? 'Super Admin' : 'Pengguna' }}</td>
                 <td>
-                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                    <a href="#" class="btn btn-sm btn-info">Detail</a>
+                    <form action="{{ route('user.delete', ['id' => $user->id]) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger btn-sm user-delete">Delete</button>
+                    </form>
+                    <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-warning">Edit</a>
                 </td>
             </tr>
             @endforeach
@@ -43,6 +46,33 @@
     <script>
         $(document).ready(function() {
             $('#table-dokter').DataTable();
+
+            $('.user-delete').click(function () { 
+                const form = $(this).closest('form');
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                })
+            });
+
+            // get flash message with sweetalert
+            @if (session('success') != null)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: '{{ session('success') }}'
+                });
+            @endif
         });
     </script>
 @endsection

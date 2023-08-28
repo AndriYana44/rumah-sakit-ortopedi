@@ -11,9 +11,9 @@
       <div class="navbar-collapse justify-content-start px-0" id="navbarNav">
         <ul class="navbar-nav justify-content-start">
           <div class="btn-group dropstart">
-            <a class="btn btn-warning btn-sm" href="{{ route('home') }}">
+            <a class="btn btn-success btn-sm" href="{{ route('home') }}">
               <span><i class="fa fa-eye"></i></span>
-              &nbsp;Lihat Company Profile
+              &nbsp; Company Profile
             </a>
           </div>
         </ul>
