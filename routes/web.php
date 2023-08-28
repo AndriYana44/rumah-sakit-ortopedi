@@ -51,7 +51,8 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/update', [DokterController::class, 'update'])->name('dokter.update');
             Route::delete('/delete/{id}', [DokterController::class, 'destroy'])->name('dokter.delete');
             Route::prefix('jadwal')->group(function () {
-                Route::get('/create', [DokterController::class, 'createJadwal'])->name('dokter.jadwal.create');
+                Route::get('/edit/{id}', [DokterController::class, 'editJadwal'])->name('dokter.jadwal.edit');
+                Route::post('/update', [DokterController::class, 'updateJadwal'])->name('dokter.jadwal.update');
             });
         });
     
@@ -63,6 +64,10 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/update', [UserController::class, 'update'])->name('user.update');
             Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
         });
+    });
+
+    Route::prefix('api')->group(function() {
+        Route::post('/dokter-jadwal', [DokterController::class, 'apiDokterJadwal'])->name('api.dokter.jadwal');
     });
 });
 

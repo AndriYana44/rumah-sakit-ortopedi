@@ -43,98 +43,11 @@
                             <button type="submit" class="btn btn-danger btn-sm dokter-delete">Delete</button>
                         </form>
                         <a href="{{ route('dokter.edit', ['id' => $item->id]) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="#" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailDokter{{ $item->id }}">Detail</a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
-    <!-- Modal -->
-    @foreach ($data as $item)
-    <div class="modal fade" id="detailDokter{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailDokterLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="detailDokterLabel">Detail Dokter</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="d-flex justify-content-center align-center flex-column">
-                                    @if ($item->foto == null)
-                                        <img class="mt-3" src="{{ asset('') }}files/foto-dokter/default.jpg" alt="" width="130">
-                                    @else
-                                        <img class="mt-3" src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="" width="130">
-                                    @endif
-                                    <strong class="text-center mt-2">{{ strtoupper($item->nama_dokter) }}</strong>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <table class="table">
-                                    <tr>
-                                        <td>NIP</td>
-                                        <td>:</td>
-                                        <td>{{ $item->nip }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Spesialis</td>
-                                        <td>:</td>
-                                        <td>{{ $item->spesialis }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>No. Telp</td>
-                                        <td>:</td>
-                                        <td>{{ $item->no_telp }}</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <hr class="mt-3">
-                            <strong class="my-2">Jam Kerja</strong>
-                            <div class="col-6">
-                                <table>
-                                    <tr>
-                                        <td>Senin&emsp;</td>
-                                        <td>:</td>
-                                        <td>&emsp;08.00 - 13.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Selasa&emsp;</td>
-                                        <td>:</td>
-                                        <td>&emsp;-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rabu&emsp;</td>
-                                        <td>:</td>
-                                        <td>&emsp;08.00 - 13.00</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-6">
-                                <table>
-                                    <tr>
-                                        <td>Kamis&emsp;</td>
-                                        <td>:</td>
-                                        <td>&emsp;08.00 - 13.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jumat&emsp;</td>
-                                        <td>:</td>
-                                        <td>&emsp;09.00 - 14.00</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Oke</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforeach
 @endsection
 
 @section('script')

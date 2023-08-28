@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Dokter;
+use App\Models\Admin\DokterJadwal;
 use Illuminate\Http\Request;
 use App\Models\Admin\Hari;
 use App\Models\Admin\Jam;
@@ -21,7 +22,16 @@ class DokterController extends Controller
     // jadwal dokter
     public function jadwal()
     {
-        return view('admin.dokter.jadwal');
+        // get dokter, jam & hari relation
+        $data = Dokter::getAllWithJadwal();
+        $days = Hari::getAll();
+        $dokterJamHari = DokterJadwal::getDokterJamHari();
+        // dd($dokterJamHari);
+        return view('admin.dokter.jadwal', [
+            'data' => $data,
+            'days' => $days,
+            'dokterJamHari' => $dokterJamHari,
+        ]);
     }
 
     // create
@@ -122,13 +132,66 @@ class DokterController extends Controller
     }
 
     // create jadwal
-    public function createJadwal()
+    public function editJadwal($id)
     {
+        $data = null;
+        // check data jadwal dokter exist
+        $jadwalExist = DokterJadwal::where('dokter_id', $id)->get();
+
+        // get dokter by id
+        $dokter = Dokter::find($id);
+        $jadwalHariDokter = [];
+        $jadwalJamDokter = [];
+
+        if(count($jadwalExist) > 0){
+            // get jadwal hari dokter
+            $data = Dokter::getAllWithJadwalById($id);
+            $dataHari = DokterJadwal::getJadwalHariById($id);
+            $dataJam = DokterJadwal::getJadwalJamById($id);
+
+            foreach($dataHari as $key => $hari) {
+                $jadwalHariDokter[] = $hari->hari_id;
+                $jadwalJamDokter[] = $dataJam[$key]->id;
+            }
+        }
         $hari = Hari::getAll();
         $jam = Jam::getAll();
-        return view('admin.dokter.create_jadwal', [
+        return view('admin.dokter.form_dokter_jadwal_create', [
+            'data' => $data,
+            'dokter' => $dokter,
             'hari' => $hari,
-            'jam' => $jam
+            'jam' => $jam,
+            'jadwalHariDokter' => $jadwalHariDokter,
+            'jadwalJamDokter' => $jadwalJamDokter,
         ]);
+    }
+
+    // store jadwal
+    public function updateJadwal(Request $request, $id)
+    {
+        $dokter = Dokter::find($id);
+        // cek data jadwal dokter exist
+        $data = DokterJadwal::where('dokter_id', $id)->get();
+
+        foreach($request->hari as $key => $value){
+            $data = new DokterJadwal();
+            $data->dokter_id = $request->dokter;
+            $data->hari_id = $value;
+            $data->jam_mulai_id = $request->jam_mulai[$key];
+            $data->jam_selesai_id = $request->jam_selesai[$key];
+            $data->save();
+        }
+
+        return redirect()->route('dokter.jadwal')
+            ->with('success', 'Data berhasil ditambahkan');
+    }
+
+    // api dokter jadwal
+    public function apiDokterJadwal(Request $request)
+    {
+        $id = $request->dokter_id;
+        $data = Dokter::getAllWithJadwalById($id);
+
+        return response()->json($data);
     }
 }
