@@ -65,7 +65,9 @@
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                        @if(Auth::user()->role === 1)
+                            <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                        @endif
                         <a class="dropdown-item" href="{{ route('signout') }}">Logout</a>
                     </div>
                 </li>
