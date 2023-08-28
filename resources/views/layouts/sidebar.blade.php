@@ -2,23 +2,16 @@
 <aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div>
-      <div class="brand-logo d-flex align-items-center justify-content-between">
-        <a href="{{ route('/') }}" class="text-nowrap logo-img">
-          <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
-        </a>
-        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-          <i class="ti ti-x fs-8"></i>
-        </div>
+      <div class="brand-logo d-flex align-items-center justify-content-center flex-column mt-4">
+        <img src="{{ asset('assets/images/logos/favicon.png') }}" width="80" alt="logos">
+        <img src="{{ asset('assets/images/logos/logo-name.png') }}" width="200" alt="logos">
       </div>
+      <hr>
       <!-- Sidebar navigation-->
       <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
         <ul id="sidebarnav">
-          <li class="nav-small-cap">
-            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">Home</span>
-          </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./index.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('dashboard') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-layout-dashboard"></i>
               </span>
@@ -27,58 +20,59 @@
           </li>
           <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">UI COMPONENTS</span>
+            <span class="hide-menu">MASTER</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('dokter') }}" aria-expanded="false">
               <span>
-                <i class="ti ti-article"></i>
+                <i class="fa fa-user-md"></i>
               </span>
-              <span class="hide-menu">Buttons</span>
+              <span class="hide-menu">Dokter</span>
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('dokter.jadwal') }}" aria-expanded="false">
               <span>
-                <i class="ti ti-alert-circle"></i>
+                <i class="fa fa-calendar"></i>
               </span>
-              <span class="hide-menu">Alerts</span>
+              <span class="hide-menu">Jadwal Dokter</span>
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+            <a class="sidebar-link" href="#" aria-expanded="false">
               <span>
-                <i class="ti ti-cards"></i>
+                <i class="fa fa-address-card"></i>
               </span>
-              <span class="hide-menu">Card</span>
+              <span class="hide-menu">Postingan</span>
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+            <a class="sidebar-link" href="#" aria-expanded="false">
               <span>
-                <i class="ti ti-file-description"></i>
+                <i class="fa fa-list"></i>
               </span>
-              <span class="hide-menu">Forms</span>
+              <span class="hide-menu">Kategori</span>
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+            <a class="sidebar-link" href="#" aria-expanded="false">
               <span>
-                <i class="ti ti-typography"></i>
+                <i class="fa fa-tags"></i>
               </span>
-              <span class="hide-menu">Typography</span>
+              <span class="hide-menu">Tags</span>
             </a>
           </li>
+          
           <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">AUTH</span>
+            <span class="hide-menu">USER PERMISSION</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('user') }}" aria-expanded="false">
               <span>
-                <i class="ti ti-login"></i>
+                <i class="ti ti-user"></i>
               </span>
-              <span class="hide-menu">Login</span>
+              <span class="hide-menu">User</span>
             </a>
           </li>
           <li class="sidebar-item">
@@ -86,41 +80,11 @@
               <span>
                 <i class="ti ti-user-plus"></i>
               </span>
-              <span class="hide-menu">Register</span>
+              <span class="hide-menu">User Akses</span>
             </a>
           </li>
-          <li class="nav-small-cap">
-            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">EXTRA</span>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-mood-happy"></i>
-              </span>
-              <span class="hide-menu">Icons</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-aperture"></i>
-              </span>
-              <span class="hide-menu">Sample Page</span>
-            </a>
-          </li>
+          
         </ul>
-        <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
-          <div class="d-flex">
-            <div class="unlimited-access-title me-3">
-              <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
-              <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
-            </div>
-            <div class="unlimited-access-img">
-              <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
-            </div>
-          </div>
-        </div>
       </nav>
       <!-- End Sidebar navigation -->
     </div>

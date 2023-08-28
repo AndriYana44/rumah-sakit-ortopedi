@@ -1,5 +1,5 @@
 <!--  Header Start -->
-<header class="app-header">
+<header class="app-header shadow">
     <nav class="navbar navbar-expand-lg navbar-light">
       <ul class="navbar-nav">
         <li class="nav-item d-block d-xl-none">
@@ -7,15 +7,24 @@
             <i class="ti ti-menu-2"></i>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-            <i class="ti ti-bell-ringing"></i>
-            <div class="notification bg-primary rounded-circle"></div>
-          </a>
-        </li>
       </ul>
       <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+          <div class="btn-group dropstart">
+            <a class="dropdown-toggle text-dark" role="button" id="language" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="flag-icon flag-icon-{{ app()->getLocale() == 'id' ? 'id' : 'us' }} flag-icon-squared"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <a href="{{ route('lang', ['language' => 'id']) }}" class="dropdown-item">
+                <span class="flag-icon flag-icon-id flag-icon-squared"></span>
+                &ensp;{{ trans('localization.id') }}
+              </a>
+              <a href="{{ route('lang', ['language' => 'us']) }}" class="dropdown-item">
+                <span class="flag-icon flag-icon-us flag-icon-squared"></span>
+                &ensp;{{ trans('localization.en') }}
+              </a>
+            </ul>
+          </div>
           <li class="nav-item dropdown">
             <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
               aria-expanded="false">

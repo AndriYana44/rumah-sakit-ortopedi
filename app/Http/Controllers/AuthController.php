@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,7 @@ class AuthController extends Controller
    
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect('/')->with(['success' => 'Signed in']);
+            return redirect(RouteServiceProvider::DASHBOARD);
         }
   
         return redirect("login")->with(['failed' => 'Login details are not valid']);

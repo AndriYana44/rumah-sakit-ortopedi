@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Login Page | Tunggal Jaya Store</title>
+  <title>Login Page | RS Ortopedi</title>
   {{-- <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" /> --}}
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
@@ -22,9 +22,9 @@
             <div class="card mb-0">
               <div class="card-body">
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <h3>Login Page</h3>
+                  <img src="{{ asset('assets') }}/images/logos/favicon.png" width="80" alt=""><br>
+                  <img src="{{ asset('assets') }}/images/logos/logo-name.png" width="250" alt="">
                 </a>
-                <p class="text-center">Tunggal Jaya Store</p>
                 <form class="form-login" method="POST" action="{{ route('login') }}">
                   @csrf
                   <div class="mb-3">
