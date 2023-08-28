@@ -22,9 +22,9 @@
             <div class="card mb-0">
               <div class="card-body">
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <h3>Login Page</h3>
+                  <img src="{{ asset('assets') }}/images/logos/favicon.png" width="80" alt=""><br>
+                  <img src="{{ asset('assets') }}/images/logos/logo-name.png" width="250" alt="">
                 </a>
-                <p class="text-center">RS Ortopedi</p>
                 <form class="form-login" method="POST" action="{{ route('login') }}">
                   @csrf
                   <div class="mb-3">

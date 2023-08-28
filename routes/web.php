@@ -22,30 +22,37 @@ use App\Http\Controllers\Admin\UserController;
 // Localization
 Route::get('/lang/{language}', [LocalizationController::class, '__invoke'])->name('lang');
 
-Route::get('/',[HomeController::class,'index']);
+Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/about',[HomeController::class,'about'])->name('about');
+Route::get('/doctors',[HomeController::class,'doctors'])->name('doctors');
 
 // Auth
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
+Route::middleware(['guest'])->group(function() {
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+});
 
-Route::middleware(['auth'])->group(function () {
-    Route::group(['prefix' => 'dashboard'], function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
+
+    Route::middleware(['admin'])->group(function() {
+        Route::group(['prefix' => 'dashboard'], function () {
+            Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        
+        });
     
-    });
-
-    Route::prefix('dokter')->group(function () {
-        Route::get('/', [DokterController::class, 'index'])->name('dokter');
-        Route::get('/jadwal', [DokterController::class, 'jadwal'])->name('dokter.jadwal');
-        Route::get('/create', [DokterController::class, 'create'])->name('dokter.create');
-        Route::get('/jadwal/create', [DokterController::class, 'createJadwal'])->name('dokter.jadwal.create');
-    });
-
-    Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('user');
-        Route::get('/create', [UserController::class, 'create'])->name('user.create');
+        Route::prefix('dokter')->group(function () {
+            Route::get('/', [DokterController::class, 'index'])->name('dokter');
+            Route::get('/jadwal', [DokterController::class, 'jadwal'])->name('dokter.jadwal');
+            Route::get('/create', [DokterController::class, 'create'])->name('dokter.create');
+            Route::get('/jadwal/create', [DokterController::class, 'createJadwal'])->name('dokter.jadwal.create');
+        });
+    
+        Route::prefix('user')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('user');
+            Route::get('/create', [UserController::class, 'create'])->name('user.create');
+        });
     });
 });
 

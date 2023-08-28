@@ -2,8 +2,9 @@
 <aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div>
-      <div class="brand-logo d-flex align-items-center justify-content-center mt-4">
-        <img src="{{ asset('assets/images/logos/logo.png') }}" width="230" alt="logos">
+      <div class="brand-logo d-flex align-items-center justify-content-center flex-column mt-4">
+        <img src="{{ asset('assets/images/logos/favicon.png') }}" width="80" alt="logos">
+        <img src="{{ asset('assets/images/logos/logo-name.png') }}" width="200" alt="logos">
       </div>
       <hr>
       <!-- Sidebar navigation-->

@@ -10,6 +10,14 @@ class HomeController extends Controller
     //
 
     public function index (){
-        return view ('index');
+        return view ('compro.index');
+    }
+
+    public function about (){
+        return view ('compro.about');
+    }
+
+    public function doctors (){
+        return view ('compro.doctors');
     }
 }
