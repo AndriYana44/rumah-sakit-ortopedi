@@ -30,9 +30,21 @@ class DokterJadwal extends Model
     }
 
     // join to jam
-    public function jam()
+    public function jamMulai()
     {
         return $this->belongsTo(Jam::class, 'jam_mulai_id');
+    }
+
+    // join to jam selesai
+    public function jamSelesai()
+    {
+        return $this->belongsTo(Jam::class, 'jam_selesai_id');
+    }
+
+    // get jadwal by id
+    public static function getJadwalById($id)
+    {
+        return DokterJadwal::find($id);
     }
 
     // get all data
@@ -41,20 +53,8 @@ class DokterJadwal extends Model
         return DokterJadwal::orderBy('id', 'desc')->get();
     }
 
-    // get dokter, jam & hari
-    public static function getDokterJamHari()
-    {
-        return DokterJadwal::with('dokter', 'jam', 'hari')->get();
-    }
-
     // get jadwal hari by id
     public static function getJadwalHariById($id)
-    {
-        return DokterJadwal::where('dokter_id', $id)->get();
-    }
-
-    // get jadwal jam by id
-    public static function getJadwalJamById($id)
     {
         return DokterJadwal::where('dokter_id', $id)->get();
     }

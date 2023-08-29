@@ -46,16 +46,8 @@
                         </ul>
                     </td>
                     <td>
-                        <div class="btn-wrapper d-flex flex-column">
-                            <div class="aksi-wrapper">
-                                <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                                <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="#" class="btn btn-sm btn-info detail" data-dokter-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#detailDokter{{ $item->id }}">Detail</a>
-                            </div>
-                            <div class="set-jadwal mt-2">
-                                <a href="{{ route('dokter.jadwal.edit', ['id' => $item->id]) }}" class="btn btn-sm btn-primary">Tetapkan Jadwal</a>
-                            </div>
-                        </div>
+                        <a href="{{ route('dokter.jadwal.edit', ['id' => $item->id]) }}" class="btn btn-sm btn-primary">Tetapkan Jadwal</a>
+                        <a href="#" class="btn btn-sm btn-info detail" data-dokter-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#detailDokter{{ $item->id }}">Detail</a>
                     </td>
                 </tr>
             @endforeach

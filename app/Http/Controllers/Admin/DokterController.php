@@ -25,12 +25,12 @@ class DokterController extends Controller
         // get dokter, jam & hari relation
         $data = Dokter::getAllWithJadwal();
         $days = Hari::getAll();
-        $dokterJamHari = DokterJadwal::getDokterJamHari();
+        // $dokterJamHari = DokterJadwal::getDokterJamHari();
         // dd($dokterJamHari);
         return view('admin.dokter.jadwal', [
             'data' => $data,
             'days' => $days,
-            'dokterJamHari' => $dokterJamHari,
+            // 'dokterJamHari' => $dokterJamHari,
         ]);
     }
 
@@ -141,17 +141,18 @@ class DokterController extends Controller
         // get dokter by id
         $dokter = Dokter::find($id);
         $jadwalHariDokter = [];
-        $jadwalJamDokter = [];
+        $jam_kerja = [];
 
         if(count($jadwalExist) > 0){
             // get jadwal hari dokter
             $data = Dokter::getAllWithJadwalById($id);
+            // get hari kerja dokter
             $dataHari = DokterJadwal::getJadwalHariById($id);
-            $dataJam = DokterJadwal::getJadwalJamById($id);
+            // get jam kerja dokter
+            $jam_kerja = DokterJadwal::with(['jamMulai', 'jamSelesai'])->where('dokter_id', $id)->get();
 
-            foreach($dataHari as $key => $hari) {
+            foreach($dataHari as $hari) {
                 $jadwalHariDokter[] = $hari->hari_id;
-                $jadwalJamDokter[] = $dataJam[$key]->id;
             }
         }
         $hari = Hari::getAll();
@@ -161,17 +162,20 @@ class DokterController extends Controller
             'dokter' => $dokter,
             'hari' => $hari,
             'jam' => $jam,
+            'jam_kerja' => $jam_kerja,
             'jadwalHariDokter' => $jadwalHariDokter,
-            'jadwalJamDokter' => $jadwalJamDokter,
         ]);
     }
 
     // store jadwal
-    public function updateJadwal(Request $request, $id)
+    public function updateJadwal(Request $request)
     {
-        $dokter = Dokter::find($id);
         // cek data jadwal dokter exist
-        $data = DokterJadwal::where('dokter_id', $id)->get();
+        $data = DokterJadwal::where('dokter_id', $request->dokter)->get();
+        if(count($data) > 0) {
+            // delete data jadwal dokter
+            DokterJadwal::where('dokter_id', $request->dokter)->delete();
+        }
 
         foreach($request->hari as $key => $value){
             $data = new DokterJadwal();
