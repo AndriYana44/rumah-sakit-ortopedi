@@ -20,4 +20,8 @@ class HomeController extends Controller
     public function doctors (){
         return view ('compro.doctors');
     }
+
+    public function blog (){
+        return view ('compro.blog');
+    }
 }

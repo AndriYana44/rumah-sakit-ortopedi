@@ -27,6 +27,7 @@ Route::get('/lang/{language}', [LocalizationController::class, '__invoke'])->nam
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/doctors',[HomeController::class,'doctors'])->name('doctors');
+Route::get('/blog',[HomeController::class,'blog'])->name('blog');
 Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
 
 // Auth
