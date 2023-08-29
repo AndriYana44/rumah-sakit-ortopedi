@@ -49,3 +49,15 @@ Breadcrumbs::for('dashboard_user_create', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard_user');
     $trail->push('Tambah', route('user.create'));
 });
+
+// home > postingan
+Breadcrumbs::for('dashboard_postingan', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Postingan', route('postingan'));
+});
+
+// home > postingan > create
+Breadcrumbs::for('dashboard_postingan_create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_postingan');
+    $trail->push('Tambah', route('postingan.create'));
+});

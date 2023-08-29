@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\DokterController;
+use App\Http\Controllers\Admin\PostinganController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Compro\HomeController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Compro\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,7 @@ Route::get('/lang/{language}', [LocalizationController::class, '__invoke'])->nam
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/doctors',[HomeController::class,'doctors'])->name('doctors');
+Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
 
 // Auth
 Route::middleware(['guest'])->group(function() {
@@ -64,11 +67,19 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/update', [UserController::class, 'update'])->name('user.update');
             Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
         });
+
+        Route::prefix('postingan')->group(function() {
+            Route::get('/', [PostinganController::class, 'index'])->name('postingan');
+            Route::get('/create', [PostinganController::class, 'create'])->name('postingan.create');
+            Route::post('/store', [PostinganController::class, 'store'])->name('postingan.store');
+        });
     });
 
     Route::prefix('api')->group(function() {
         Route::post('/dokter-jadwal', [DokterController::class, 'apiDokterJadwal'])->name('api.dokter.jadwal');
     });
+
+    Route::post('/upload', [PostinganController::class, 'upload'])->name('ckeditor.upload');
 });
 
 // Route::middleware(['auth'])->group(function () {

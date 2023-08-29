@@ -181,8 +181,8 @@ class DokterController extends Controller
             $data = new DokterJadwal();
             $data->dokter_id = $request->dokter;
             $data->hari_id = $value;
-            $data->jam_mulai_id = $request->jam_mulai[$key];
-            $data->jam_selesai_id = $request->jam_selesai[$key];
+            $data->jam_mulai_id = $request->jam_mulai[$value];
+            $data->jam_selesai_id = $request->jam_selesai[$value];
             $data->save();
         }
 

@@ -3,7 +3,7 @@
 
 @section('content')
 {{-- {{ dd($data->hari) }} --}}
-    <h3>Tambah Dokter Aktif</h3>
+    <h3>Tetapkan Jadwal Dokter</h3>
     <hr>
     <form action="{{ route('dokter.jadwal.update') }}" method="POST">
         @csrf
@@ -51,7 +51,7 @@
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <label for="spesialis" class="form-label">Mulai</label>
-                                            <select name="jam_mulai[]" class="form-control jam_mulai">
+                                            <select name="jam_mulai[{{ $item }}]" class="form-control jam_mulai">
                                                 <option value=""></option>
                                                 @foreach ($jam as $jamItem)
                                                     @php
@@ -70,7 +70,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="spesialis" class="form-label">Selesai</label>
-                                            <select name="jam_selesai[]" class="form-control jam_selesai">
+                                            <select name="jam_selesai[{{ $item }}]" class="form-control jam_selesai">
                                                 <option value=""></option>
                                                 @foreach ($jam as $jamItem)
                                                     @php
@@ -140,7 +140,7 @@
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <label for="spesialis" class="form-label">Mulai</label>
-                                            <select name="jam_mulai[]" class="form-control jam_mulai">
+                                            <select name="jam_mulai[${element}]" class="form-control jam_mulai">
                                                 <option value=""></option>
                                                 @foreach ($jam as $item)
                                                     <option value="{{ $item->id }}">{{ $item->jam }}</option>
@@ -149,7 +149,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="spesialis" class="form-label">Selesai</label>
-                                            <select name="jam_selesai[]" class="form-control jam_selesai">
+                                            <select name="jam_selesai[${element}]" class="form-control jam_selesai">
                                                 <option value=""></option>
                                                 @foreach ($jam as $item)
                                                     <option value="{{ $item->id }}">{{ $item->jam }}</option>

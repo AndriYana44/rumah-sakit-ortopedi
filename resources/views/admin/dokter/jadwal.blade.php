@@ -13,37 +13,34 @@
             <tr>
                 <th>No.</th>
                 <th>Nama</th>
-                <th>Hari Kerja</th>
-                <th>Jam Mulai</th>
-                <th>Jam Selesai</th>
+                <th>NIP</th>
+                <th>Jam Kerja</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $key => $item) 
+            @foreach ($data as $keyD => $item) 
                 <tr>
-                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $keyD + 1 }}</td>
                     <td>{{ strtoupper($item->nama_dokter) }}</td>
+                    <td>{{ strtoupper($item->nip) }}</td>
                     <td>
-                        <ul>
-                            @foreach ($item->hari as $hari)
-                                <li>{{ $hari->hari }}</li>
+                    @if($item->dokterJadwal->first() != null)
+                        <table class="table table-sm table-striped">
+                            <tr>
+                                <th>Hari</th>
+                                <th>Jam</th>
+                            </tr>
+                            @foreach ($item->jamMulai as $key => $jam)
+                                <tr>
+                                    <td>{{ $item->hari[$key]->hari }}</td>
+                                    <td>{{ $jam->jam }} - {{ $item->jamSelesai[$key]->jam }}</td>
+                                </tr>
                             @endforeach
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            @foreach ($item->jamMulai as $jam)
-                                <li>{{ $jam->jam }}</li>
-                            @endforeach
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            @foreach ($item->jamSelesai as $jam)
-                                <li>{{ $jam->jam }}</li>
-                            @endforeach
-                        </ul>
+                        </table>
+                    @else
+                        <span class="text-warning">Jadwal Belum ditetapkan <i class="fa fa-exclamation-circle"></i></span>
+                    @endif
                     </td>
                     <td>
                         <a href="{{ route('dokter.jadwal.edit', ['id' => $item->id]) }}" class="btn btn-sm btn-primary">Tetapkan Jadwal</a>
