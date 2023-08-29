@@ -8,6 +8,16 @@
           </a>
         </li>
       </ul>
+      <div class="navbar-collapse justify-content-start px-0" id="navbarNav">
+        <ul class="navbar-nav justify-content-start">
+          <div class="btn-group dropstart">
+            <a class="btn btn-success btn-sm" href="{{ route('home') }}">
+              <span><i class="fa fa-eye"></i></span>
+              &nbsp; Company Profile
+            </a>
+          </div>
+        </ul>
+      </div>
       <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
           <div class="btn-group dropstart">
@@ -28,7 +38,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
               aria-expanded="false">
-              <img src="../assets/images/profile/user.png" alt="" width="35" height="35" class="rounded-circle">
+              <img src="{{ asset('') }}assets/images/profile/user.png" alt="" width="35" height="35" class="rounded-circle">
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
               <div class="message-body">

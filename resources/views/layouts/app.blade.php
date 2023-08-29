@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title')</title>
   <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
@@ -44,11 +45,11 @@
   <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
   <script src="{{ asset('assets/js/app.min.js') }}"></script>
-  <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
   <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
-  <script src="{{ asset('assets/js/dashboard.js') }}"></script>
   <script src="{{ asset('assets/DataTables/datatables.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
   @yield('script')
 </body>
 </html>

@@ -17,4 +17,16 @@ class Jam extends Model
     {
         return self::all();
     }
+
+    // jam mulai
+    public function dokterJadwalMulai()
+    {
+        return $this->hasMany(DokterJadwal::class, 'jam_mulai_id');
+    }
+
+    // jam selesai
+    public function dokterJadwalSelesai()
+    {
+        return $this->hasMany(DokterJadwal::class, 'jam_selesai_id');
+    }
 }

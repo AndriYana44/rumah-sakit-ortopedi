@@ -38,12 +38,6 @@ Breadcrumbs::for('dashboard_dokter_create', function (BreadcrumbTrail $trail) {
     $trail->push('Tambah', route('dokter.create'));
 });
 
-// home > jadwal > create
-Breadcrumbs::for('dashboard_dokter_jadwal_create', function (BreadcrumbTrail $trail) {
-    $trail->parent('dashboard_dokter_jadwal');
-    $trail->push('Tambah', route('dokter.jadwal.create'));
-});
-
 // home > user
 Breadcrumbs::for('dashboard_user', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
@@ -54,4 +48,16 @@ Breadcrumbs::for('dashboard_user', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('dashboard_user_create', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard_user');
     $trail->push('Tambah', route('user.create'));
+});
+
+// home > postingan
+Breadcrumbs::for('dashboard_postingan', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Postingan', route('postingan'));
+});
+
+// home > postingan > create
+Breadcrumbs::for('dashboard_postingan_create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_postingan');
+    $trail->push('Tambah', route('postingan.create'));
 });

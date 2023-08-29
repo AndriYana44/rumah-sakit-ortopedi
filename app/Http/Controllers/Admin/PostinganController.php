@@ -1,0 +1,64 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Admin\Postingan;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class PostinganController extends Controller
+{
+    public function index()
+    {
+        $data = Postingan::getAll();
+        return view('admin.postingan.index', [
+            'data' => $data
+        ]);
+    }
+
+    // create
+    public function create()
+    {
+        return view('admin.postingan.form_postingan_create');
+    }
+
+    // upload
+    public function upload(Request $request)
+    {
+        if($request->hasFile('upload')) {
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $filename = 'post_'.time().'.'.$extension;
+
+            $request->file('upload')->move(public_path('files/gambar_postingan'), $filename);
+
+            $url = asset('files/gambar_postingan/'.$filename);
+            return response()->json(['filename' => $filename, 'uploaded' => 1, 'url' => $url]);
+        }
+    }
+
+    public function store(Request $request)
+    {
+        // get gambar
+        if($request->hasFile('gambar_postingan')) {
+            $file = $request->file('gambar_postingan');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = 'post_banner_'.time().'.'.$extension;
+            $file->move(public_path('files/gambar_postingan/banner'), $file_name);
+        } else {
+            $file_name = null;
+        }
+
+        $data = new Postingan();
+        $data->judul = $request->judul;
+        $data->slug = $request->slug;
+        $data->konten = $request->konten;
+        $data->gambar = $file_name;
+        $data->status = 'Draft';
+        $data->created_by = Auth::user()->id;
+        $data->updated_by = Auth::user()->id;
+        $data->save();
+
+        return redirect()->route('postingan')->with('success', 'Data berhasil ditambahkan');
+    }
+}

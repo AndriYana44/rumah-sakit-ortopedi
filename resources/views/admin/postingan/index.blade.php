@@ -2,39 +2,45 @@
 @section('title', 'Dashboard')
 
 @section('breadcrumb')
-{{ Breadcrumbs::render('dashboard_user') }}
+{{ Breadcrumbs::render('dashboard_postingan') }}
 @endsection
 
 @section('content')
     <h3>Data User</h3>
     <hr>
-    <a href="{{ route('user.create') }}" class="btn btn-primary my-2">+ Tambah User</a>
-    <table id="table-dokter" class="table table-bordered">
+    <a href="{{ route('postingan.create') }}" class="btn btn-primary my-2">+ Tambah Postingan</a>
+    <table id="table-posting" class="table table-bordered">
         <thead>
             <tr>
                 <th>No.</th>
-                <th>Nama</th>
-                <th>NIP</th>
-                <th>Jabatan</th>
-                <th>Role</th>
+                <th>Gambar</th>
+                <th>Judul</th>
+                <th>Url</th>
+                <th>Status</th>
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach ($users as $key => $user)    
+        <tbody> 
+            @foreach($data as $key => $post)
             <tr>
-                <td>{{ $key+1 }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->nip }}</td>
-                <td>{{ $user->jabatan }}</td>
-                <td>{{ ($user->role == 1 ? 'Admin' : $user->role == 2) ? 'Super Admin' : 'Pengguna' }}</td>
+                <td>{{ $key + 1 }}</td>
                 <td>
-                    <form action="{{ route('user.delete', ['id' => $user->id]) }}" method="POST" class="d-inline">
+                    <img width="100" src="{{ asset('') }}files/gambar_postingan/banner/{{ $post->gambar }}" alt="gambar">
+                </td>
+                <td>{{ $post->judul }}</td>
+                <td>
+                    <a href="{{ route('post', ['id' => $post->id]) }}">
+                        <u>{{ route('post', ['id' => $post->id]) }}</u>
+                    </a>
+                </td>
+                <td>Published</td>
+                <td>
+                    <form action="#" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="button" class="btn btn-danger btn-sm user-delete">Delete</button>
                     </form>
-                    <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
                 </td>
             </tr>
             @endforeach
@@ -45,10 +51,12 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-dokter').DataTable();
+            $('#table-posting').DataTable();
 
-            $('.user-delete').click(function () { 
-                const form = $(this).closest('form');
+            // confirm delete with sweetalert
+            $('.user-delete').click(function (e) { 
+                e.preventDefault();
+                
                 Swal.fire({
                     title: 'Apakah anda yakin?',
                     text: "Data yang dihapus tidak dapat dikembalikan!",
@@ -60,7 +68,11 @@
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        form.submit();
+                        Swal.fire(
+                            'Terhapus!',
+                            'Data berhasil dihapus.',
+                            'success'
+                        )
                     }
                 })
             });

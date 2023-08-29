@@ -13,6 +13,7 @@
         <thead>
             <tr>
                 <th>No.</th>
+                <th>Foto</th>
                 <th>Nama</th>
                 <th>NIP</th>
                 <th>Spesialis</th>
@@ -21,18 +22,30 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Andri Yana</td>
-                <td>065116164</td>
-                <td>Tulang</td>
-                <td>0895612206018</td>
-                <td>
-                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                    <a href="#" class="btn btn-sm btn-info">Detail</a>
-                </td>
-            </tr>
+            @foreach ($data as $key => $item)   
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td>
+                        @if ($item->foto == null)
+                            <img class="rounded" src="{{ asset('') }}files/foto-dokter/default.jpg" alt="pict" width="50">
+                        @else
+                            <img class="rounded" src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="pict" width="50">
+                        @endif
+                    </td>
+                    <td>{{ $item->nama_dokter }}</td>
+                    <td>{{ $item->nip }}</td>
+                    <td>{{ $item->spesialis }}</td>
+                    <td>{{ $item->no_telp }}</td>
+                    <td>
+                        <form action="{{ route('dokter.delete', ['id' => $item->id]) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm dokter-delete">Delete</button>
+                        </form>
+                        <a href="{{ route('dokter.edit', ['id' => $item->id]) }}" class="btn btn-sm btn-warning">Edit</a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection
@@ -41,6 +54,35 @@
     <script>
         $(document).ready(function() {
             $('#table-dokter').DataTable();
+
+            // confirm delete with sweetalert
+            $('.dokter-delete').click(function (e) { 
+                e.preventDefault();
+                const form = $(this).closest('form');
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+
+            // get flash message with sweetalert
+            @if (session('success') != null)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: '{{ session('success') }}'
+                });
+            @endif
         });
     </script>
 @endsection
