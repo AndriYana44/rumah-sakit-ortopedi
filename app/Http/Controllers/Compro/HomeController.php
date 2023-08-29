@@ -24,4 +24,12 @@ class HomeController extends Controller
     public function blog (){
         return view ('compro.blog');
     }
+
+    public function blogDetails (){
+        return view ('compro.blog-details');
+    }
+
+    public function contact (){
+        return view ('compro.contact');
+    }
 }

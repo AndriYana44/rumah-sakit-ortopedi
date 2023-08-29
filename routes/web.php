@@ -28,6 +28,8 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/doctors',[HomeController::class,'doctors'])->name('doctors');
 Route::get('/blog',[HomeController::class,'blog'])->name('blog');
+Route::get('/blog-details',[HomeController::class,'blogDetails'])->name('blog.details');
+Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
 
 // Auth
