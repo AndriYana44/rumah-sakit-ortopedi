@@ -45,7 +45,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-dokter').DataTable();
+            $('#table-dokter').DataTable({"scrollX": true});
 
             $('.user-delete').click(function () { 
                 const form = $(this).closest('form');

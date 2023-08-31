@@ -53,7 +53,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-dokter').DataTable();
+            $('#table-dokter').DataTable({"scrollX": true});
 
             // confirm delete with sweetalert
             $('.dokter-delete').click(function (e) { 

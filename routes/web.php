@@ -74,7 +74,10 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('postingan')->group(function() {
             Route::get('/', [PostinganController::class, 'index'])->name('postingan');
             Route::get('/create', [PostinganController::class, 'create'])->name('postingan.create');
+            Route::get('/edit/{id}', [PostinganController::class, 'edit'])->name('postingan.edit');
             Route::post('/store', [PostinganController::class, 'store'])->name('postingan.store');
+            Route::put('/update', [PostinganController::class, 'update'])->name('postingan.update');
+            Route::delete('/delete/{id}', [PostinganController::class, 'destroy'])->name('postingan.delete');
         });
     });
 

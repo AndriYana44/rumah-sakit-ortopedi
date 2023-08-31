@@ -6,9 +6,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <meta name="copyright" content="MACode ID, https://macodeid.com/">
-
-  <title>One Health - Medical Center HTML5 Template</title>
+  <title>RS Orthopedi SIAGA RAYA</title>
 
   <link rel="stylesheet" href="{{asset('assets-compro/assets')}}/css/maicons.css">
 
