@@ -61,4 +61,56 @@ class PostinganController extends Controller
 
         return redirect()->route('postingan')->with('success', 'Data berhasil ditambahkan');
     }
+
+    // edit
+    public function edit($id)
+    {
+        $data = Postingan::find($id);
+        return view('admin.postingan.form_postingan_edit', [
+            'data' => $data
+        ]);
+    }
+
+    // update
+    public function update(Request $request)
+    {
+        $id = $request->id;
+        // get data by id
+        $data = Postingan::getById($id);
+        // get gambar
+        if($request->hasFile('gambar_postingan')) {
+            // delete gambar lama 
+            $old_pict = $data->gambar;
+            if(file_exists(public_path('files/gambar_postingan/banner/'.$old_pict))) {
+                unlink(public_path('files/gambar_postingan/banner/'.$old_pict));
+            }
+
+            // upload gambar baru
+            $file = $request->file('gambar_postingan');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = 'post_banner_'.time().'.'.$extension;
+            $file->move(public_path('files/gambar_postingan/banner'), $file_name);
+        } else {
+            $file_name = $data->gambar;
+        }
+
+        $data->judul = $request->judul;
+        $data->slug = $request->slug;
+        $data->konten = $request->konten;
+        $data->gambar = $file_name;
+        $data->status = 'Draft';
+        $data->updated_by = Auth::user()->id;
+        $data->save();
+
+        return redirect()->route('postingan')->with('success', 'Data berhasil diubah');
+    }
+
+    // delete
+    public function delete($id)
+    {
+        $data = Postingan::find($id);
+        $data->delete();
+
+        return redirect()->route('postingan')->with('success', 'Data berhasil dihapus');
+    }
 }

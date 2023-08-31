@@ -6,9 +6,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <meta name="copyright" content="MACode ID, https://macodeid.com/">
-
-  <title>One Health - Medical Center HTML5 Template</title>
+  <title>RS Orthopedi SIAGA RAYA</title>
 
   <link rel="stylesheet" href="{{asset('assets-compro/assets')}}/css/maicons.css">
 
@@ -29,7 +27,8 @@
     @yield('content')
     @include('compro.layouts.footer')
 
-<script src="{{asset('assets-compro/assets')}}/js/jquery-3.5.1.min.js"></script>
+{{-- jquery --}}
+<script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
 
 <script src="{{asset('assets-compro/assets')}}/js/bootstrap.bundle.min.js"></script>
 
@@ -38,6 +37,20 @@
 <script src="{{asset('assets-compro/assets')}}/vendor/wow/wow.min.js"></script>
 
 <script src="{{asset('assets-compro/assets')}}/js/theme.js"></script>
+
+<script src="{{asset('assets-compro/assets')}}/js/google-maps.js"></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIA_zqjFMsJM_sxP9-6Pde5vVCTyJmUHM&callback=initMap"></script>
   
+<script>
+  // toggle menu active
+  $(document).ready(function () {
+    var url = window.location;
+    $('ul.navbar-nav a[href="' + url + '"]').parent().addClass('active');
+    $('ul.navbar-nav a').filter(function () {
+      return this.href == url;
+    }).parent().addClass('active');
+  });
+</script>
 </body>
 </html>

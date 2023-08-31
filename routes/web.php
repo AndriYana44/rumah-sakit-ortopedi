@@ -27,6 +27,9 @@ Route::get('/lang/{language}', [LocalizationController::class, '__invoke'])->nam
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/doctors',[HomeController::class,'doctors'])->name('doctors');
+Route::get('/blog',[HomeController::class,'blog'])->name('blog');
+Route::get('/blog-details',[HomeController::class,'blogDetails'])->name('blog.details');
+Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
 
 // Auth
@@ -71,7 +74,10 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('postingan')->group(function() {
             Route::get('/', [PostinganController::class, 'index'])->name('postingan');
             Route::get('/create', [PostinganController::class, 'create'])->name('postingan.create');
+            Route::get('/edit/{id}', [PostinganController::class, 'edit'])->name('postingan.edit');
             Route::post('/store', [PostinganController::class, 'store'])->name('postingan.store');
+            Route::put('/update', [PostinganController::class, 'update'])->name('postingan.update');
+            Route::delete('/delete/{id}', [PostinganController::class, 'destroy'])->name('postingan.delete');
         });
     });
 

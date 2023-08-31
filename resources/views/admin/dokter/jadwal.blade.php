@@ -121,7 +121,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-jadwal-dokter').DataTable();
+            $('#table-jadwal-dokter').DataTable({"scrollX": true});
 
             // get flash message with sweetalert
             @if (session('success') != null)
