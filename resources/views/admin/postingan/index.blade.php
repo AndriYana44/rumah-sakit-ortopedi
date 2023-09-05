@@ -9,7 +9,7 @@
     <h3>Data Postingan</h3>
     <hr>
     <a href="{{ route('postingan.create') }}" class="btn btn-primary my-2">+ Tambah Postingan</a>
-    <table id="table-posting" class="table table-bordered">
+    <table class="table table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>No.</th>
@@ -51,8 +51,6 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-posting').DataTable({"scrollX": true});
-
             // confirm delete with sweetalert
             $('.user-delete').click(function (e) { 
                 e.preventDefault();
