@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <h3>Data User</h3>
+    <h3>Data Postingan</h3>
     <hr>
     <a href="{{ route('postingan.create') }}" class="btn btn-primary my-2">+ Tambah Postingan</a>
     <table id="table-posting" class="table table-bordered">
@@ -35,12 +35,12 @@
                 </td>
                 <td>Published</td>
                 <td>
-                    <form action="#" method="POST" class="d-inline">
+                    <form action="{{ route('postingan.delete', ['id' => $post->id]) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="button" class="btn btn-danger btn-sm user-delete">Delete</button>
                     </form>
-                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{{ route('postingan.edit', ['id' => $post->id]) }}" class="btn btn-sm btn-warning">Edit</a>
                 </td>
             </tr>
             @endforeach
@@ -51,7 +51,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-posting').DataTable();
+            $('#table-posting').DataTable({"scrollX": true});
 
             // confirm delete with sweetalert
             $('.user-delete').click(function (e) { 

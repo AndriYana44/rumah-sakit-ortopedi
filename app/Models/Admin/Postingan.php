@@ -25,4 +25,10 @@ class Postingan extends Model
     {
         return self::orderBy('id', 'desc')->get();
     }
+
+    // get by id
+    public static function getById($id)
+    {
+        return self::find($id);
+    }
 }
