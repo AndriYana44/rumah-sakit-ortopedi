@@ -9,7 +9,7 @@
     <h3>Data User</h3>
     <hr>
     <a href="{{ route('user.create') }}" class="btn btn-primary my-2">+ Tambah User</a>
-    <table id="table-dokter" class="table table-bordered">
+    <table class="table table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>No.</th>
@@ -45,8 +45,6 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-dokter').DataTable({"scrollX": true});
-
             $('.user-delete').click(function () { 
                 const form = $(this).closest('form');
                 Swal.fire({

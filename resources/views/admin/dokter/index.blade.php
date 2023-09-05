@@ -9,7 +9,7 @@
     <h3>Dokter Aktif</h3>
     <hr>
     <a href="{{ route('dokter.create') }}" class="btn btn-primary my-2">+ Tambah Dokter</a>
-    <table id="table-dokter" class="table table-bordered">
+    <table class="table table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>No.</th>
@@ -26,7 +26,7 @@
                 <tr>
                     <td>{{ $key + 1 }}</td>
                     <td>
-                        @if ($item->foto == null)
+                        @if ($item->foto == null || file_exists('files/foto-dokter/'.$item->foto) == false)
                             <img class="rounded" src="{{ asset('') }}files/foto-dokter/default.jpg" alt="pict" width="50">
                         @else
                             <img class="rounded" src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="pict" width="50">
@@ -53,8 +53,6 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-dokter').DataTable({"scrollX": true});
-
             // confirm delete with sweetalert
             $('.dokter-delete').click(function (e) { 
                 e.preventDefault();
