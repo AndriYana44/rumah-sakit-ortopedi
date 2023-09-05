@@ -52,6 +52,7 @@
     </table>
 
     <!-- Modal -->
+    {{-- {{ dd($data) }} --}}
     @foreach ($data as $item)
     <div class="modal fade" id="detailDokter{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailDokterLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -64,10 +65,10 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="d-flex justify-content-center align-center flex-column">
-                                    @if ($item->foto == null)
-                                        <img class="mt-3" src="{{ asset('') }}files/foto-dokter/default.jpg" alt="" width="130">
+                                    @if ($item->foto == null || file_exists('files/foto-dokter/'.$item->foto) == false)
+                                        <img class="mt-3 rounded" src="{{ asset('') }}files/foto-dokter/default.jpg" alt="" width="130">
                                     @else
-                                        <img class="mt-3" src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="" width="130">
+                                        <img class="mt-3 rounded" src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="" width="130">
                                     @endif
                                     <strong class="text-center mt-2">{{ strtoupper($item->nama_dokter) }}</strong>
                                 </div>
@@ -92,20 +93,24 @@
                                 </table>
                             </div>
                             <hr class="mt-3">
-                            <strong class="my-2">Jam Kerja</strong>
-                            <div class="col-12">
-                                <table class="table table-striped table-sm table-jadwal-detail">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">Hari</th>
-                                            <th class="text-center">Jam Kerja</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                            @if($item->dokterJadwal->first() != null)
+                                <strong class="my-2">Jam Kerja</strong>
+                                <div class="col-12">
+                                    <table class="table table-striped table-sm table-jadwal-detail">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Hari</th>
+                                                <th class="text-center">Jam Kerja</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <span class="text-warning">Jadwal Belum ditetapkan <i class="fa fa-exclamation-circle"></i></span>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -26,7 +26,7 @@
                 <tr>
                     <td>{{ $key + 1 }}</td>
                     <td>
-                        @if ($item->foto == null)
+                        @if ($item->foto == null || file_exists('files/foto-dokter/'.$item->foto) == false)
                             <img class="rounded" src="{{ asset('') }}files/foto-dokter/default.jpg" alt="pict" width="50">
                         @else
                             <img class="rounded" src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="pict" width="50">

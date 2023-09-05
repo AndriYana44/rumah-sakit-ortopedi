@@ -22,13 +22,14 @@ class DokterFactory extends Factory
 
     public function definition(): array
     {
+        $nip = random_int(100000000, 999999999);
         return [
             //
             'nip' => fake()->unique()->randomFloat(),
             'nama_dokter' => fake()-> name(),
             'spesialis' => fake()->jobTitle(),
             'alamat' => fake()->address(),
-            'no_telp' =>fake()->randomNumber(5,false),
+            'no_telp' => $nip,
             'foto' => fake()->image(),
             'email' => fake()->email()
         ];
