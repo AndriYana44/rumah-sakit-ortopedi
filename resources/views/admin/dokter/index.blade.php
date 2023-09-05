@@ -9,7 +9,7 @@
     <h3>Dokter Aktif</h3>
     <hr>
     <a href="{{ route('dokter.create') }}" class="btn btn-primary my-2">+ Tambah Dokter</a>
-    <table id="table-dokter" class="table table-bordered">
+    <table class="table table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>No.</th>
@@ -53,8 +53,6 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-dokter').DataTable({"scrollX": true});
-
             // confirm delete with sweetalert
             $('.dokter-delete').click(function (e) { 
                 e.preventDefault();

@@ -50,6 +50,17 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+  <script>
+    // get all table and add css
+    $(document).ready(function () {
+      $.each($('.table'), function (idx, val) { 
+        // add data table
+        $(val).DataTable({
+          "scrollX": true
+        });
+      });
+    });
+  </script>
   @yield('script')
 </body>
 </html>

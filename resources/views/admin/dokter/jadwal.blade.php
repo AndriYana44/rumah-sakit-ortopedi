@@ -8,7 +8,7 @@
 @section('content')
     <h3>Jadwal Dokter</h3>
     <hr>
-    <table id="table-jadwal-dokter" class="table table-bordered">
+    <table class="table table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>No.</th>
@@ -121,7 +121,6 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#table-jadwal-dokter').DataTable({"scrollX": true});
 
             // get flash message with sweetalert
             @if (session('success') != null)
