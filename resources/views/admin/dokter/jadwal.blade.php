@@ -8,7 +8,7 @@
 @section('content')
     <h3>Jadwal Dokter</h3>
     <hr>
-    <table class="table table-bordered" style="width:100%">
+    <table class="table table-bordered __datatables" style="width:100%">
         <thead>
             <tr>
                 <th>No.</th>
@@ -137,7 +137,7 @@
             @endif
 
             // ajax get jadwal
-            $('.detail').click(function (e) { 
+            $(document).on('click', '.detail', function (e) { 
                 e.preventDefault();
                 const dokter_id = $(this).data('dokter-id');
                 $.ajax({
@@ -155,6 +155,7 @@
                         $('.table-jadwal-detail tbody').empty();
                         // add jadwal table left
                         $.each(response.hari, function (idx, val) { 
+                            console.log(val);
                             $('.table-jadwal-detail tbody').append(`
                                 <tr>
                                     <td class="text-center">${val.hari}</td>

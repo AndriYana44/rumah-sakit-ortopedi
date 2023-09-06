@@ -9,7 +9,7 @@
     <h3>Dokter Aktif</h3>
     <hr>
     <a href="{{ route('dokter.create') }}" class="btn btn-primary my-2">+ Tambah Dokter</a>
-    <table class="table table-bordered" style="width:100%">
+    <table class="table table-bordered __datatables" style="width:100%">
         <thead>
             <tr>
                 <th>No.</th>
