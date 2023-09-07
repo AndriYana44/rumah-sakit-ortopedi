@@ -61,6 +61,23 @@
                 <span class="hide-menu">Kategori</span>
             </a>
             </li>
+            <li class="sidebar-item has-submenu">
+                <a class="sidebar-link" href="#">
+                    <span><i class="fa fa-desktop"></i></span>
+                    <span>Tampilan Compro</span>
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="submenu collapse">
+                    <li><a class="sidebar-link" href="#">
+                        <i class="fa fa-hashtag"></i>
+                        Banner
+                    </a></li>
+                    <li><a class="sidebar-link" href="#">
+                        <i class="fa fa-hashtag"></i>
+                        Paragraf
+                    </a></li>
+                </ul>
+            </li>
             <li class="sidebar-item">
             <a class="sidebar-link" href="#" aria-expanded="false">
                 <span>
