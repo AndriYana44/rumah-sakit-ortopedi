@@ -9,7 +9,7 @@
     <h3>Data User</h3>
     <hr>
     <a href="{{ route('user.create') }}" class="btn btn-primary my-2">+ Tambah User</a>
-    <table class="table table-bordered" style="width:100%">
+    <table class="table table-bordered __datatables" style="width:100%">
         <thead>
             <tr>
                 <th>No.</th>
