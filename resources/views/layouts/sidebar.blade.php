@@ -61,6 +61,19 @@
                 <span class="hide-menu">Kategori</span>
             </a>
             </li>
+            <li class="sidebar-item">
+            <a class="sidebar-link" href="#" aria-expanded="false">
+                <span>
+                <i class="fa fa-tags"></i>
+                </span>
+                <span class="hide-menu">Tags</span>
+            </a>
+            </li>
+
+            <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">Display</span>
+            </li>
             <li class="sidebar-item has-submenu">
                 <a class="sidebar-link" href="#">
                     <span><i class="fa fa-desktop"></i></span>
@@ -77,14 +90,6 @@
                         Paragraf
                     </a></li>
                 </ul>
-            </li>
-            <li class="sidebar-item">
-            <a class="sidebar-link" href="#" aria-expanded="false">
-                <span>
-                <i class="fa fa-tags"></i>
-                </span>
-                <span class="hide-menu">Tags</span>
-            </a>
             </li>
             
             <li class="nav-small-cap">
