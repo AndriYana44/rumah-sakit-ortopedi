@@ -1,54 +1,123 @@
 @extends('compro.layouts.app')
 @section('content') 
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+ <style>
+  section .card:hover{
+  background-color: blue;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  cursor: pointer;
+  color: whitesmoke;
+  }
+ 
+.tarkikComandSlider {
+  width: 1100px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 50px;
+  padding-right: 50px;
+  position: relative;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: -45px;
+  display: block;
+  width: 100%;
+  padding-bottom: 10px;
+  list-style: none;
+  text-align: center;
+  /* margin-bottom: -5px; */
+}
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer;
+}
+.slick-dots li button {
+  display: none;
+}
+.slick-dots li:before {
+  top: 1px;
+  transition: all 0.5s;
+  content: "";
+  width: 6px;
+  height: 6px;
+  background-color: #999;
+  position: absolute;
+  
+}
+.slick-dots li.slick-active:before {
+  top: 0;
+  width: 8px;
+  height: 8px;
+  margin-left: -2px;
+  background-color: #2A4988;
+}
+
+.slick-prev {
+  left: -10px;
+  transform: rotate(180deg);
+
+}
+
+.slick-next {
+  right: -10px;
+   
+
+}
+
+.slick-arrow {
+  top: 50%;
+  height: 26px;
+  width: 14px;
+  margin-top: -13px;
+  position: absolute;
+  font-size: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+}
+  
+  
+
+
+ 
+ 
+  
+
+ 
+ </style>
  <div class="page-hero bg-image overlay-dark" style="background-image: url(../assets-compro/assets/img/bg_image_1.jpg);">
     <div class="hero-section">
       <div class="container text-center wow zoomIn">
-        <span class="subhead">Let's make your life happier</span>
-        <h1 class="display-4">Healthy Living</h1>
+        <!-- <span class="subhead">Let's make your life happier</span> -->
+        <h1 class="display-4">
+          SELAMAT DATANG 
+          <br>
+            DI RS ORTHOPEDI SIAGA RAYA
+      
+          </h1>
         <a href="#" class="btn btn-primary">Let's Consult</a>
       </div>
     </div>
   </div>
 
-
-  <div class="bg-light">
-    <div class="page-section py-3 mt-md-n5 custom-index">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card-service wow fadeInUp">
-              <div class="circle-shape bg-secondary text-white">
-                <span class="mai-chatbubbles-outline"></span>
-              </div>
-              <p><span>Chat</span> with a doctors</p>
-            </div>
-          </div>
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card-service wow fadeInUp">
-              <div class="circle-shape bg-primary text-white">
-                <span class="mai-shield-checkmark"></span>
-              </div>
-              <p><span>One</span>-Health Protection</p>
-            </div>
-          </div>
-          <div class="col-md-4 py-3 py-md-0">
-            <div class="card-service wow fadeInUp">
-              <div class="circle-shape bg-accent text-white">
-                <span class="mai-basket"></span>
-              </div>
-              <p><span>One</span>-Health Pharmacy</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> <!-- .page-section -->
-
+     <!-- .page-section -->
+   
     <div class="page-section pb-0">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-6 py-3 wow fadeInUp">
-            <h1>Welcome to Your Health <br> Center</h1>
-            <p class="text-grey mb-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Accusantium aperiam earum ipsa eius, inventore nemo labore eaque porro consequatur ex aspernatur. Explicabo, excepturi accusantium! Placeat voluptates esse ut optio facilis!</p>
+          <div class="col-lg-6 py-3 wow fadeInUp elementor-widget-container">
+            <h1 class="elementor-heading-title elementor-size-default">Kesembuhan Anda Adalah Kebahagiaan Dari Kami</h1>
+            <p class="text-grey mb-4">Pada Tanggal 18 Juli 2022, Rumah Sakit Siaga Raya resmi berubah nama menjadi RS Orthopedi Siaga Raya. Perubahan nama tersebut juga diikuti dengan perubahan kelas / tipe rumah sakit dari Kelas C Umum menjadi Kelas C Khusus</p>
             <a href="about.html" class="btn btn-primary">Learn More</a>
           </div>
           <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
@@ -60,6 +129,99 @@
       </div>
     </div> <!-- .bg-light -->
   </div> <!-- .bg-light -->
+
+   
+  <section class="bg-light mx-auto mb-4 pt-4 pb-4">
+    <div class="container">
+      
+      <div class="slick-wrapper">
+       
+        <div>
+          <div class="col-sm">
+            <div class="card py-9">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+         <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div class="page-section">
     <div class="container">
@@ -283,5 +445,21 @@
       </div>
     </div>
   </div> <!-- .banner-home -->
+
+
+  
 @endsection
+
+@section('script')
+<script>
+    $('.slick-wrapper').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        dots:true,
+      });
+  </script>
+  @endsection
+
 

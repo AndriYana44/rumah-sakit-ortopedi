@@ -17,6 +17,10 @@
   <link rel="stylesheet" href="{{asset('assets-compro/assets')}}/vendor/animate/animate.css">
 
   <link rel="stylesheet" href="{{asset('assets-compro/assets')}}/css/theme.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
 
@@ -29,6 +33,8 @@
 
 {{-- jquery --}}
 <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
 <script src="{{asset('assets-compro/assets')}}/js/bootstrap.bundle.min.js"></script>
 
@@ -52,5 +58,6 @@
     }).parent().addClass('active');
   });
 </script>
+@yield('script')
 </body>
 </html>
