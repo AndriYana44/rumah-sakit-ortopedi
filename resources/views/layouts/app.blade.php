@@ -12,6 +12,15 @@
   <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css')  }}">
   <link href="{{ asset('assets/DataTables/datatables.min.css') }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <style>
+    .sidebar-nav li .submenu{ 
+      list-style: none; 
+      margin: 0; 
+      padding: 0; 
+      padding-left: 1.3rem;  
+      padding-right: 1rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -22,7 +31,7 @@
     <!--  Main wrapper -->
     <div class="body-wrapper">
       @include('layouts.navbar')
-      <div class="container-fluid">
+      <div class="container-fluid" style="background-color: rgb(239, 239, 239); min-height:100vh;">
         <!--  Row 1 -->
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
           <ol class="breadcrumb">
@@ -51,9 +60,40 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
   <script>
+    // vanilla script
+    document.addEventListener("DOMContentLoaded", function(){
+      document.querySelectorAll('.sidebar-nav .sidebar-link').forEach(function(element){
+        
+        element.addEventListener('click', function (e) {
+
+          let nextEl = element.nextElementSibling;
+          let parentEl  = element.parentElement;	
+
+            if(nextEl) {
+                e.preventDefault();	
+                let mycollapse = new bootstrap.Collapse(nextEl);
+                
+                if(nextEl.classList.contains('show')){
+                  mycollapse.hide();
+                } else {
+                    mycollapse.show();
+                    // find other submenus with class=show
+                    var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
+                    // if it exists, then close all of them
+                    if(opened_submenu){
+                      new bootstrap.Collapse(opened_submenu);
+                    }
+                }
+            }
+        }); // addEventListener
+      }) // forEach
+    }); 
+    // DOMContentLoaded  end
+
+    // jquery script
     // get all table and add css
     $(document).ready(function () {
-      $.each($('.table'), function (idx, val) { 
+      $.each($('.__datatables'), function (idx, val) { 
         // add data table
         $(val).DataTable({
           "scrollX": true

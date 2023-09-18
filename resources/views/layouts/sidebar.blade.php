@@ -69,6 +69,28 @@
                 <span class="hide-menu">Tags</span>
             </a>
             </li>
+
+            <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">Display</span>
+            </li>
+            <li class="sidebar-item has-submenu">
+                <a class="sidebar-link" href="#">
+                    <span><i class="fa fa-desktop"></i></span>
+                    <span>Tampilan Compro</span>
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="submenu collapse">
+                    <li><a class="sidebar-link" href="#">
+                        <i class="fa fa-hashtag"></i>
+                        Banner
+                    </a></li>
+                    <li><a class="sidebar-link" href="#">
+                        <i class="fa fa-hashtag"></i>
+                        Paragraf
+                    </a></li>
+                </ul>
+            </li>
             
             <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
