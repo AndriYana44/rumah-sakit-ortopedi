@@ -1,5 +1,6 @@
 # Release Notes for 10.x
 
+<<<<<<< HEAD
 ## [Unreleased](https://github.com/laravel/framework/compare/v10.23.0...10.x)
 
 ## [v10.23.0](https://github.com/laravel/framework/compare/v10.22.0...v10.23.0) - 2023-09-12
@@ -37,6 +38,9 @@
 - [10.x] Introduce `requireEnv` helper by [@lucasmichot](https://github.com/lucasmichot) in https://github.com/laravel/framework/pull/48261
 - [10.x] Combine prefix with table for `compileDropPrimary` PostgreSQL by [@dyriavin](https://github.com/dyriavin) in https://github.com/laravel/framework/pull/48268
 - [10.x] BelongsToMany Docblock Improvements by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/framework/pull/48282
+=======
+## [Unreleased](https://github.com/laravel/framework/compare/v10.21.0...10.x)
+>>>>>>> 303dccc2e90eb19411baeb0b85b223f51e591da9
 
 ## [v10.21.0](https://github.com/laravel/framework/compare/v10.20.0...v10.21.0) - 2023-08-29
 

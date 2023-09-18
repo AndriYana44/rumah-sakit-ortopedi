@@ -2,12 +2,15 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+<<<<<<< HEAD
 ## [10.1.5] - 2023-09-12
 
 ### Changed
 
 * [#1011](https://github.com/sebastianbergmann/php-code-coverage/pull/1011): Avoid serialization of cache data in PHP report
 
+=======
+>>>>>>> 303dccc2e90eb19411baeb0b85b223f51e591da9
 ## [10.1.4] - 2023-08-31
 
 ### Fixed
@@ -47,7 +50,10 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * The `SebastianBergmann\CodeCoverage\Filter::includeDirectory()`, `SebastianBergmann\CodeCoverage\Filter::excludeDirectory()`, and `SebastianBergmann\CodeCoverage\Filter::excludeFile()` methods are now deprecated
 
+<<<<<<< HEAD
 [10.1.5]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.4...10.1.5
+=======
+>>>>>>> 303dccc2e90eb19411baeb0b85b223f51e591da9
 [10.1.4]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.3...10.1.4
 [10.1.3]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.2...10.1.3
 [10.1.2]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.1...10.1.2
