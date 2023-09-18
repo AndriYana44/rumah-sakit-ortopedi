@@ -76,7 +76,7 @@ class Dokter extends Model
     // get all data with jadwal
     public static function getAllWithJadwal()
     {
-        return Dokter::with(['dokterJadwal','jamMulai','jamSelesai','hari'])->get();
+        return Dokter::with(['hari','jamMulai','jamSelesai'])->get();
     }
 
     // get all data with jadwal by id
