@@ -6,9 +6,9 @@
 @endsection
 
 @section('content')
-    <h3>Data Postingan</h3>
+    <h3>Data Postingan Berita</h3>
     <hr>
-    <a href="{{ route('postingan.create') }}" class="btn btn-primary my-2">+ Tambah Postingan</a>
+    <a href="{{ route('postingan.create') }}" class="btn btn-primary my-2">+ Tambah Postingan Berita</a>
     <table class="table table-bordered __datatables" style="width:100%">
         <thead>
             <tr>

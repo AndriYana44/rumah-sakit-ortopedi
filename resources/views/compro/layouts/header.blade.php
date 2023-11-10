@@ -47,6 +47,9 @@
               <a class="nav-link" href="{{ route('blog') }}">News</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="{{ route('karir') }}">Karir</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{ route('contact') }}">Contact</a>
             </li>
             @guest

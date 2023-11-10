@@ -92,14 +92,14 @@
 
     // jquery script
     // get all table and add css
-    $(document).ready(function () {
-      $.each($('.__datatables'), function (idx, val) { 
-        // add data table
-        $(val).DataTable({
-          "scrollX": true
-        });
-      });
-    });
+    // $(document).ready(function () {
+    //   $.each($('.__datatables'), function (idx, val) { 
+    //     // add data table
+    //     $(val).DataTable({
+    //       "scrollX": true,
+    //     });
+    //   });
+    // });
   </script>
   @yield('script')
 </body>
