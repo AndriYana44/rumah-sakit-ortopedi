@@ -113,27 +113,6 @@
                 <span class="hide-menu">User Akses</span>
             </a>
             </li>
-
-            <li class="nav-small-cap">
-                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                <span class="hide-menu">MENU MANAGEMENT</span>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#" aria-expanded="false">
-                    <span>
-                        <i class="fa fa-bars"></i>
-                    </span>
-                    <span class="hide-menu">Menu</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#" aria-expanded="false">
-                    <span>
-                        <i class="fa fa-bars"></i>
-                    </span>
-                    <span class="hide-menu">Menu Management</span>
-                </a>
-            </li>
         </ul>
         <!-- <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
           <div class="d-flex">

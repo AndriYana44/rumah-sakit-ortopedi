@@ -15,13 +15,30 @@
         <tr>
             <th>Kategori</th>
             <th>Pendidikan</th>
-            <th>Pengalaman</th>
+            <th>Min. Pengalaman</th>
             <th>Keriteria</th>
-            <th>Status</th>
+            <th>Jobdesk</th>
             <th>Aksi</th>
         </tr>
     </thead>
     <tbody> 
+        @foreach ($data as $item)
+            <tr>
+                <td>{{ $item->kategori->kategori }}</td>
+                <td>{{ $item->pendidikan }}</td>
+                <td>{{ $item->pengalaman }} Tahun</td>
+                <td>{{ $item->kriteria }}</td>
+                <td>{{ $item->jobdesk }}</td>
+                <td>
+                    <a href="#" class="btn btn-warning">Edit</a>
+                    <form action="#" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
     </tbody>
 </table>
 
@@ -30,7 +47,7 @@
 @section('script')
 <script>
     $(document).ready(function () {
-        
+        $('.__datatables').DataTable();
     });
 </script>
 @endsection

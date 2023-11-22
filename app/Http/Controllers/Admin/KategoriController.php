@@ -30,6 +30,8 @@ class KategoriController extends Controller
             $query->where('terkait', $request->post('terkait'));
         }
 
+        $query->orderBy('created_at', 'desc');
+
         $data = $query->get();
         $count = $query->count();
 

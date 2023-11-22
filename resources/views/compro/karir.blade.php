@@ -14,33 +14,36 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-3">
-            <div class="card my-3">
+            <div class="card my-3 shadow">
                 <div class="card-header">
                     <span>Pilih Kriteria</span>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="kategori">Pilih Kategori</label>
-                        <select name="kategori" id="kategori" class="form-control">
-                            <option value=""></option>
-                            <option value="1">Management Building</option>
-                            <option value="2">Pembangunan</option>
-                            <option value="3">Manager RS</option>
-                        </select>
-                    </div>
-                    <div class="form-group d-flex flex-column">
-                        <span>Jenjang Pendidikan</span>
-                        <label for="smk"><input class="mr-2" id="smk" type="checkbox">SMK/SMA</label>
-                        <label for="d1"><input class="mr-2" id="d1" type="checkbox">D1</label>
-                        <label for="d3"><input class="mr-2" id="d3" type="checkbox">D3</label>
-                        <label for="s1"><input class="mr-2" id="s1" type="checkbox">S1</label>
-                        <label for="s2"><input class="mr-2" id="s2" type="checkbox">S2</label>
-                    </div>
+                    <form id="form-karir-filter">
+                        <div class="form-group">
+                            <label for="kategori">Pilih Kategori</label>
+                            <select name="kategori" id="kategori" class="form-control">
+                                <option value=""></option>
+                                <option value="1">Management Building</option>
+                                <option value="2">Pembangunan</option>
+                                <option value="3">Manager RS</option>
+                            </select>
+                        </div>
+                        <div class="form-group d-flex flex-column">
+                            <span class="mb-2">Jenjang Pendidikan</span>
+                            <label for="smk"><input class="mr-2" id="smk" type="checkbox">SMK/SMA</label>
+                            <label for="d1"><input class="mr-2" id="d1" type="checkbox">D1</label>
+                            <label for="d3"><input class="mr-2" id="d3" type="checkbox">D3</label>
+                            <label for="s1"><input class="mr-2" id="s1" type="checkbox">S1</label>
+                            <label for="s2"><input class="mr-2" id="s2" type="checkbox">S2</label>
+                        </div>
+                        <button class="btn btn-primary btn-sm"><i class="fa fa-search"></i> Search</button>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="col-8">
-            <div class="card my-3">
+            <div class="card my-3 shadow">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-9">

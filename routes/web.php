@@ -34,7 +34,7 @@ Route::get('/doctors',[HomeController::class,'doctors'])->name('doctors');
 Route::get('/blog',[HomeController::class,'blog'])->name('blog');
 Route::get('/blog-details',[HomeController::class,'blogDetails'])->name('blog.details');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
-Route::get('/karir',[KarirController::class,'index'])->name('karir');
+Route::get('/karir-info',[KarirController::class,'index'])->name('karir');
 Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
 
 // API
@@ -100,6 +100,7 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('karir')->group(function() {
             Route::get('/', [AdminKarirController::class, 'index'])->name('karir.admin');
             Route::get('/create', [AdminKarirController::class, 'create'])->name('karir.admin.create');
+            Route::post('/store', [AdminKarirController::class, 'store'])->name('karir.admin.store');
         });
     });
 

@@ -15,4 +15,16 @@ class Kategori extends Model
         'terkait',
         'kategori',
     ];
+
+    // get all data
+    public static function getAll($ref)
+    {
+        return self::where('terkait', $ref)->orderBy('id', 'desc')->get();
+    }
+
+    // join to karir
+    public function karir()
+    {
+        return $this->hasMany(Karir::class, 'kategori_id', 'id');
+    }
 }
