@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 
 @section('breadcrumb')
-{{ Breadcrumbs::render('dashboard_karir_create') }}
+{{ Breadcrumbs::render('dashboard_karir_edit') }}
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
             <div class="col-sm-6">
                 <div class="mb-4 form-group d-flex flex-column">
                     <label for="judul" class="form-label">Kategori</label>
-                    <select name="kategori" id="kategori" class="select2">
+                    <select name="kategori" id="kategori">
                         <option value=""></option>
                         @foreach ($kategori as $k)
                             <option value="{{ $k->id }}">{{ $k->kategori }}</option>
@@ -32,26 +32,9 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="pendidikan" class="form-label">Min. Pendidikan</label>
-                            <select class="form-control select2" id="pendidikan" name="pendidikan">
-                                <option value=""></option>
-                                <option value="SMA">SMA/SMK</option>
-                                <option value="D1">D1</option>
-                                <option value="D3">D3</option>
-                                <option value="S1">S1</option>
-                                <option value="S2">S2</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="jurusan" class="form-label">Jurusan Pendidikan</label>
-                            <input type="text" class="form-control" id="jurusan" name="jurusan">
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label for="pendidikan" class="form-label">Min. Pendidikan</label>
+                    <input type="text" class="form-control" id="pendidikan" name="pendidikan">
                 </div>
                 <div class="mb-3">
                     <label for="bidang_pengalaman" class="form-label">Bidang Pengalaman</label>
@@ -72,10 +55,6 @@
                     <textarea id="informasi" class="form-control" name="informasi"></textarea>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <label for="deadline" class="form-label">Deadline</label>
-                <input type="text" name="deadline" id="deadline" class="form-control">
-            </div>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -87,12 +66,8 @@
 @section('script')
 <script>
     $(document).ready(function() {
-        $('.select2').select2({
+        $('#kategori').select2({
             placeholder: "Pilih Kategori"
-        });
-
-        $('#deadline').datepicker({
-            dateFormat: 'yy-mm-dd'
         });
     });
 </script>

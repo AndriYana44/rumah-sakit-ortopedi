@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->integer('kategori_id');
             $table->string('pendidikan');
+            $table->string('jurusan');
             $table->string('pengalaman');
             $table->string('bidang_pengalaman');
-            $table->string('kriteria');
-            $table->string('jobdesk');
-            $table->string('informasi')->nullable();
+            $table->text('kriteria');
+            $table->text('jobdesk');
+            $table->text('informasi')->nullable();
+            $table->date('deadline')->format('yyyy-mm-dd');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

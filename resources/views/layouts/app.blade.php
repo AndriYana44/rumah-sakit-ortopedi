@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css')  }}">
   <link href="{{ asset('assets/DataTables/datatables.min.css') }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" rel="stylesheet" />
+  
   <style>
     .sidebar-nav li .submenu{ 
       list-style: none; 
@@ -58,7 +60,7 @@
   <script src="{{ asset('assets/DataTables/datatables.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script>
     // vanilla script
     document.addEventListener("DOMContentLoaded", function(){

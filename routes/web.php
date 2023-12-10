@@ -100,7 +100,10 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('karir')->group(function() {
             Route::get('/', [AdminKarirController::class, 'index'])->name('karir.admin');
             Route::get('/create', [AdminKarirController::class, 'create'])->name('karir.admin.create');
+            Route::get('/edit/{id}', [AdminKarirController::class, 'edit'])->name('karir.admin.edit');
             Route::post('/store', [AdminKarirController::class, 'store'])->name('karir.admin.store');
+            Route::delete('/destroy/{id}', [AdminKarirController::class, 'destroy'])->name('karir.admin.destroy');
+            Route::post('/get-all-data', [AdminKarirController::class, 'getAllData'])->name('karir.admin.getAllData');
         });
     });
 

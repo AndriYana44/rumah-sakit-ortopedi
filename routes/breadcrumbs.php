@@ -75,3 +75,9 @@ Breadcrumbs::for('dashboard_karir_create', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard_karir');
     $trail->push('Tambah', route('karir.admin.create'));
 });
+
+// home > karir > edit
+Breadcrumbs::for('dashboard_karir_edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_karir');
+    $trail->push('Edit', route('karir.admin.edit', ['id' => 1]));
+});

@@ -23,15 +23,27 @@ class KarirController extends Controller
         ]);
     }
 
+    public function edit($id) 
+    {
+        $karir = Karir::find($id);
+        $kategori = Kategori::getAll('karir');
+        return view('admin.karir.form_karir_edit', $data = [
+            'karir' => $karir,
+            'kategori' => $kategori
+        ]);
+    }
+
     public function store(Request $request)
     {
         $karir = new Karir();
         $karir->kategori_id = $request->kategori;
         $karir->pendidikan = $request->pendidikan;
+        $karir->jurusan = $request->jurusan;
         $karir->pengalaman = $request->pengalaman;
         $karir->bidang_pengalaman = $request->bidang_pengalaman;
         $karir->kriteria = $request->kriteria;
         $karir->jobdesk = $request->jobdesk;
+        $karir->deadline = $request->deadline;
         $karir['informasi'] = $request->informasi ?? null;
 
         $store = $karir->save();
@@ -49,5 +61,51 @@ class KarirController extends Controller
                     'message' => 'Data gagal ditambahkan'
                 ]);
         }
+    }
+
+    public function destroy($id)
+    {
+        $karir = Karir::find($id);
+        $delete = $karir->delete();
+
+        if ($delete) {
+            return redirect()->route('karir.admin')
+                ->with([
+                    'success' => true,
+                    'message' => 'Data berhasil dihapus'
+                ]);
+        } else {
+            return redirect()->route('karir.admin')
+                ->with([
+                    'success' => false,
+                    'message' => 'Data gagal dihapus'
+                ]);
+        }
+    }
+
+    public function getAllData(Request $request)
+    {
+        $karir = Karir::with('kategori');
+        // dd($karir);
+        // check has request
+        $pendidikanFilter = [];
+        if ($request->pendidikan != null) {
+            foreach ($request->pendidikan as $pendidikan) {
+                $pendidikanFilter[] = $pendidikan;
+            }
+        }
+
+        // dd($request->pendidikan);
+        if ($request->kategori != null) {
+            $karir = Karir::with('kategori')
+                ->where('kategori_id', $request->kategori);
+        }
+
+        if ($request->pendidikan != null) {
+            $karir->whereIn('pendidikan', $pendidikanFilter);
+        }
+
+        $karir = $karir->get();
+        return response()->json($karir);
     }
 }

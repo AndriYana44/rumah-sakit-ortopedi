@@ -30,11 +30,11 @@
                 <td>{{ $item->kriteria }}</td>
                 <td>{{ $item->jobdesk }}</td>
                 <td>
-                    <a href="#" class="btn btn-warning">Edit</a>
-                    <form action="#" method="POST" class="d-inline">
+                    <a href="{{ route('karir.admin.edit', ['id' => $item->id]) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ route('karir.admin.destroy', ['id' => $item->id]) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
+                        <button type="submit" class="btn btn-danger karir-delete">Hapus</button>
                     </form>
                 </td>
             </tr>
@@ -48,6 +48,25 @@
 <script>
     $(document).ready(function () {
         $('.__datatables').DataTable();
+
+        $('.karir-delete').click(function (e) { 
+            e.preventDefault();
+            const form = $(this).closest('form');
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
     });
 </script>
 @endsection

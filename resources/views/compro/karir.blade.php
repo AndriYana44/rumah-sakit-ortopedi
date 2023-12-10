@@ -16,96 +16,35 @@
         <div class="col-3">
             <div class="card my-3 shadow">
                 <div class="card-header">
-                    <span>Pilih Kriteria</span>
+                    <span>Filter Kriteria</span>
                 </div>
                 <div class="card-body">
                     <form id="form-karir-filter">
+                        @csrf
                         <div class="form-group">
-                            <label for="kategori">Pilih Kategori</label>
-                            <select name="kategori" id="kategori" class="form-control">
+                            <label for="kategori">Kategori</label>
+                            <select name="kategori" id="kategori_list" class="form-control">
                                 <option value=""></option>
-                                <option value="1">Management Building</option>
-                                <option value="2">Pembangunan</option>
-                                <option value="3">Manager RS</option>
+                                @foreach ($kategori as $item)
+                                    <option value="{{ $item->id }}">{{ $item->kategori }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group d-flex flex-column">
                             <span class="mb-2">Jenjang Pendidikan</span>
-                            <label for="smk"><input class="mr-2" id="smk" type="checkbox">SMK/SMA</label>
-                            <label for="d1"><input class="mr-2" id="d1" type="checkbox">D1</label>
-                            <label for="d3"><input class="mr-2" id="d3" type="checkbox">D3</label>
-                            <label for="s1"><input class="mr-2" id="s1" type="checkbox">S1</label>
-                            <label for="s2"><input class="mr-2" id="s2" type="checkbox">S2</label>
+                            <label for="smk"><input name="pendidikan_f[]" value="SMK" class="mr-2" id="smk" type="checkbox">SMK/SMA</label>
+                            <label for="d1"><input name="pendidikan_f[]" value="D1" class="mr-2" id="d1" type="checkbox">D1</label>
+                            <label for="d3"><input name="pendidikan_f[]" value="D3" class="mr-2" id="d3" type="checkbox">D3</label>
+                            <label for="s1"><input name="pendidikan_f[]" value="S1" class="mr-2" id="s1" type="checkbox">S1</label>
+                            <label for="s2"><input name="pendidikan_f[]" value="S2" class="mr-2" id="s2" type="checkbox">S2</label>
                         </div>
                         <button class="btn btn-primary btn-sm"><i class="fa fa-search"></i> Search</button>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="col-8">
-            <div class="card my-3 shadow">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-9">
-                            <div class="job d-flex flex-column">
-                                <span><strong>Rekam Medis</strong></span>
-                                <span class="d-flex mt-3">
-                                    <div class="location-wrapper">
-                                        <i class="fa fa-map-marker text-success" aria-hidden="true"></i>
-                                        <small>Rs. Orthopedi Siaga Raya, Jakarta Pasar Minggu</small>
-                                    </div>
-                                    <div class="graduation-wrapper ml-4">
-                                        <i class="fa fa-graduation-cap text-success" aria-hidden="true"></i>
-                                        <small>S1</small>
-                                    </div>
-                                </span>
-                                <div class="requirement mt-2 limited-text">
-                                    Pengalaman Kerja:
-
-Pengalaman kerja di bidang rekam medis atau administrasi kesehatan.
-Kemampuan dalam mengelola data pasien, mengelola catatan medis, atau bekerja dengan sistem rekam medis elektronik.
-Pengetahuan Teknis:
-
-Pemahaman mendalam tentang kebijakan dan prosedur yang berkaitan dengan rekam medis.
-Kemampuan menggunakan perangkat lunak rekam medis dan sistem manajemen informasi kesehatan (HIMS).
-Kemampuan Administratif:
-
-Keahlian dalam manajemen administrasi, termasuk pengelolaan dokumen, penjadwalan, dan penerbitan laporan.
-Kemampuan menggunakan perangkat lunak perkantoran seperti Microsoft Office.
-Keterampilan Komunikasi:
-
-Kemampuan berkomunikasi dengan baik dengan staf kesehatan, pasien, dan pihak lain yang terlibat.
-Kemampuan menulis laporan dan dokumen medis dengan jelas dan akurat.
-Ketelitian dan Keterampilan Analitis:
-
-Keterampilan analitis yang baik dalam memeriksa dan memverifikasi informasi medis.
-Kemampuan bekerja dengan tingkat ketelitian tinggi dan memahami pentingnya akurasi dalam rekam medis.
-Etika dan Keamanan Informasi:
-
-Memahami dan mematuhi standar etika profesi kesehatan.
-Menjaga keamanan informasi pasien dan mengikuti kebijakan privasi data.
-Kemampuan Manajemen Waktu:
-
-Kemampuan manajemen waktu yang baik untuk mengatasi beban kerja yang besar dan berbagai tugas sekaligus.
-Pemahaman tentang Hukum Kesehatan:
-
-Pemahaman tentang regulasi dan kebijakan hukum terkait dengan rekam medis dan privasi pasien.
-Kemampuan Beradaptasi:
-
-Kemampuan untuk beradaptasi dengan perubahan teknologi dan kebijakan di bidang rekam medis.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="d-flex flex-column align-items-center justify-content-center">
-                                <button class="btn btn-primary btn-sm">Apply Now</button>
-                                <small class="mt-2">Deadline: 20-12-2023</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="col-8" id="karir-list-wrapper"></div>
+        <div id="modal-wrapper"></div>
     </div>
 </div>
 
@@ -113,7 +52,153 @@ Kemampuan untuk beradaptasi dengan perubahan teknologi dan kebijakan di bidang r
 @section('script')
 <script>
     $(document).ready(function() {
-        
+
+        $('#kategori_list').select2({
+            placeholder: "Pilih Kategori"
+        });
+
+        $('#form-karir-filter').on('submit', function(e) {
+            e.preventDefault();
+            let data = $(this).serializeArray();
+            let kategori = $('#kategori_list').val();
+            if (kategori == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Pilih kategori terlebih dahulu!',
+                });
+                return false;
+            }
+
+            let pendidikan = [];
+            $('input[name="pendidikan_f[]"]:checked').each(function() {
+                pendidikan.push($(this).val());
+            });
+
+            let dataObj = {
+                kategori: kategori,
+                pendidikan: pendidikan,
+                _token: $('input[name="_token"]').val()
+            };
+            getKarir(dataObj);
+        });
+
+        function getKarir(data = {kategori: null, pendidikan: null, _token: $('input[name="_token"]').val()}) {
+            $('#karir-list-wrapper').empty();
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: "{{ route('karir.admin.getAllData') }}",
+                dataType: "JSON",
+                success: function (res) {
+                    if(res.length == 0) {
+                        $('#karir-list-wrapper').append(`
+                            <div class="card my-3 shadow">
+                                <div class="card-body">
+                                    Saat ini belum ada lowongan pekerjaan
+                                </div>
+                            </div>
+                        `);
+                    } else {
+                        $.each(res, function (indexInArray, valueOfElement) { 
+                            let keterangan = `Minimal pengalaman ${valueOfElement.pengalaman} tahun`;
+                            keterangan += `<br>`;
+                            keterangan += `Berpengalaman sebagai ${valueOfElement.bidang_pengalaman}`;
+                            keterangan += `<br>`;
+                            keterangan += `Kriteria: ${valueOfElement.kriteria}`;
+    
+                            let deadline = `Deadline: ${valueOfElement.deadline}`;
+    
+                            let el = 
+                            `<div class="card my-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <div class="job d-flex flex-column">
+                                                <span><strong id="kategori">${valueOfElement.kategori.kategori}</strong></span>
+                                                <span class="d-flex mt-3">
+                                                    <div class="location-wrapper">
+                                                        <i class="fa fa-map-marker text-success" aria-hidden="true"></i>
+                                                        <small>Rs. Orthopedi Siaga Raya, Jakarta Pasar Minggu</small>
+                                                    </div>
+                                                    <div class="graduation-wrapper ml-4">
+                                                        <i class="fa fa-graduation-cap text-success" aria-hidden="true"></i>
+                                                        <small id="pendidikan">${valueOfElement.pendidikan}</small>
+                                                    </div>
+                                                </span>
+                                                <div class="requirement mt-2 limited-text" id="pengalaman">
+                                                    ${keterangan}
+                                                </div>
+                                                <a href="#" data-toggle="modal" data-target="#modal-karir-${valueOfElement.id}">Lihat selengkapnya..</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                                <button class="btn btn-primary btn-sm">Apply Now</button>
+                                                <small class="mt-2" id="deadline" style="color: #999">${deadline}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+                            
+                            let modal = 
+                            `<div class="modal fade" id="modal-karir-${valueOfElement.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Detail Karir (${valueOfElement.kategori.kategori})</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <div class="location-wrapper">
+                                                        <i class="fa fa-map-marker text-success" aria-hidden="true"></i>
+                                                        <small>Rs. Orthopedi Siaga Raya, Jakarta Pasar Minggu</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="graduation-wrapper ml-4">
+                                                        <i class="fa fa-graduation-cap text-success" aria-hidden="true"></i>
+                                                        <small id="pendidikan">${valueOfElement.pendidikan}</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="requirement mt-2" id="pengalaman">
+                                                        ${valueOfElement.pengalaman == null ? '' : keterangan}
+                                                    </div>
+                                                    <div class="jobdesk mt-2" id="jobdesk">
+                                                        ${valueOfElement.jobdesk}
+                                                        <br>
+                                                        ${valueOfElement.informasi == null ? '' : '<br>'+valueOfElement.informasi}
+                                                        <br>
+                                                        <br>
+                                                        <strong>Bagi yang berminat, silahkan kirimkan CV ke email: <a href="mailto:
+                                                        andri.yana349@gmail.com">andri.yana349@gmail.com</a></strong><br><br>
+                                                        <small style="color: #999">Lowongan pekerjaan ini berakhir pada : ${valueOfElement.deadline}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+
+                            $('#karir-list-wrapper').append(el);
+                            $('#modal-wrapper').append(modal);
+                        });
+                    }
+                }
+            });
+        };
+
+        getKarir();
     });
 </script>
 @endsection
