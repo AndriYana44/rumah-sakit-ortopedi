@@ -96,7 +96,7 @@
             DI RS ORTHOPEDI SIAGA RAYA
       
           </h1>
-        <a href="#" class="btn btn-primary">Let's Consult</a>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Daftar Berobat</button>
       </div>
     </div>
   </div>
@@ -107,9 +107,10 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6 py-3 wow fadeInUp elementor-widget-container">
-            <h1 class="elementor-heading-title elementor-size-default">Kesembuhan Anda Adalah Kebahagiaan Dari Kami</h1>
-            <p class="text-grey mb-4">Pada Tanggal 18 Juli 2022, Rumah Sakit Siaga Raya resmi berubah nama menjadi RS Orthopedi Siaga Raya. Perubahan nama tersebut juga diikuti dengan perubahan kelas / tipe rumah sakit dari Kelas C Umum menjadi Kelas C Khusus</p>
-            <a href="about.html" class="btn btn-primary">Learn More</a>
+            <h1 class="elementor-heading-title elementor-size-default">Kesembuhan Anda Adalah Kebahagiaan Bagi Kami</h1>
+            <p class="text-grey mb-2">Pelayanan Kesehatan Unggulan di RS. Orthopedi Siaga Raya
+              <br>RS. Orthopedi Siaga Raya berkomitmen untuk memberikan layanan kesehatan terbaik bagi Anda dan keluarga. Dengan tenaga medis yang berpengalaman dan fasilitas terkini, kami siap membantu Anda mencapai kesehatan optimal.</p>
+              <p class="text-grey mb-4">Sebagai rumah sakit yang mengkhususkan diri dalam perawatan tulang, RS. Orthopedi Siaga Raya menawarkan keunggulan dalam diagnosis, pengobatan, dan pemulihan. Dengan tim medis ahli kami, kami siap membantu pasien dengan berbagai kondisi tulang dan muskuloskeletal.</p>
           </div>
           <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
             <div class="img-place custom-img-1">
@@ -419,11 +420,91 @@
       </form>
     </div>
   </div> <!-- .page-section -->
+  {{-- {{ dd($dokter) }} --}}
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Form Pendaftaran Berobat</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group rekmed-wrapper">
+                    <label for="rekmed">No. Rekam Medis</label>
+                    <input type="number" id="rekmed" name="rekmed" class="form-control mb-2">
+                    <div class="checkbox-rekmed d-flex align-items-center justify-center">
+                      <input type="checkbox" id="rekmed-status" class="mr-2">
+                      <label for="rekmed-status" class="form-check-label text-grey" style="font-size: 12px">Tidak Punya No. Rekam Medis</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="asuransi">Nama Asuransi</label>
+                <input type="text" id="asuransi" name="asuransi" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="asuransi">Nomor Kartu</label>
+                <input type="text" id="asuransi" name="asuransi" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="asuransi">Nama Peserta</label>
+                <input type="text" id="asuransi" name="asuransi" class="form-control">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group mb-4">
+                <label for="dokter">Dokter</label>
+                <select name="dokter" id="dokter" class="form-control">
+                  <option value=""></option>
+                  @foreach ($dokter as $item)
+                    <option value="{{ $item->id }}">{{ $item->nama_dokter }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="tgl_periksa" class="mt-2">Tanggal Periksa</label>
+                <input type="text" name="tgl_periksa" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Daftar</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
 @endsection
 
 @section('script')
 <script>
+  $(document).ready(function(){
+    $('#dokter').select2({
+      placeholder: "Pilih Dokter",
+      allowClear: true,
+      width: '100%'
+    });
+    $('#rekmed-status').click(function(){
+      if($(this).is(':checked')){
+        $('#rekmed').attr('disabled', true);
+      }else{
+        $('#rekmed').attr('disabled', false);
+      }
+    });
+  });
+
     $('.slick-wrapper').slick({
         slidesToShow: 3,
         slidesToScroll: 1,

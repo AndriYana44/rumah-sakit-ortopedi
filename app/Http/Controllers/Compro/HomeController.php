@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Compro;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Dokter;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -10,7 +11,11 @@ class HomeController extends Controller
     //
 
     public function index (){
-        return view ('compro.index');
+        // dokter with relation
+        $dokter = Dokter::getAllWithJadwal();
+        return view ('compro.index', [
+            'dokter' => $dokter
+        ]);
     }
 
     public function about (){

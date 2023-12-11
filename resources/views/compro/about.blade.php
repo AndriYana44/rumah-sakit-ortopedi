@@ -22,7 +22,7 @@
             <div class="circle-shape bg-secondary text-white">
               <span class="mai-chatbubbles-outline"></span>
             </div>
-            <p><span>Chat</span> with a doctors</p>
+            <p>Buat janji dengan dokter</p>
           </div>
         </div>
         <div class="col-md-4 py-3 wow zoomIn">
@@ -51,12 +51,10 @@
         <div class="col-lg-8 wow fadeInUp">
           <h1 class="text-center mb-3">Kesembuhan Anda Kebahagian Kami</h1>
           <div class="text-lg">
-            <p>suhu.</p>
-            <p> suhu!</p>
           </div>
         </div>
         <div class="col-lg-10 mt-5">
-          <h1 class="text-center mb-5 wow fadeInUp">doctors</h1>
+          <h1 class="text-center mb-5 wow fadeInUp">Dokter Kami</h1>
           <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4 wow zoomIn">
               <div class="card-doctor">
