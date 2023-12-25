@@ -53,9 +53,9 @@ return [
     | Token Prefix
     |--------------------------------------------------------------------------
     |
-    | Sanctum can prefix new tokens in order to take advantage of various
-    | security scanning initiaives maintained by open source platforms
-    | that alert developers if they commit tokens into repositories.
+    | Sanctum can prefix new tokens in order to take advantage of numerous
+    | security scanning initiatives maintained by open source platforms
+    | that notify developers if they commit tokens into repositories.
     |
     | See: https://docs.github.com/en/code-security/secret-scanning/about-secret-scanning
     |
@@ -77,11 +77,7 @@ return [
     'middleware' => [
         'authenticate_session' => Laravel\Sanctum\Http\Middleware\AuthenticateSession::class,
         'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
-<<<<<<< HEAD
         'verify_csrf_token' => App\Http\Middleware\VerifyCsrfToken::class,
-=======
-        'authenticate_session' => \Laravel\Sanctum\Http\Middleware\AuthenticateSession::class,
->>>>>>> 303dccc2e90eb19411baeb0b85b223f51e591da9
     ],
 
 ];
