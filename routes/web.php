@@ -48,6 +48,7 @@ Route::middleware(['guest'])->group(function() {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/daftar', [AuthController::class, 'create'])->name('daftar');
 });
 
 Route::middleware(['auth'])->group(function () {

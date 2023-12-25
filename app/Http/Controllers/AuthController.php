@@ -52,13 +52,14 @@ class AuthController extends Controller
         return redirect("dashboard")->withSuccess('You have signed-in');
     }
 
-    public function create(array $data)
+    public function create(Request $request)
     {
+        dd($request->all());
       return User::create([
-        'name' => $data['name'],
-        'username' => $data['username'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
+        'name' => $request['name'],
+        'username' => $request['username'],
+        'email' => $request['email'],
+        'password2' => Hash::make($request['password'])
       ]);
     }
 
