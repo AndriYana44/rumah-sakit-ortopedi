@@ -96,7 +96,11 @@
             DI RS ORTHOPEDI SIAGA RAYA
       
           </h1>
+          @auth
           <button class="btn btn-primary" data-toggle="modal" data-target="#berobat">Daftar Berobat</button>
+          @else
+          <a class="btn btn-primary" href="{{ route('login') }}">Daftar Berobat</a>
+          @endauth
       </div>
     </div>
   </div>
