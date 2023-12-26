@@ -8,6 +8,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Compro\HomeController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Compro\KarirController;
+use App\Http\Controllers\Admin\KarirController as AdminKarirController;
+use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Admin\PendaftaranBerobatController;
 use App\Http\Controllers\Compro\PostController;
 use App\Http\Controllers\Middle\ComproApiController;
 
@@ -31,21 +35,27 @@ Route::get('/doctors',[HomeController::class,'doctors'])->name('doctors');
 Route::get('/blog',[HomeController::class,'blog'])->name('blog');
 Route::get('/blog-details',[HomeController::class,'blogDetails'])->name('blog.details');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
+Route::get('/karir-info',[KarirController::class,'index'])->name('karir');
 Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
 
 // API
 Route::get('/get-dokter-api', [ComproApiController::class, 'getDokter'])->name('get.dokter.api');
 Route::get('/get-dokter-jadwal-api', [ComproApiController::class, 'getJadwal'])->name('get.dokter.jadwal.api');
+Route::get('/get-filter-dokter-jadwal-api/{hari}', [ComproApiController::class, 'getJadwalFilter'])->name('get.filter.jadwal.api');
+Route::get('/get-postingan-api', [ComproApiController::class, 'getPostingan'])->name('get.postingan.api');
 
 // Auth
 Route::middleware(['guest'])->group(function() {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/daftar', [AuthController::class, 'create'])->name('daftar');
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
+
+    Route::post('/daftar-berobat', [HomeController::class, 'daftarBerobat'])->name('daftarBerobat');
 
     Route::middleware(['admin'])->group(function() {
         Route::group(['prefix' => 'dashboard'], function () {
@@ -66,6 +76,12 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('/update', [DokterController::class, 'updateJadwal'])->name('dokter.jadwal.update');
             });
         });
+
+        Route::prefix('kategori')->group(function() {
+            Route::get('/', [KategoriController::class, 'index'])->name('kategori');
+            Route::post('/store', [KategoriController::class, 'store'])->name('kategori.store');
+            Route::post('/getAllData', [KategoriController::class, 'getAllData'])->name('kategori.getAllData');
+        });
     
         Route::prefix('user')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('user');
@@ -83,6 +99,20 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/store', [PostinganController::class, 'store'])->name('postingan.store');
             Route::put('/update', [PostinganController::class, 'update'])->name('postingan.update');
             Route::delete('/delete/{id}', [PostinganController::class, 'destroy'])->name('postingan.delete');
+        });
+
+        Route::prefix('karir')->group(function() {
+            Route::get('/', [AdminKarirController::class, 'index'])->name('karir.admin');
+            Route::get('/create', [AdminKarirController::class, 'create'])->name('karir.admin.create');
+            Route::get('/edit/{id}', [AdminKarirController::class, 'edit'])->name('karir.admin.edit');
+            Route::post('/store', [AdminKarirController::class, 'store'])->name('karir.admin.store');
+            Route::delete('/destroy/{id}', [AdminKarirController::class, 'destroy'])->name('karir.admin.destroy');
+            Route::post('/get-all-data', [AdminKarirController::class, 'getAllData'])->name('karir.admin.getAllData');
+        });
+
+        Route::prefix('pendaftaran-berobat')->group(function() {
+            Route::get('/', [PendaftaranBerobatController::class, 'index'])->name('listPendaftaranBerobat');
+            Route::get('/detail/{id}', [PendaftaranBerobatController::class, 'pasienDetail'])->name('detailPasien');
         });
     });
 

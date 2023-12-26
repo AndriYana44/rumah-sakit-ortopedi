@@ -74,6 +74,14 @@ class Dokter extends Model
     }
 
     // get all data with jadwal
+    public static function getFilterWithJadwal($hari)
+    {
+        return Dokter::with(['hari','jamMulai','jamSelesai'])
+                    ->whereHas('hari', function ($query) use ($hari) {
+                        $query->where('hari', $hari);
+                    })->get();
+    }
+    
     public static function getAllWithJadwal()
     {
         return Dokter::with(['hari','jamMulai','jamSelesai'])->get();

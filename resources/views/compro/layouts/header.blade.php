@@ -1,3 +1,11 @@
+<style>
+  .line-h {
+    width: .5px;
+    height: 30px;
+    background-color: #c0c0c0;
+  }
+</style>
+
 <header>
     <div class="topbar">
       <div class="container">
@@ -47,11 +55,22 @@
               <a class="nav-link" href="{{ route('blog') }}">News</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="{{ route('karir') }}">Karir</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{ route('contact') }}">Contact</a>
             </li>
             @guest
                 <li class="nav-item">
-                    <a class="btn btn-primary ml-lg-3" href="{{ route('login') }}">Login</a>
+                    <a class="nav-link ml-lg-3 text-primary" href="{{ route('login') }}">
+                      <b>Login</b>
+                    </a>
+                </li>
+                <div class="line-h"></div>
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="{{ route('register') }}">
+                      <b>Daftar</b>
+                    </a>
                 </li>
             @else
                 <li class="nav-item dropdown">
@@ -60,7 +79,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @if(Auth::user()->role === 1)
-                            <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                          <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                        @else
+                          <a class="dropdown-item" href="#">Profile</a>
                         @endif
                         <a class="dropdown-item" href="{{ route('signout') }}">Logout</a>
                     </div>

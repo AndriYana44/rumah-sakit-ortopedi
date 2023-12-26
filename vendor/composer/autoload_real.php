@@ -24,15 +24,25 @@ class ComposerAutoloaderInit89097f325b68ac919c95f0d42c450c75
 
         require __DIR__ . '/platform_check.php';
 
+<<<<<<< HEAD
         spl_autoload_register(array('ComposerAutoloaderInit89097f325b68ac919c95f0d42c450c75', 'loadClassLoader'), true, true);
         self::$loader = $loader = new \Composer\Autoload\ClassLoader(\dirname(\dirname(__FILE__)));
         spl_autoload_unregister(array('ComposerAutoloaderInit89097f325b68ac919c95f0d42c450c75', 'loadClassLoader'));
+=======
+        spl_autoload_register(array('ComposerAutoloaderInit779787648ffc09a1501f04b150f2b53c', 'loadClassLoader'), true, true);
+        self::$loader = $loader = new \Composer\Autoload\ClassLoader(\dirname(\dirname(__FILE__)));
+        spl_autoload_unregister(array('ComposerAutoloaderInit779787648ffc09a1501f04b150f2b53c', 'loadClassLoader'));
+>>>>>>> development
 
         $useStaticLoader = PHP_VERSION_ID >= 50600 && !defined('HHVM_VERSION') && (!function_exists('zend_loader_file_encoded') || !zend_loader_file_encoded());
         if ($useStaticLoader) {
             require __DIR__ . '/autoload_static.php';
 
+<<<<<<< HEAD
             call_user_func(\Composer\Autoload\ComposerStaticInit89097f325b68ac919c95f0d42c450c75::getInitializer($loader));
+=======
+            call_user_func(\Composer\Autoload\ComposerStaticInit779787648ffc09a1501f04b150f2b53c::getInitializer($loader));
+>>>>>>> development
         } else {
             $map = require __DIR__ . '/autoload_namespaces.php';
             foreach ($map as $namespace => $path) {
@@ -53,7 +63,11 @@ class ComposerAutoloaderInit89097f325b68ac919c95f0d42c450c75
         $loader->register(true);
 
         if ($useStaticLoader) {
+<<<<<<< HEAD
             $includeFiles = Composer\Autoload\ComposerStaticInit89097f325b68ac919c95f0d42c450c75::$files;
+=======
+            $includeFiles = Composer\Autoload\ComposerStaticInit779787648ffc09a1501f04b150f2b53c::$files;
+>>>>>>> development
         } else {
             $includeFiles = require __DIR__ . '/autoload_files.php';
         }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Compro;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Dokter;
+use App\Models\TempDaftarBerobat;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -10,7 +12,11 @@ class HomeController extends Controller
     //
 
     public function index (){
-        return view ('compro.index');
+        // dokter with relation
+        $dokter = Dokter::getAllWithJadwal();
+        return view ('compro.index', [
+            'dokter' => $dokter
+        ]);
     }
 
     public function about (){
@@ -31,5 +37,17 @@ class HomeController extends Controller
 
     public function contact (){
         return view ('compro.contact');
+    }
+
+    public function daftarBerobat(Request $request)
+    {
+        $daftarBerobat = new TempDaftarBerobat();
+        $daftarBerobat->user_id = auth()->user()->id;
+        $daftarBerobat->dokter_id = $request->dokter;
+        $daftarBerobat->metode_pembayaran = $request->pembayaran;
+        $daftarBerobat->tanggal_periksa = $request->tgl_periksa;
+        $daftarBerobat->save();
+
+        return response()->json(['success' => true]);
     }
 }

@@ -85,15 +85,6 @@
   border: none;
   background-repeat: no-repeat;
 }
-  
-  
-
-
- 
- 
-  
-
- 
  </style>
  <div class="page-hero bg-image overlay-dark" style="background-image: url(../assets-compro/assets/img/bg_image_1.jpg);">
     <div class="hero-section">
@@ -105,7 +96,7 @@
             DI RS ORTHOPEDI SIAGA RAYA
       
           </h1>
-        <a href="#" class="btn btn-primary">Let's Consult</a>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#berobat">Daftar Berobat</button>
       </div>
     </div>
   </div>
@@ -116,9 +107,10 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6 py-3 wow fadeInUp elementor-widget-container">
-            <h1 class="elementor-heading-title elementor-size-default">Kesembuhan Anda Adalah Kebahagiaan Dari Kami</h1>
-            <p class="text-grey mb-4">Pada Tanggal 18 Juli 2022, Rumah Sakit Siaga Raya resmi berubah nama menjadi RS Orthopedi Siaga Raya. Perubahan nama tersebut juga diikuti dengan perubahan kelas / tipe rumah sakit dari Kelas C Umum menjadi Kelas C Khusus</p>
-            <a href="about.html" class="btn btn-primary">Learn More</a>
+            <h1 class="elementor-heading-title elementor-size-default">Kesembuhan Anda Adalah Kebahagiaan Bagi Kami</h1>
+            <p class="text-grey mb-2">Pelayanan Kesehatan Unggulan di RS. Orthopedi Siaga Raya
+              <br>RS. Orthopedi Siaga Raya berkomitmen untuk memberikan layanan kesehatan terbaik bagi Anda dan keluarga. Dengan tenaga medis yang berpengalaman dan fasilitas terkini, kami siap membantu Anda mencapai kesehatan optimal.</p>
+              <p class="text-grey mb-4">Sebagai rumah sakit yang mengkhususkan diri dalam perawatan tulang, RS. Orthopedi Siaga Raya menawarkan keunggulan dalam diagnosis, pengobatan, dan pemulihan. Dengan tim medis ahli kami, kami siap membantu pasien dengan berbagai kondisi tulang dan muskuloskeletal.</p>
           </div>
           <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
             <div class="img-place custom-img-1">
@@ -428,30 +420,188 @@
       </form>
     </div>
   </div> <!-- .page-section -->
-
-  <div class="page-section banner-home bg-image" style="background-image: url(../assets-compro/assets/img/banner-pattern.svg);">
-    <div class="container py-5 py-lg-0">
-      <div class="row align-items-center">
-        <div class="col-lg-4 wow zoomIn">
-          <div class="img-banner d-none d-lg-block">
-            <img src="../assets-compro/assets/img/mobile_app.png" alt="">
+  {{-- {{ dd($dokter) }} --}}
+  <!-- Modal -->
+  <div class="modal fade" id="berobat" tabindex="-1" role="dialog" aria-labelledby="berobatLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form action="" id="daftarBerobat">
+          <div class="modal-header">
+            <h5 class="modal-title" id="berobatLabel">Form Pendaftaran Berobat</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-        </div>
-        <div class="col-lg-8 wow fadeInRight">
-          <h1 class="font-weight-normal mb-3">Get easy access of all features using One Health Application</h1>
-          <a href="#"><img src="../assets-compro/assets/img/google_play.svg" alt=""></a>
-          <a href="#" class="ml-2"><img src="../assets-compro/assets/img/app_store.svg" alt=""></a>
-        </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="pembayaran" class="mt-2">Metode Pembayaran</label>
+                  <select name="pembayaran" id="pembayaran" class="select2">
+                    <option value=""></option>
+                    <option value="umum / cash">Umum/Cash</option>
+                    <option value="jaminan perusahaan">Jaminan Perusahaan</option>
+                    <option value="asuransi">Asuransi</option>
+                  </select>
+                </div>
+                <div class="form-group mb-2">
+                  <label for="dokter">Dokter</label>
+                  <select name="dokter" id="dokter" class="form-control select2">
+                    <option value=""></option>
+                    @foreach ($dokter as $item)
+                      @if($item->hari->first() != null)
+                        <option value="{{ $item->id }}">{{ $item->nama_dokter }}</option>
+                      @endif
+                    @endforeach
+                  </select>
+                </div>
+                <div class="jadwal_praktek"></div>
+                <div class="form-group mt-3">
+                  <label for="tgl_periksa" class="mt-2">Tanggal Periksa</label>
+                  <input type="text" id="tgl_periksa" name="tgl_periksa" class="form-control" disabled>
+                  <div class="validate_hari"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary daftar">Daftar</button>
+          </div>
+        </form>
       </div>
     </div>
-  </div> <!-- .banner-home -->
-
-
+  </div>
   
 @endsection
 
 @section('script')
 <script>
+  $(document).ready(function(){
+    function getDay(dateString) {
+      let dataObject = new Date(dateString);
+      let daysOfWeek = ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];
+      let dayOfWeek = daysOfWeek[dataObject.getDay()];
+
+      return dayOfWeek;
+    }
+
+    $('#tgl_periksa').datepicker({
+      dateFormat: 'yy-mm-dd',
+      changeYear: true,
+      changeMonth: true,
+      yearRange: '-0:+1'
+    })
+
+    $('.select2').select2({
+      placeholder: "Pilih Salahsatu",
+      allowClear: true,
+      width: '100%'
+    });
+
+    $('#rekmed-status').click(function(){
+      if($(this).is(':checked')){
+        $('#rekmed').attr('disabled', true);
+      }else{
+        $('#rekmed').attr('disabled', false);
+      }
+    });
+
+    $('#dokter').on('change', function() {
+      $.ajax({
+        type: 'POST',
+        url: `{{ route('api.dokter.jadwal') }}`,
+        data: { 
+          _token: '{{ csrf_token() }}',
+          dokter_id: $(this).val()
+        },
+        success: function (res) {  
+          let days = [];
+          let day = null;
+          $('.validate_hari').html('');
+          $('#tgl_periksa').removeAttr('disabled');
+          if($('#tgl_periksa').val() != '') {
+            day = getDay($('#tgl_periksa').val());
+          }
+
+          $('.jadwal_praktek').html('');
+          $.each(res.hari, function(i,v) {
+            days.push(v.hari.toLowerCase());
+          })
+          $('.jadwal_praktek').append(
+            `<small>Dokter bersedia pada hari:</small> <br>
+            <small>${days}</small>`
+          )
+          
+          if(day != null) {
+            let dayExist = days.includes(day);
+            if(!dayExist) {
+              $('.validate_hari').append(`<small style="color: red">Dokter tidak ada jadwal hari ${day}</small>`);
+              $('.daftar').attr('disabled', 'disabled');
+              $('.daftar').css('cursor', 'not-allowed');
+            }else{
+              $('.daftar').removeAttr('disabled');
+              $('.daftar').css('cursor', 'pointer');
+            }
+          }
+        }
+      })
+    });
+
+    $('#tgl_periksa').change(function() {
+      let dayOfWeek = getDay($(this).val());
+      $.ajax({
+        type: 'POST',
+        url: `{{ route('api.dokter.jadwal') }}`,
+        data: { 
+          _token: '{{ csrf_token() }}',
+          dokter_id: $('#dokter').val()
+        },
+        success: function (res) {  
+          let hari = [];
+          $('.validate_hari').html('');
+          $.each(res.hari, function(i,v) {
+            hari.push(v.hari.toLowerCase());
+          });
+
+          let dayExist = hari.includes(dayOfWeek)
+          if(!dayExist) {
+            $('.validate_hari').append(`<small style="color: red">Dokter tidak ada jadwal hari ${dayOfWeek}</small>`);
+            $('.daftar').attr('disabled', 'disabled');
+            $('.daftar').css('cursor', 'not-allowed');
+          }else{
+            $('.daftar').removeAttr('disabled');
+            $('.daftar').css('cursor', 'pointer');
+          }
+        }
+      })
+    });
+
+    $('.daftar').click(function() {
+      $('#berobat').modal('hide');
+      var data = {
+        _token: '{{ csrf_token() }}',
+        pembayaran: $('#pembayaran').val(),
+        dokter: $('#dokter').val(),
+        tgl_periksa: $('#tgl_periksa').val()
+      }
+
+      $.ajax({
+        url: `{{ route('daftarBerobat') }}`,
+        type: 'POST',
+        data: data,
+        success: function(res) {
+          if(res.success == true) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Berhasil',
+              text: 'Terimakasih, data anda akan segera kami proses.'
+            });
+          }
+        }
+      })
+    });
+  });
+
     $('.slick-wrapper').slick({
         slidesToShow: 3,
         slidesToScroll: 1,

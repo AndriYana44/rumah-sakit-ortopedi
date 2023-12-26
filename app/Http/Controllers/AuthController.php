@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Session;
@@ -52,14 +53,40 @@ class AuthController extends Controller
         return redirect("dashboard")->withSuccess('You have signed-in');
     }
 
-    public function create(array $data)
+    public function create(Request $request)
     {
-      return User::create([
-        'name' => $data['name'],
-        'username' => $data['username'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
+        // dd($request->all());
+      $user = User::create([
+        'name' => $request['nama'],
+        'jabatan' => 'Pasien',
+        'username' => $request['username'],
+        'email' => $request['email'],
+        'password' => Hash::make($request['password2']),
+        'role' => 0
       ]);
+
+      $newUserId = $user->id;
+      $userDetail = UserDetail::create([
+        'user_id' => $newUserId,
+        'no_hp' => $request['no_hp'],
+        'jenis_kelamin' => $request['jk'],
+        'status' => $request['status'],
+        'tgl_lahir' => $request['tgl_lahir'],
+        'pendidikan' => $request['pendidikan'],
+        'nama_ibu' => $request['ibu'],
+        'nama_ayah' => $request['ayah'],
+        'agama' => $request['agama'],
+        'pekerjaan' => $request['pekerjaan'],
+        'alamat_lengkap' => $request['alamat'],
+        'klinik_tujuan' => $request['klinik_tujuan'],
+        'warga_negara' => $request['warganegara']
+      ]);
+
+      Auth::login($user);
+
+      if($userDetail) {
+        return redirect("dashboard")->withSuccess('Daftar berhasil');
+      }
     }
 
     public function dashboard()

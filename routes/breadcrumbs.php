@@ -58,8 +58,26 @@ Breadcrumbs::for('dashboard_postingan', function (BreadcrumbTrail $trail) {
     $trail->push('Postingan', route('postingan'));
 });
 
+// home > karir
+Breadcrumbs::for('dashboard_karir', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Karir', route('karir.admin'));
+});
+
 // home > postingan > create
 Breadcrumbs::for('dashboard_postingan_create', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard_postingan');
     $trail->push('Tambah', route('postingan.create'));
+});
+
+// home > karir > create
+Breadcrumbs::for('dashboard_karir_create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_karir');
+    $trail->push('Tambah', route('karir.admin.create'));
+});
+
+// home > karir > edit
+Breadcrumbs::for('dashboard_karir_edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_karir');
+    $trail->push('Edit', route('karir.admin.edit', ['id' => 1]));
 });

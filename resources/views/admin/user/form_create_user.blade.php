@@ -48,6 +48,7 @@
                         <option value=""></option>
                         <option value="1">Super Admin</option>
                         <option value="2">Admin</option>
+                        <option value="3">Dokter</option>
                         <option value="0">Pengguna</option>
                     </select>
                 </div>

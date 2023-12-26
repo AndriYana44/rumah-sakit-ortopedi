@@ -21,7 +21,7 @@
           <div class="col-md-8 col-lg-6 col-xxl-3">
             <div class="card mb-0">
               <div class="card-body">
-                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                <a href="{{ route('home') }}" class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <img src="{{ asset('assets') }}/images/logos/favicon.png" width="80" alt=""><br>
                   <img src="{{ asset('assets') }}/images/logos/logo-name.png" width="250" alt="">
                 </a>
@@ -34,9 +34,6 @@
                   <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" id="exampleInputPassword1">
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between mb-4">
-                    <a class="text-primary fw-bold" href="./index.html"><small>Lupa Password ?</small></a>
                   </div>
                   <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
                   <div class="d-flex align-items-center justify-content-center">

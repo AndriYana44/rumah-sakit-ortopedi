@@ -53,6 +53,10 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            $('.__datatables').DataTable({
+                "scrollX": true,
+            });
+
             // confirm delete with sweetalert
             $('.dokter-delete').click(function (e) { 
                 e.preventDefault();

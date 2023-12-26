@@ -19,9 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'jabatan',
         'username',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -53,5 +55,10 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->role == '1';
+    }
+
+    public function userDetail()
+    {
+        return $this->hasOne(UserDetail::class, 'user_id', 'id');
     }
 }
