@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Session;
@@ -54,13 +55,35 @@ class AuthController extends Controller
 
     public function create(Request $request)
     {
-        dd($request->all());
-      return User::create([
-        'name' => $request['name'],
+      $user = User::create([
+        'name' => $request['nama'],
+        'jabatan' => 'Pasien',
         'username' => $request['username'],
         'email' => $request['email'],
-        'password2' => Hash::make($request['password'])
+        'password' => Hash::make($request['password2']),
+        'role' => 0
       ]);
+
+      $newUserId = $user->id;
+      $userDetail = UserDetail::create([
+        'user_id' => $newUserId,
+        'jenis_kelamin' => $request['jk'],
+        'status' => $request['status'],
+        'tgl_lahir' => $request['tgl_lahir'],
+        'pendidikan' => $request['pendidikan'],
+        'nama_ibu' => $request['ibu'],
+        'agama' => $request['agama'],
+        'pekerjaan' => $request['pekerjaan'],
+        'alamat_lengkap' => $request['alamat'],
+        'klinik_tujuan' => $request['klinik_tujuan'],
+        'warga_negara' => $request['warganegara']
+      ]);
+
+      Auth::login($user);
+
+      if($userDetail) {
+        return redirect("dashboard")->withSuccess('Daftar berhasil');
+      }
     }
 
     public function dashboard()

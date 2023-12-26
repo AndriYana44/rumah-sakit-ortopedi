@@ -79,7 +79,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @if(Auth::user()->role === 1)
-                            <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                          <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                        @else
+                          <a class="dropdown-item" href="#">Profile</a>
                         @endif
                         <a class="dropdown-item" href="{{ route('signout') }}">Logout</a>
                     </div>

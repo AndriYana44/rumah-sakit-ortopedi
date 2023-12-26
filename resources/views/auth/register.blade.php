@@ -190,7 +190,7 @@
                     <div class="col-6">
                       <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" disabled>
+                        <input type="text" class="form-control" id="username" disabled>
                         <input type="text" name="username" hidden>
                       </div>
                     </div>
@@ -237,7 +237,9 @@
     $(document).ready(function() {
       $('.select2').select2();
       $('.date').datepicker({
-        dateFormat: 'yy-mm-dd'
+        dateFormat: 'yy-mm-dd',
+        changeYear: true,
+        yearRange: '-50:+10'
       });
 
       $('#nama').on('change', function(e) {

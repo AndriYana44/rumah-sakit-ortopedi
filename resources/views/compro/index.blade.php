@@ -423,7 +423,7 @@
   {{-- {{ dd($dokter) }} --}}
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Form Pendaftaran Berobat</h5>
@@ -434,53 +434,37 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12">
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group rekmed-wrapper">
-                    <label for="rekmed">No. Rekam Medis</label>
-                    <input type="number" id="rekmed" name="rekmed" class="form-control mb-2">
-                    <div class="checkbox-rekmed d-flex align-items-center justify-center">
-                      <input type="checkbox" id="rekmed-status" class="mr-2">
-                      <label for="rekmed-status" class="form-check-label text-grey" style="font-size: 12px">Tidak Punya No. Rekam Medis</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <hr>
-            </div>
-            <div class="col-6">
               <div class="form-group">
-                <label for="asuransi">Nama Asuransi</label>
-                <input type="text" id="asuransi" name="asuransi" class="form-control">
+                <label for="tgl_periksa" class="mt-2">Metode Pembayaran</label>
+                <select name="pembayaran" id="pembayaran" class="select2">
+                  <option value=""></option>
+                  <option value="umum">Umum/Cash</option>
+                  <option value="perusahaan">Jaminan Perusahaan</option>
+                  <option value="asuransi">Asuransi</option>
+                </select>
               </div>
-              <div class="form-group">
-                <label for="asuransi">Nomor Kartu</label>
-                <input type="text" id="asuransi" name="asuransi" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="asuransi">Nama Peserta</label>
-                <input type="text" id="asuransi" name="asuransi" class="form-control">
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group mb-4">
+              <div class="form-group mb-2">
                 <label for="dokter">Dokter</label>
-                <select name="dokter" id="dokter" class="form-control">
+                <select name="dokter" id="dokter" class="form-control select2">
                   <option value=""></option>
                   @foreach ($dokter as $item)
-                    <option value="{{ $item->id }}">{{ $item->nama_dokter }}</option>
+                    @if($item->hari->first() != null)
+                      <option value="{{ $item->id }}">{{ $item->nama_dokter }}</option>
+                    @endif
                   @endforeach
                 </select>
               </div>
-              <div class="form-group">
+              <div class="jadwal_praktek"></div>
+              <div class="form-group mt-3">
                 <label for="tgl_periksa" class="mt-2">Tanggal Periksa</label>
-                <input type="text" name="tgl_periksa" class="form-control">
+                <input type="text" id="tgl_periksa" name="tgl_periksa" class="form-control" disabled>
+                <div class="validate_hari"></div>
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Daftar</button>
+          <button type="button" class="btn btn-primary daftar">Daftar</button>
         </div>
       </div>
     </div>
@@ -491,17 +475,103 @@
 @section('script')
 <script>
   $(document).ready(function(){
-    $('#dokter').select2({
-      placeholder: "Pilih Dokter",
+    function getDay(dateString) {
+      let dataObject = new Date(dateString);
+      let daysOfWeek = ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];
+      let dayOfWeek = daysOfWeek[dataObject.getDay()];
+
+      return dayOfWeek;
+    }
+
+    $('#tgl_periksa').datepicker({
+      dateFormat: 'yy-mm-dd',
+      changeYear: true,
+      changeMonth: true,
+      yearRange: '-0:+1'
+    })
+
+    $('.select2').select2({
+      placeholder: "Pilih Salahsatu",
       allowClear: true,
       width: '100%'
     });
+
     $('#rekmed-status').click(function(){
       if($(this).is(':checked')){
         $('#rekmed').attr('disabled', true);
       }else{
         $('#rekmed').attr('disabled', false);
       }
+    });
+
+    $('#dokter').on('change', function() {
+      $.ajax({
+        type: 'POST',
+        url: `{{ route('api.dokter.jadwal') }}`,
+        data: { 
+          _token: '{{ csrf_token() }}',
+          dokter_id: $(this).val()
+        },
+        success: function (res) {  
+          let days = [];
+          let day = null;
+          $('.validate_hari').html('');
+          $('#tgl_periksa').removeAttr('disabled');
+          if($('#tgl_periksa').val() != '') {
+            day = getDay($('#tgl_periksa').val());
+          }
+
+          $('.jadwal_praktek').html('');
+          $.each(res.hari, function(i,v) {
+            days.push(v.hari.toLowerCase());
+          })
+          $('.jadwal_praktek').append(
+            `<small>Dokter bersedia pada hari:</small> <br>
+            <small>${days}</small>`
+          )
+          
+          if(day != null) {
+            let dayExist = days.includes(day);
+            if(!dayExist) {
+              $('.validate_hari').append(`<small style="color: red">Dokter tidak ada jadwal hari ${day}</small>`);
+              $('.daftar').attr('disabled', 'disabled');
+              $('.daftar').css('cursor', 'not-allowed');
+            }else{
+              $('.daftar').removeAttr('disabled');
+              $('.daftar').css('cursor', 'pointer');
+            }
+          }
+        }
+      })
+    });
+
+    $('#tgl_periksa').change(function() {
+      let dayOfWeek = getDay($(this).val());
+      $.ajax({
+        type: 'POST',
+        url: `{{ route('api.dokter.jadwal') }}`,
+        data: { 
+          _token: '{{ csrf_token() }}',
+          dokter_id: $('#dokter').val()
+        },
+        success: function (res) {  
+          let hari = [];
+          $('.validate_hari').html('');
+          $.each(res.hari, function(i,v) {
+            hari.push(v.hari.toLowerCase());
+          });
+
+          let dayExist = hari.includes(dayOfWeek)
+          if(!dayExist) {
+            $('.validate_hari').append(`<small style="color: red">Dokter tidak ada jadwal hari ${dayOfWeek}</small>`);
+            $('.daftar').attr('disabled', 'disabled');
+            $('.daftar').css('cursor', 'not-allowed');
+          }else{
+            $('.daftar').removeAttr('disabled');
+            $('.daftar').css('cursor', 'pointer');
+          }
+        }
+      })
     });
   });
 
