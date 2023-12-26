@@ -55,6 +55,7 @@ class AuthController extends Controller
 
     public function create(Request $request)
     {
+        // dd($request->all());
       $user = User::create([
         'name' => $request['nama'],
         'jabatan' => 'Pasien',
@@ -67,11 +68,13 @@ class AuthController extends Controller
       $newUserId = $user->id;
       $userDetail = UserDetail::create([
         'user_id' => $newUserId,
+        'no_hp' => $request['no_hp'],
         'jenis_kelamin' => $request['jk'],
         'status' => $request['status'],
         'tgl_lahir' => $request['tgl_lahir'],
         'pendidikan' => $request['pendidikan'],
         'nama_ibu' => $request['ibu'],
+        'nama_ayah' => $request['ayah'],
         'agama' => $request['agama'],
         'pekerjaan' => $request['pekerjaan'],
         'alamat_lengkap' => $request['alamat'],

@@ -52,7 +52,16 @@
                     </span>
                     <span class="hide-menu">Kategori</span>
                 </a>
-                </li>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('listPendaftaranBerobat') }}" aria-expanded="false">
+                    <span>
+                    <i class="fa fa-list-ol"></i>
+                    </span>
+                    <span class="hide-menu">Pendaftaran Berobat</span>
+                    <i class="fa fa-circle" style="font-size: 10px; color: red; float:right;" aria-hidden="true"></i>
+                </a>
+            </li>
 
             <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>

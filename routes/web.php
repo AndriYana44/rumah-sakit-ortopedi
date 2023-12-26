@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Compro\KarirController;
 use App\Http\Controllers\Admin\KarirController as AdminKarirController;
 use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Admin\PendaftaranBerobatController;
 use App\Http\Controllers\Compro\PostController;
 use App\Http\Controllers\Middle\ComproApiController;
 
@@ -53,6 +54,8 @@ Route::middleware(['guest'])->group(function() {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
+
+    Route::post('/daftar-berobat', [HomeController::class, 'daftarBerobat'])->name('daftarBerobat');
 
     Route::middleware(['admin'])->group(function() {
         Route::group(['prefix' => 'dashboard'], function () {
@@ -105,6 +108,11 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/store', [AdminKarirController::class, 'store'])->name('karir.admin.store');
             Route::delete('/destroy/{id}', [AdminKarirController::class, 'destroy'])->name('karir.admin.destroy');
             Route::post('/get-all-data', [AdminKarirController::class, 'getAllData'])->name('karir.admin.getAllData');
+        });
+
+        Route::prefix('pendaftaran-berobat')->group(function() {
+            Route::get('/', [PendaftaranBerobatController::class, 'index'])->name('listPendaftaranBerobat');
+            Route::get('/detail/{id}', [PendaftaranBerobatController::class, 'pasienDetail'])->name('detailPasien');
         });
     });
 

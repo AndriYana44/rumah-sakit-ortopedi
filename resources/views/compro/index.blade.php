@@ -96,7 +96,7 @@
             DI RS ORTHOPEDI SIAGA RAYA
       
           </h1>
-          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Daftar Berobat</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#berobat">Daftar Berobat</button>
       </div>
     </div>
   </div>
@@ -422,50 +422,52 @@
   </div> <!-- .page-section -->
   {{-- {{ dd($dokter) }} --}}
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="berobat" tabindex="-1" role="dialog" aria-labelledby="berobatLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Form Pendaftaran Berobat</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-12">
-              <div class="form-group">
-                <label for="tgl_periksa" class="mt-2">Metode Pembayaran</label>
-                <select name="pembayaran" id="pembayaran" class="select2">
-                  <option value=""></option>
-                  <option value="umum">Umum/Cash</option>
-                  <option value="perusahaan">Jaminan Perusahaan</option>
-                  <option value="asuransi">Asuransi</option>
-                </select>
-              </div>
-              <div class="form-group mb-2">
-                <label for="dokter">Dokter</label>
-                <select name="dokter" id="dokter" class="form-control select2">
-                  <option value=""></option>
-                  @foreach ($dokter as $item)
-                    @if($item->hari->first() != null)
-                      <option value="{{ $item->id }}">{{ $item->nama_dokter }}</option>
-                    @endif
-                  @endforeach
-                </select>
-              </div>
-              <div class="jadwal_praktek"></div>
-              <div class="form-group mt-3">
-                <label for="tgl_periksa" class="mt-2">Tanggal Periksa</label>
-                <input type="text" id="tgl_periksa" name="tgl_periksa" class="form-control" disabled>
-                <div class="validate_hari"></div>
+        <form action="" id="daftarBerobat">
+          <div class="modal-header">
+            <h5 class="modal-title" id="berobatLabel">Form Pendaftaran Berobat</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="pembayaran" class="mt-2">Metode Pembayaran</label>
+                  <select name="pembayaran" id="pembayaran" class="select2">
+                    <option value=""></option>
+                    <option value="umum / cash">Umum/Cash</option>
+                    <option value="jaminan perusahaan">Jaminan Perusahaan</option>
+                    <option value="asuransi">Asuransi</option>
+                  </select>
+                </div>
+                <div class="form-group mb-2">
+                  <label for="dokter">Dokter</label>
+                  <select name="dokter" id="dokter" class="form-control select2">
+                    <option value=""></option>
+                    @foreach ($dokter as $item)
+                      @if($item->hari->first() != null)
+                        <option value="{{ $item->id }}">{{ $item->nama_dokter }}</option>
+                      @endif
+                    @endforeach
+                  </select>
+                </div>
+                <div class="jadwal_praktek"></div>
+                <div class="form-group mt-3">
+                  <label for="tgl_periksa" class="mt-2">Tanggal Periksa</label>
+                  <input type="text" id="tgl_periksa" name="tgl_periksa" class="form-control" disabled>
+                  <div class="validate_hari"></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary daftar">Daftar</button>
-        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary daftar">Daftar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -569,6 +571,31 @@
           }else{
             $('.daftar').removeAttr('disabled');
             $('.daftar').css('cursor', 'pointer');
+          }
+        }
+      })
+    });
+
+    $('.daftar').click(function() {
+      $('#berobat').modal('hide');
+      var data = {
+        _token: '{{ csrf_token() }}',
+        pembayaran: $('#pembayaran').val(),
+        dokter: $('#dokter').val(),
+        tgl_periksa: $('#tgl_periksa').val()
+      }
+
+      $.ajax({
+        url: `{{ route('daftarBerobat') }}`,
+        type: 'POST',
+        data: data,
+        success: function(res) {
+          if(res.success == true) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Berhasil',
+              text: 'Terimakasih, data anda akan segera kami proses.'
+            });
           }
         }
       })

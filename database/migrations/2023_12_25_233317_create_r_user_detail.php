@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('r_user_detail', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->string('no_hp');
             $table->string('jenis_kelamin');
             $table->string('status');
             $table->date('tgl_lahir');
             $table->string('pendidikan');
             $table->string('nama_ibu');
+            $table->string('nama_ayah');
             $table->string('agama');
             $table->string('pekerjaan');
             $table->text('alamat_lengkap');

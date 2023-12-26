@@ -53,11 +53,11 @@
                             <label for="jk" class="form-label">Jenis Kelamin</label>
                             <div class="d-flex mt-2">
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jk" id="L" value="red">
+                                <input class="form-check-input" type="radio" name="jk" id="L" value="L">
                                 <label class="form-check-label" for="L">Laki-laki &emsp;</label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jk" id="P" value="blue">
+                                <input class="form-check-input" type="radio" name="jk" id="P" value="P">
                                 <label class="form-check-label" for="P">Perempuan</label>
                               </div>
                             </div>
@@ -70,7 +70,7 @@
                       <div class="form-group">
                         <div class="mb-3">
                           <label for="exampleInputtext1" class="form-label">Nama Ayah / Suami</label>
-                          <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp">
+                          <input type="text" class="form-control" name="ayah" id="exampleInputtext1" aria-describedby="textHelp">
                         </div>
                       </div>
 
@@ -136,6 +136,13 @@
                     </div>
 
                     <div class="col-4">
+                      <div class="form-group">
+                        <div class="mb-3">
+                          <label for="no_hp" class="form-label">Nomor Telp/HP</label>
+                          <input type="text" class="form-control" name="no_hp">
+                        </div>
+                      </div>
+
                       <div class="form-group">
                         <div class="mb-3">
                           <label for="klinik" class="form-label">Klinik yang di tuju</label>
@@ -235,7 +242,10 @@
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script>
     $(document).ready(function() {
-      $('.select2').select2();
+      $('.select2').select2({
+        width: '100%'
+      });
+      
       $('.date').datepicker({
         dateFormat: 'yy-mm-dd',
         changeYear: true,
