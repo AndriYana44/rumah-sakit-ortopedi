@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('no_hp');
-            $table->string('jenis_kelamin');
+            $table->string('jenis_kelamin')->nullable();
             $table->string('status');
             $table->date('tgl_lahir');
             $table->string('pendidikan');
@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('agama');
             $table->string('pekerjaan');
             $table->text('alamat_lengkap');
-            $table->string('klinik_tujuan');
-            $table->string('warga_negara');
+            $table->string('klinik_tujuan')->nullable();
+            $table->string('warga_negara')->nullable();
             $table->timestamps();
         });
     }
