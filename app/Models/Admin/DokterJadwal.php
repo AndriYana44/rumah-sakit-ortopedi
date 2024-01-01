@@ -58,4 +58,9 @@ class DokterJadwal extends Model
     {
         return DokterJadwal::where('dokter_id', $id)->get();
     }
+
+    public static function getJadwalByHari($hari_id)
+    {
+        return DokterJadwal::where('hari_id', $hari_id)->get();
+    }
 }

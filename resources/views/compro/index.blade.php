@@ -469,7 +469,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary daftar">Daftar</button>
+            <button type="submit" class="btn btn-primary daftar">Daftar</button>
           </div>
         </form>
       </div>
@@ -480,6 +480,80 @@
 
 @section('script')
 <script>
+  var validator = new Validator({
+    form: document.getElementById('daftarBerobat'),
+    rules: {
+      email: {
+        validate: (val) => val ? '' : 'Required!',
+      },
+      password1: {
+        // validate: (val) => val < 5 || val > 15 ? '字数大于5，小于15' : ''
+      },
+      password2: {
+        validate: (val) => !val ? 'Required!' : '',
+      },
+    }
+  });
+
+  validator.form.onsubmit = (evn) => {
+    const values = validator.getValues();
+    const form = document.getElementById('daftarBerobat')
+    const elements = form.elements;
+
+    const existingSmallElements = document.querySelectorAll('small');
+    existingSmallElements.forEach(element => {
+      element.remove();
+    });
+
+    const emptyElements = [];
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      const elName = elements[i].dataset.name;
+      var smallElement = document.createElement('small');
+      // Periksa jika elemen memiliki nilai kosong
+      if (element.value.trim() === '') {
+        evn.preventDefault();
+        // Menambahkan teks ke dalam elemen <small>
+        var smallText = document.createTextNode(`${elName} tidak boleh kosong!`);
+        smallElement.appendChild(smallText);
+        smallElement.style.color = 'red';
+        smallElement.style.fontSize = '11px';
+        if (element.tagName === 'INPUT' && !element.hasAttribute('disabled')) {
+          element.after(smallElement);
+          emptyElements.push(element);
+        } else if(element.tagName === 'SELECT') {
+          element.nextElementSibling.after(smallElement);
+          emptyElements.push(element);
+        }
+      }
+    }
+    
+    if(emptyElements.length <= 0) {
+      $('#berobat').modal('hide');
+      var data = {
+        _token: '{{ csrf_token() }}',
+        pembayaran: $('#pembayaran').val(),
+        dokter: $('#dokter').val(),
+        tgl_periksa: $('#tgl_periksa').val()
+      }
+  
+      $.ajax({
+        url: `{{ route('daftarBerobat') }}`,
+        type: 'POST',
+        data: data,
+        success: function(res) {
+          if(res.success == true) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Berhasil',
+              text: 'Terimakasih, data anda akan segera kami proses.'
+            });
+          }
+        }
+      })
+    }
+  }
+
   $(document).ready(function(){
     function getDay(dateString) {
       let dataObject = new Date(dateString);
@@ -532,14 +606,14 @@
             days.push(v.hari.toLowerCase());
           })
           $('.jadwal_praktek').append(
-            `<small>Dokter bersedia pada hari:</small> <br>
-            <small>${days}</small>`
+            `<span style="font-size: 12px;">Dokter bersedia pada hari:</span> <br>
+            <span>${days}</span>`
           )
           
           if(day != null) {
             let dayExist = days.includes(day);
             if(!dayExist) {
-              $('.validate_hari').append(`<small style="color: red">Dokter tidak ada jadwal hari ${day}</small>`);
+              $('.validate_hari').append(`<span style="color: red; font-size: 12px;">Dokter tidak ada jadwal hari ${day}</span>`);
               $('.daftar').attr('disabled', 'disabled');
               $('.daftar').css('cursor', 'not-allowed');
             }else{
@@ -580,30 +654,30 @@
       })
     });
 
-    $('.daftar').click(function() {
-      $('#berobat').modal('hide');
-      var data = {
-        _token: '{{ csrf_token() }}',
-        pembayaran: $('#pembayaran').val(),
-        dokter: $('#dokter').val(),
-        tgl_periksa: $('#tgl_periksa').val()
-      }
+    // $('.daftar').click(function() {
+    //   $('#berobat').modal('hide');
+    //   var data = {
+    //     _token: '{{ csrf_token() }}',
+    //     pembayaran: $('#pembayaran').val(),
+    //     dokter: $('#dokter').val(),
+    //     tgl_periksa: $('#tgl_periksa').val()
+    //   }
 
-      $.ajax({
-        url: `{{ route('daftarBerobat') }}`,
-        type: 'POST',
-        data: data,
-        success: function(res) {
-          if(res.success == true) {
-            Swal.fire({
-              icon: 'success',
-              title: 'Berhasil',
-              text: 'Terimakasih, data anda akan segera kami proses.'
-            });
-          }
-        }
-      })
-    });
+    //   $.ajax({
+    //     url: `{{ route('daftarBerobat') }}`,
+    //     type: 'POST',
+    //     data: data,
+    //     success: function(res) {
+    //       if(res.success == true) {
+    //         Swal.fire({
+    //           icon: 'success',
+    //           title: 'Berhasil',
+    //           text: 'Terimakasih, data anda akan segera kami proses.'
+    //         });
+    //       }
+    //     }
+    //   })
+    // });
   });
 
     $('.slick-wrapper').slick({

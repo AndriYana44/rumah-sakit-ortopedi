@@ -34,13 +34,13 @@
                       <div class="mb-3">
                         <div class="form-group">
                           <label for="nama" class="form-label">Nama Lengkap <strong style="color: red;">*</strong></label>
-                          <input type="text" class="form-control" id="nama" name="nama" aria-describedby="textHelp">
+                          <input type="text" class="form-control" data-name="Nama" id="nama" name="nama" aria-describedby="textHelp">
                           <small id="validate_nama"></small>
                         </div>
 
                         <div class="form-group mt-4">
                           <label for="status" class="form-label">Status Perkawinan <strong style="color: red;">*</strong></label>
-                          <select name="status" id="status" class="form-control select2">
+                          <select name="status" data-name="Status" id="status" class="form-control select2">
                             <option value="">Pilih Status</option>
                             <option value="single">Belum Menikah (Single)</option>
                             <option value="menikah">Sudah Menikah</option>
@@ -71,21 +71,21 @@
                       <div class="form-group">
                         <div class="mb-3">
                           <label for="exampleInputtext1" class="form-label">Nama Ayah / Suami <strong style="color: red;">*</strong></label>
-                          <input type="text" class="form-control" name="ayah" id="exampleInputtext1" aria-describedby="textHelp">
+                          <input type="text" class="form-control" data-name="Nama ayah/suami" name="ayah" id="exampleInputtext1" aria-describedby="textHelp">
                         </div>
                       </div>
 
                       <div class="form-group mt-3">
                         <div class="mb-3">
                           <label for="tgl_lahir" class="form-label">Tanggal Lahir <strong style="color: red;">*</strong></label>
-                          <input type="text" id="tgl_lahir" name="tgl_lahir" class="form-control date">
+                          <input type="text" id="tgl_lahir" data-name="Tanggal lahir" name="tgl_lahir" class="form-control date">
                         </div>
                       </div>
 
                       <div class="form-group mt-4">
                         <div class="mb-3">
                         <label for="pendidikan" class="form-label">Pendidikan <strong style="color: red;">*</strong></label>
-                          <select name="pendidikan" id="pendidikan" class="form-control select2">
+                          <select name="pendidikan" data-name="Pendidikan" id="pendidikan" class="form-control select2">
                             <option value="">Pilih Pendidikan</option>
                             <option value="sarjana">Sarjana</option>
                             <option value="sma">SMA/SMK</option>
@@ -101,14 +101,14 @@
                       <div class="form-group">
                         <div class="mb-4">
                           <label for="jk" class="form-label">Nama Ibu / Istri <strong style="color: red;">*</strong></label>
-                          <input type="text" class="form-control" name="ibu">
+                          <input type="text" data-name="Nama ibu/istri" class="form-control" name="ibu">
                         </div>
                       </div>
 
                       <div class="form-group mt-3">
                         <div class="mb-3">
                           <label for="agama" class="form-label">Agama <strong style="color: red;">*</strong></label>
-                          <select name="agama" id="agama" class="form-control select2">
+                          <select name="agama" id="agama" data-name="Agama" class="form-control select2">
                             <option value="">Pilih Agama</option>
                             <option value="islam">Islam</option>
                             <option value="kristen">Kristen</option>
@@ -122,7 +122,7 @@
                       <div class="form-group mt-3">
                           <div class="mb-3">
                             <label for="pekerjaan" class="form-label">Pekerjaan <strong style="color: red;">*</strong></label>
-                            <input type="text" class="form-control" name="pekerjaan">
+                            <input type="text" data-name="Pekerjaan" class="form-control" name="pekerjaan">
                           </div>
                       </div>
                     </div>
@@ -131,7 +131,7 @@
                       <div class="form-group">
                         <div class="mb-3">
                           <label for="alamat" class="form-label">Alamat Lengkap <strong style="color: red;">*</strong></label>
-                          <textarea class="form-control" name="alamat" id="alamat" cols="30" rows="10"></textarea>
+                          <textarea class="form-control" data-name="Alamat" name="alamat" id="alamat" cols="30" rows="10"></textarea>
                         </div>
                       </div>
                     </div>
@@ -140,7 +140,7 @@
                       <div class="form-group">
                         <div class="mb-3">
                           <label for="no_hp" class="form-label">Nomor Telp/HP <strong style="color: red;">*</strong></label>
-                          <input type="text" class="form-control" name="no_hp">
+                          <input type="text" data-name="No. telp/hp" class="form-control" name="no_hp">
                         </div>
                       </div>
 
@@ -198,29 +198,29 @@
                     <div class="col-6">
                       <div class="mb-3">
                         <label for="username" class="form-label">Username <strong style="color: red;">*</strong></label>
-                        <input type="text" class="form-control" id="username" disabled="disabled">
-                        <input type="text" name="username" hidden>
+                        <input type="text" class="form-control" data-name="Username" id="username" disabled="disabled">
+                        <input type="text" data-name="Username" name="username" hidden>
                       </div>
                     </div>
 
                     <div class="col-6">
                       <div class="mb-3">
                         <label for="email" class="form-label">Email Address <strong style="color: red;">*</strong></label>
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" data-name="Email" id="email" name="email" aria-describedby="emailHelp">
                       </div>
                     </div>
 
                     <div class="col-6">
                       <div class="mb-4">
                         <label for="pw1" class="form-label">Password <strong style="color: red;">*</strong></label>
-                        <input type="password" class="form-control" name="password1" id="pw1">
+                        <input type="password" class="form-control" data-name="Password" name="password1" id="pw1">
                       </div>
                     </div>
 
                     <div class="col-6">
                       <div class="mb-4">
                         <label for="pw2" class="form-label">Confirm Password <strong style="color: red;">*</strong></label>
-                        <input type="password" class="form-control" name="password2" id="pw2">
+                        <input type="password" class="form-control" data-name="Confirm password" name="password2" id="pw2">
                       </div>
                     </div>
                   </div>
@@ -271,12 +271,13 @@
 
       for (let i = 0; i < elements.length; i++) {
         const element = elements[i];
+        const elName = elements[i].dataset.name;
+        var smallElement = document.createElement('small');
         // Periksa jika elemen memiliki nilai kosong
         if (element.value.trim() === '') {
           evn.preventDefault();
-          var smallElement = document.createElement('small');
           // Menambahkan teks ke dalam elemen <small>
-          var smallText = document.createTextNode('Tidak boleh kosong!');
+          var smallText = document.createTextNode(`${elName} tidak boleh kosong!`);
           smallElement.appendChild(smallText);
           smallElement.style.color = 'red';
           smallElement.style.fontSize = '11px';
@@ -286,6 +287,12 @@
             element.nextElementSibling.after(smallElement);
           }
         }
+      }
+
+      // Cek apakah masih ada pesan kesalahan
+      const errorMessages = form.querySelectorAll('small');
+      if (errorMessages.length === 0) {
+        form.submit();
       }
     }
 

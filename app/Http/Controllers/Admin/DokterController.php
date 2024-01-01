@@ -190,6 +190,17 @@ class DokterController extends Controller
             ->with('success', 'Data berhasil ditambahkan');
     }
 
+    public function infoJadwalHariIni($hari)
+    {
+        $day = Hari::where('hari', $hari)->first();
+        $jadwal = DokterJadwal::with(['dokter', 'jamMulai', 'jamSelesai', 'hari'])->where('hari_id', $day->id)->get();
+        $data = [
+            'jadwal' => $jadwal,
+            'hari' => $hari
+        ];
+        return view('compro.jadwal-dokter', $data);
+    }
+
     // api dokter jadwal
     public function apiDokterJadwal(Request $request)
     {
@@ -197,5 +208,12 @@ class DokterController extends Controller
         $data = Dokter::getAllWithJadwalById($id);
 
         return response()->json($data);
+    }
+
+    public function apiDokterJadwalToday(Request $request)
+    {
+        $day = Hari::where('hari', $request->hari)->first();
+        $jadwal = DokterJadwal::with(['dokter'])->where('hari_id', $day->id)->get();
+        return response()->json($jadwal);
     }
 }

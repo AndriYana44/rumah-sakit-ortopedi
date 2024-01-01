@@ -57,6 +57,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/daftar-berobat', [HomeController::class, 'daftarBerobat'])->name('daftarBerobat');
 
+    Route::prefix('dokter')->group(function() {
+        Route::get('/jadwal/hari-ini/{hari}', [DokterController::class,'infoJadwalHariIni']);
+    });
+
     Route::middleware(['admin'])->group(function() {
         Route::group(['prefix' => 'dashboard'], function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -118,6 +122,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('api')->group(function() {
         Route::post('/dokter-jadwal', [DokterController::class, 'apiDokterJadwal'])->name('api.dokter.jadwal');
+        Route::post('/dokter-jadwal-today', [DokterController::class, 'apiDokterJadwalToday'])->name('apiDokterJadwalToday');
     });
 
     Route::post('/upload', [PostinganController::class, 'upload'])->name('ckeditor.upload');

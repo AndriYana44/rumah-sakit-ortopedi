@@ -50,6 +50,7 @@ class PendaftaranBerobatController extends Controller
         // dd($path);
         // Write some simple Content
         foreach($data as $dt) :
+        $jk = $dt->user->userDetail->jenis_kelamin == "L" ? "Laki-laki" : "Perempuan";
         $html = '
             <table>
                 <tr>
@@ -76,7 +77,7 @@ class PendaftaranBerobatController extends Controller
                 <tr style="border: 1px solid #dee2e6; background-color: #f8f9fa;">
                     <td style="width: 5%; text-align: center; height: 30px;">3</td>
                     <td>Jenis Kelamin</td>
-                    <td>'. $dt->user->userDetail->jenis_kelamin .'</td>
+                    <td>'. $jk .'</td>
                 </tr>
                 <tr style="border: 1px solid #dee2e6; background-color: #f8f9fa;">
                     <td style="width: 5%; text-align: center; height: 30px;">4</td>

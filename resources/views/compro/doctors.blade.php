@@ -10,6 +10,7 @@
           </ol>
         </nav>
         <h1 class="font-weight-normal">Our Doctors</h1>
+        <button type="button" class="btn btn-primary btn-jadwal">Jadwal praktek hari ini</button>
       </div> <!-- .container -->
     </div> <!-- .banner-section -->
   </div> <!-- .page-banner -->
@@ -160,4 +161,31 @@
       </form>
     </div> <!-- .container -->
   </div> <!-- .page-section -->
+@endsection
+
+@section('script')
+<script>
+  $(document).ready(function() {
+    const getDayName = function() {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+
+      today = mm + '/' + dd + '/' + yyyy;
+
+      var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+      var d = new Date(today);
+      var dayName = days[d.getDay()];
+
+      return dayName;
+    }
+
+    $('.btn-jadwal').click(function(e) {
+      var dayName = getDayName();
+      var url = "{{ url('') }}/dokter/jadwal/hari-ini/" + dayName;
+      window.location.href = url;
+    });
+  });
+</script>
 @endsection
