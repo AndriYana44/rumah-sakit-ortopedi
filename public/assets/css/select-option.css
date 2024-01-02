@@ -1,0 +1,44 @@
+/* Gaya dasar untuk elemen <select> */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 4px;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  /* Gaya saat <select> mendapatkan fokus */
+  select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+  }
+  
+  /* Gaya untuk elemen <option> */
+  option {
+    padding: 15px 0 15px 0;
+    font-size: 14px;
+  }
+  
+  /* Gaya saat <option> dipilih */
+  option:checked {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Gaya hover untuk <option> */
+  option:hover {
+    background-color: #e0f3ff;
+  }
+  
+  /* Gaya untuk <optgroup> (jika digunakan) */
+  optgroup {
+    font-weight: bold;
+    background-color: #f5f5f5;
+  }
+  

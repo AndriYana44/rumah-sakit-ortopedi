@@ -43,22 +43,22 @@
         <div class="collapse navbar-collapse" id="navbarSupport">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('home') }}">Home</a>
+              <a class="nav-link" href="{{ route('home') }}">Beranda</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('about') }}">About Us</a>
+              <a class="nav-link" href="{{ route('about') }}">Tentang Kami</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('doctors') }}">Doctors</a>
+              <a class="nav-link" href="{{ route('doctors') }}">Dokter</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('blog') }}">News</a>
+              <a class="nav-link" href="{{ route('blog') }}">Berita</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('karir') }}">Karir</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+              <a class="nav-link" href="{{ route('contact') }}">Kontak</a>
             </li>
             @guest
                 <li class="nav-item">

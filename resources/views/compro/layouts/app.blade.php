@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="{{asset('assets-compro/assets')}}/vendor/animate/animate.css">
 
   <link rel="stylesheet" href="{{asset('assets-compro/assets')}}/css/theme.css">
+  <link rel="stylesheet" href="{{asset('assets')}}/css/home.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
 
@@ -25,6 +26,7 @@
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" rel="stylesheet" />
   <link href="{{ asset('assets/DataTables/datatables.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/css/select-option.css') }}" rel="stylesheet">
 </head>
 <body>
 

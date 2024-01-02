@@ -41,9 +41,10 @@
               <div class="col-sm-4">
                 <div class="form-group">
                   <select name="spesialis" id="spesialis" class="form-control">
-                    <option value="Jantung" style="padding: 10px;">Jantung</option>
-                    <option value="Gigi">Gigi</option>
-                    <option value="Umum">Umum</option>
+                    <option value=""></option>
+                    <option value="">Jantung</option>
+                    <option value="">Gigi</option>
+                    <option value="">Umum</option>
                   </select>
                 </div>
               </div>
@@ -232,132 +233,43 @@
       </div>
     </div>
   </div>
-  
-  <section class="mx-auto mb-4 pt-4 pb-4 mt-4 fitur-unggulan-home">
+
+  <div class="page-section">
     <div class="container">
-      <div class="mt-4 fitur-unggulan-wrapper">
-        <span class="text-center text-primary"><strong>Fitur Unggulan</strong></span>
-        <h3 class="text-center mb-5 wow fadeInUp">Layanan Unggulan Rumah Sakit Orthopedi</h3>
-      </div>
-      <div class="slick-wrapper">
-       
-        <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card py-9">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">01</h1>
-                <p class="card-text"><strong>Excelent Center</strong></p>
-                <span style="color: #999;">Layanan Orthopedi & Traumatologi Terbaik dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
+      <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
+
+      <form class="main-form">
+        <div class="row mt-5 ">
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+            <input type="text" class="form-control" placeholder="Full name">
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+            <input type="text" class="form-control" placeholder="Email address..">
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+            <input type="date" class="form-control">
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
+            <select name="departement" id="departement" class="custom-select">
+              <option value="general">General Health</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="dental">Dental</option>
+              <option value="neurology">Neurology</option>
+              <option value="orthopaedics">Orthopaedics</option>
+            </select>
+          </div>
+          <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
+            <input type="text" class="form-control" placeholder="Number..">
+          </div>
+          <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
+            <textarea name="message" id="message" class="form-control" rows="6" placeholder="Enter message.."></textarea>
           </div>
         </div>
 
-        <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">02</h1>
-                <p class="card-text"><strong>Fisioterapi</strong></p>
-                <span style="color: #999;">Layanan Fisioterapi Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">03</h1>
-                <p class="card-text"><strong>MRI Open Bore</strong></p>
-                <span style="color: #999;">Layanan MRI Open Bore Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">04</h1>
-                <p class="card-text"><strong>Orthotik & Prostetik</strong></p>
-                <span style="color: #999;">Layanan Orthotik & Prostetik Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-         <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">05</h1>
-                <p class="card-text"><strong>Spine Endoscopy</strong></p>
-                <span style="color: #999;">Layanan Spine Endoscopy Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-         <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">06</h1>
-                <p class="card-text"><strong>Arthroscopy</strong></p>
-                <span style="color: #999;">Layanan Arthroscopy Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-         <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">06</h1>
-                <p class="card-text"><strong>Arthroplasty</strong></p>
-                <span style="color: #999;">Layanan Arthroplasty Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Submit Request</button>
+      </form>
     </div>
-  </section>
-
-  <section class="fun-facts-area ptb-100 sdm-home" style="position: relative; background-color: #303b38; margin-bottom: 50px;">
-    <div class="container py-4">
-      <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-          <div class="single-fun-facts text-white text-center">
-            <i class="fa fa-user-md" style="font-size: 36px;" aria-hidden="true"></i>
-            <div class="dokter-ahli">
-              <h3>3,365+</h3>
-              <small class="text-white">Dokter Ahli</small>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-          <div class="single-fun-facts text-white text-center">
-            <i class="fa fa-user" style="font-size: 36px;" aria-hidden="true"></i>
-            <h3>3,365,899+</h3>
-            <small class="text-white">Pasien</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  </div> <!-- .page-section -->
   {{-- {{ dd($dokter) }} --}}
   <!-- Modal -->
   <div class="modal fade" id="berobat" tabindex="-1" role="dialog" aria-labelledby="berobatLabel" aria-hidden="true">
@@ -623,3 +535,106 @@
       });
   </script>
   @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="bg-light mx-auto mb-4 pt-4 pb-4">
+    <div class="container">
+      
+      <div class="slick-wrapper">
+       
+        <div>
+          <div class="col-sm">
+            <div class="card py-9">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+         <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
