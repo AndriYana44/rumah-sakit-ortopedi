@@ -13,9 +13,12 @@ class HomeController extends Controller
 
     public function index (){
         // dokter with relation
+        $spesialis = Dokter::select("spesialis")->distinct()->get();
+        // dd($spesialis);
         $dokter = Dokter::getAllWithJadwal();
         return view ('compro.index', [
-            'dokter' => $dokter
+            'dokter' => $dokter,
+            'spesialis' => $spesialis
         ]);
     }
 
@@ -23,9 +26,12 @@ class HomeController extends Controller
         return view ('compro.about');
     }
 
-    public function doctors (){
-        return view ('compro.doctors');
-    }
+    // public function doctors (){
+    //     $data = Dokter::paginate(6);
+    //     return view ('compro.doctors', [
+    //         'data'=> $data
+    //     ]);
+    // }
 
     public function blog (){
         return view ('compro.blog');

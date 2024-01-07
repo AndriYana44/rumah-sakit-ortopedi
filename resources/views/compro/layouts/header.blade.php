@@ -46,9 +46,6 @@
               <a class="nav-link" href="{{ route('home') }}">Beranda</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('about') }}">Tentang Kami</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="{{ route('doctors') }}">Dokter</a>
             </li>
             <li class="nav-item">
@@ -56,6 +53,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('karir') }}">Karir</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('about') }}">Tentang Kami</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('contact') }}">Kontak</a>

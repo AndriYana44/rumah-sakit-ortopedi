@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" rel="stylesheet" />
   <link href="{{ asset('assets/DataTables/datatables.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/select-option.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"/>
 </head>
 <body>
 
@@ -58,6 +59,7 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="https://unpkg.com/validator.tool/dist/validator.min.js"></script>
 <script src="{{ asset('assets/DataTables/datatables.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"></script>
 <script>
   // toggle menu active
   $(document).ready(function () {

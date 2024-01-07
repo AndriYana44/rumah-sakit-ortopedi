@@ -1,11 +1,18 @@
 @extends('compro.layouts.app')
 @section('content') 
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+ <!-- Menggunakan CSS Selectize -->
  <style>
+  .selectize-input {
+    width: 100%; /* Sesuaikan dengan lebar yang diinginkan */
+    height: 45px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
 
-  
+  }
  </style>
-  <div class="page-hero bg-image overlay-dark" style="background-image: url(../assets-compro/assets/img/bg_image_1.jpg);">
+  <div class="page-hero bg-image overlay-dark" style="background-image: url({{ asset('') }}assets-compro/assets/img/banner/banner-1.jpg);">
     <div class="hero-section">
       <div class="container text-center wow zoomIn">
         <!-- <span class="subhead">Let's make your life happier</span> -->
@@ -26,12 +33,13 @@
 
   <div class="content" id="content">
 
-    <div class="search-wrapper">
+    <div class="search-wrapper wow zoomIn">
       <div class="card search-card">
         <div class="card-body">
           <h3 class="text-primary">Temukan Dokter yang tepat</h3>
           <span class="mb-4" style="color: #999;">Cari dan temukan dokter yang tepat untuk kebutuhan medis Anda, dan buat janji dengan langkah mudah</span>
-          <form action="" class="mt-4">
+          <form action="{{ route('doctors') }}" method="POST" class="mt-4">
+            @csrf
             <div class="row">
               <div class="col-sm-4">
                 <div class="form-group">
@@ -40,18 +48,44 @@
               </div>
               <div class="col-sm-4">
                 <div class="form-group">
-                  <select name="spesialis" id="spesialis" class="form-control">
-                    <option value="Jantung" style="padding: 10px;">Jantung</option>
-                    <option value="Gigi">Gigi</option>
-                    <option value="Umum">Umum</option>
+                  <select name="spesialis" id="spesialis">
+                    <option value="">Pilih Spesialis</option>
+                    @foreach ($spesialis as $item)
+                      <option value="{{ $item->spesialis }}">{{ $item->spesialis }}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
               <div class="col-sm-4 d-grid gap-2">
-                <button type="button" class="btn btn-primary btn-block">Cari <i class="fa fa-search"></i></button>
+                <button type="submit" class="btn btn-primary btn-block">Cari <i class="fa fa-search"></i></button>
               </div>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section" style="position: relative; margin-top: -50px;">
+      <div class="container">
+        <div class="row">
+          <a href="#">
+            <div class="col-md-4 py-3 wow zoomIn">
+              <div class="card-service">
+                <div class="circle-shape bg-secondary text-white">
+                  <span class="mai-chatbubbles-outline"></span>
+                </div>
+                <p class="text-dark">Buat janji dengan dokter</p>
+              </div>
+            </div>
+          </a>
+          <div class="col-md-4 py-3 wow zoomIn">
+            <div class="card-service">
+              <div class="circle-shape bg-primary text-white">
+                <span class="mai-shield-checkmark"></span>
+              </div>
+              <p>Konsultasi dengan dokter</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -335,28 +369,58 @@
     </div>
   </section>
 
-  <section class="fun-facts-area ptb-100 sdm-home" style="position: relative; background-color: #303b38; margin-bottom: 50px;">
-    <div class="container py-4">
+  <div class="maps-wrapper py-4 mt-5 bg-light wow fadeInUp">
+    <div class="container">
       <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-          <div class="single-fun-facts text-white text-center">
-            <i class="fa fa-user-md" style="font-size: 36px;" aria-hidden="true"></i>
-            <div class="dokter-ahli">
-              <h3>3,365+</h3>
-              <small class="text-white">Dokter Ahli</small>
+        <div class="col-sm-4">
+          <div class="label">
+            <span style="letter-spacing: 3px;">HUBUNGI KAMI</span><br><br>
+            <h1 class="mb-2">Konsultasi Medis Profesional</h1><br>
+            <button type="button" class="btn btn-primary">
+              <svg version="1.1" width="30" height="30" style="background-color:aliceblue; color:aliceblue" x="0px" y="0px" viewBox="0 0 64 64" xml:space="preserve">
+                <path d="M62.2705,13.6787c-0.3867-1.167-1.2031-2.1118-2.2969-2.6606c0-0.0005-0.001-0.001-0.002-0.001
+                  c-2.2617-1.1313-5.0322-0.2114-6.1689,2.0518l-2.877,5.7433v-7.4093c0-0.234-0.1146-0.5202-0.2744-0.6885l-8.9219-9.4028
+                  C41.5586,1.1317,41.2564,1,41.0078,1H6.0068C3.5181,1,1.4932,3.0249,1.4932,5.5137v52.9727C1.4932,60.9751,3.5181,63,6.0068,63 h40.4053c2.4893,0,4.5137-2.0249,4.5137-4.5137V39.3376l11.0947-22.152C62.5693,16.0918,62.6592,14.8467,62.2705,13.6787z M42.0039,4.5068l5.5947,5.896h-3.3145c-1.2578,0-2.2803-1.0215-2.2803-2.2769V4.5068z M48.9258,58.4863
+                  c0,1.3862-1.1279,2.5137-2.5137,2.5137H6.0068c-1.3862,0-2.5137-1.1274-2.5137-2.5137V5.5137C3.4932,4.1274,4.6206,3,6.0068,3 h33.9971v5.126c0,2.3584,1.9199,4.2769,4.2803,4.2769h4.6416v10.402l-6.5523,13.0804H11.0259c-0.5522,0-1,0.4478-1,1s0.4478,1,1,1 h30.3458l-1.4728,2.9402c-0.0417,0.0809-0.112,0.3014-0.112,0.3997l-0.1317,1.6411H11.252c-0.5522,0-1,0.4478-1,1s0.4478,1,1,1 h28.2426l-0.4001,4.9849H11.4819c-0.5522,0-1,0.4478-1,1s0.4478,1,1,1h28.5356c0.2103,0,0.5101-0.1163,0.6611-0.2495 l7.1973-6.3379c0.0766-0.1019,0.1544-0.2028,0.2334-0.3027l0.8164-1.6301V58.4863z M41.6634,42.8486l3.7776,1.894l-4.2291,3.7242 L41.6634,42.8486z M60.2324,16.2891L46.7686,43.1709l-4.6416-2.3271l13.4639-26.8784c0.6426-1.2778,2.2061-1.7979,3.4863-1.1597 c0.6162,0.3096,1.0762,0.8433,1.2959,1.5034C60.5918,14.9697,60.543,15.6724,60.2324,16.2891z"></path>
+                <g id="_x30_2_anti_bacterial"></g>
+                <g id="_x30_1_hand_sanitizer"></g>
+                </svg> 
+              Buat Janji Temu</button>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="info-address">
+            <div class="jalan">
+              <table>
+                <tr style="position: relative;">
+                  <td style="position: absolute; top:0; left:-40px;"><i class="fa fa-location"></i></td>
+                  <td>
+                    <span>
+                      Jl. Siaga Raya No.4-8
+                      Pejaten Barat, Pasar minggu
+                      Jakarta Selatan,
+                      Daerah Khusus Ibukota Jakarta 12510
+                    </span>
+                  </td>
+                </tr>
+                <tr style="position: relative;">
+                  <td style="position: absolute; top:0; left:-40px; padding-top: 20px;"><i class="fa fa-mobile" aria-hidden="true"></i></td>
+                  <td style="padding-top: 20px;">021-7972750</td>
+                </tr>
+                <tr style="position: relative;">
+                  <td style="position: absolute; top:0; left:-40px; padding-top: 20px;"><i class="fa fa-envelope" aria-hidden="true"></i></td>
+                  <td style="padding-top: 20px;">marketing.rssr@gmail.com</td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-          <div class="single-fun-facts text-white text-center">
-            <i class="fa fa-user" style="font-size: 36px;" aria-hidden="true"></i>
-            <h3>3,365,899+</h3>
-            <small class="text-white">Pasien</small>
-          </div>
+        <div class="col-sm-4">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.930333083982!2d106.83660377515045!3d-6.272891461407162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f238d2e5070d%3A0xae802229d83eb694!2sJl.%20Siaga%20Raya%20No.4-8%2C%20RT.14%2FRW.3%2C%20Pejaten%20Bar.%2C%20Ps.%20Minggu%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2012510!5e0!3m2!1sid!2sid!4v1704503411105!5m2!1sid!2sid" style="border:0; width:100%; height:400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   {{-- {{ dd($dokter) }} --}}
   <!-- Modal -->
@@ -496,6 +560,8 @@
 
       return dayOfWeek;
     }
+
+    $('#spesialis').selectize();
 
     $('#tgl_periksa').datepicker({
       dateFormat: 'yy-mm-dd',

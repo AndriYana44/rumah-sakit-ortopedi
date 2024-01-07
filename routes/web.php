@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\DokterController;
+use App\Http\Controllers\Compro\DokterController as DokterCompro;
 use App\Http\Controllers\Admin\PostinganController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Compro\HomeController;
@@ -31,7 +32,8 @@ Route::get('/lang/{language}', [LocalizationController::class, '__invoke'])->nam
 
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
-Route::get('/doctors',[HomeController::class,'doctors'])->name('doctors');
+Route::get('/doctors',[DokterCompro::class,'index'])->name('doctors');
+Route::post('/doctors',[DokterCompro::class,'index'])->name('doctors');
 Route::get('/blog',[HomeController::class,'blog'])->name('blog');
 Route::get('/blog-details',[HomeController::class,'blogDetails'])->name('blog.details');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
