@@ -90,99 +90,201 @@
       </div>
     </div>
 
-    <div class="berita-wrapper">
-      <span class="text-primary"><strong>Berita & Acara</strong></span>
-      <h3>Kabar Terbaru Orthopedi</h3>
+    <section class="mx-auto mb-4 py-5 fitur-unggulan-home">
       <div class="container">
-        <div class="row mt-5">
-          <div class="col-lg-4 py-2 wow zoomIn">
-            <div class="card-blog">
-              <div class="header">
-                <div class="post-category">
-                  <a href="#">Covid19</a>
-                </div>
-                <a href="blog-details.html" class="post-thumb">
-                  <img src="../assets-compro/assets/img/blog/blog_1.jpg" alt="">
-                </a>
-              </div>
-              <div class="body">
-                <h5 class="post-title"><a href="blog-details.html">List of Countries without Coronavirus case</a></h5>
-                <div class="site-info">
-                  <div class="avatar mr-2">
-                    <div class="avatar-img">
-                      <img src="../assets-compro/assets/img/person/person_1.jpg" alt="">
-                    </div>
-                    <span>Roger Adams</span>
-                  </div>
-                  <span class="mai-time"></span> 1 week ago
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 py-2 wow zoomIn">
-            <div class="card-blog">
-              <div class="header">
-                <div class="post-category">
-                  <a href="#">Covid19</a>
-                </div>
-                <a href="blog-details.html" class="post-thumb">
-                  <img src="../assets-compro/assets/img/blog/blog_2.jpg" alt="">
-                </a>
-              </div>
-              <div class="body">
-                <h5 class="post-title"><a href="blog-details.html">Recovery Room: News beyond the pandemic</a></h5>
-                <div class="site-info">
-                  <div class="avatar mr-2">
-                    <div class="avatar-img">
-                      <img src="../assets-compro/assets/img/person/person_1.jpg" alt="">
-                    </div>
-                    <span>Roger Adams</span>
-                  </div>
-                  <span class="mai-time"></span> 4 weeks ago
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 py-2 wow zoomIn">
-            <div class="card-blog">
-              <div class="header">
-                <div class="post-category">
-                  <a href="#">Covid19</a>
-                </div>
-                <a href="blog-details.html" class="post-thumb">
-                  <img src="../assets-compro/assets/img/blog/blog_3.jpg" alt="">
-                </a>
-              </div>
-              <div class="body">
-                <h5 class="post-title"><a href="blog-details.html">What is the impact of eating too much sugar?</a></h5>
-                <div class="site-info">
-                  <div class="avatar mr-2">
-                    <div class="avatar-img">
-                      <img src="../assets-compro/assets/img/person/person_2.jpg" alt="">
-                    </div>
-                    <span>Diego Simmons</span>
-                  </div>
-                  <span class="mai-time"></span> 2 months ago
+        <div class="mt-4 fitur-unggulan-wrapper">
+          <span class="text-center text-primary"><strong>Fitur Unggulan</strong></span>
+          <h3 class="text-center mb-5 wow fadeInUp">Layanan Unggulan Rumah Sakit Orthopedi</h3>
+        </div>
+        <div class="slick-wrapper">
+         
+          <div>
+            <div class="col-sm card-fitur-unggulan">
+              <div class="card py-9">
+                <div class="card-body d-flex flex-column">
+                  <h1 class="card-title">01</h1>
+                  <p class="card-text"><strong>Excelent Center</strong></p>
+                  <span style="color: #999;">Layanan Orthopedi & Traumatologi Terbaik dari RS Orthopedi Siaga Raya</span>
+                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
                 </div>
               </div>
             </div>
           </div>
   
-          <div class="col-12 text-center mt-4 wow zoomIn">
-            <a href="blog.html" class="btn btn-primary">
-              Lihat Berita Lainya &emsp;
-              <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-            </a>
+          <div>
+            <div class="col-sm card-fitur-unggulan">
+              <div class="card">
+                <div class="card-body d-flex flex-column">
+                  <h1 class="card-title">02</h1>
+                  <p class="card-text"><strong>Fisioterapi</strong></p>
+                  <span style="color: #999;">Layanan Fisioterapi Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
+                </div>
+              </div>
+            </div>
           </div>
   
+          <div>
+            <div class="col-sm card-fitur-unggulan">
+              <div class="card">
+                <div class="card-body d-flex flex-column">
+                  <h1 class="card-title">03</h1>
+                  <p class="card-text"><strong>MRI Open Bore</strong></p>
+                  <span style="color: #999;">Layanan MRI Open Bore Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div>
+            <div class="col-sm card-fitur-unggulan">
+              <div class="card">
+                <div class="card-body d-flex flex-column">
+                  <h1 class="card-title">04</h1>
+                  <p class="card-text"><strong>Orthotik & Prostetik</strong></p>
+                  <span style="color: #999;">Layanan Orthotik & Prostetik Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+           <div>
+            <div class="col-sm card-fitur-unggulan">
+              <div class="card">
+                <div class="card-body d-flex flex-column">
+                  <h1 class="card-title">05</h1>
+                  <p class="card-text"><strong>Spine Endoscopy</strong></p>
+                  <span style="color: #999;">Layanan Spine Endoscopy Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+           <div>
+            <div class="col-sm card-fitur-unggulan">
+              <div class="card">
+                <div class="card-body d-flex flex-column">
+                  <h1 class="card-title">06</h1>
+                  <p class="card-text"><strong>Arthroscopy</strong></p>
+                  <span style="color: #999;">Layanan Arthroscopy Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+           <div>
+            <div class="col-sm card-fitur-unggulan">
+              <div class="card">
+                <div class="card-body d-flex flex-column">
+                  <h1 class="card-title">07</h1>
+                  <p class="card-text"><strong>Arthroplasty</strong></p>
+                  <span style="color: #999;">Layanan Arthroplasty Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-   </div>
+    </section>
 
+    
   </div>
+  <div class="berita-wrapper bg-light py-5">
+    <span class="text-primary"><strong>Berita & Acara</strong></span>
+    <h3>Kabar Terbaru Orthopedi</h3>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-lg-4 py-2 wow zoomIn">
+          <div class="card-blog">
+            <div class="header">
+              <div class="post-category">
+                <a href="#">Covid19</a>
+              </div>
+              <a href="blog-details.html" class="post-thumb">
+                <img src="../assets-compro/assets/img/blog/blog_1.jpg" alt="">
+              </a>
+            </div>
+            <div class="body">
+              <h5 class="post-title"><a href="blog-details.html">List of Countries without Coronavirus case</a></h5>
+              <div class="site-info">
+                <div class="avatar mr-2">
+                  <div class="avatar-img">
+                    <img src="../assets-compro/assets/img/person/person_1.jpg" alt="">
+                  </div>
+                  <span>Roger Adams</span>
+                </div>
+                <span class="mai-time"></span> 1 week ago
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 py-2 wow zoomIn">
+          <div class="card-blog">
+            <div class="header">
+              <div class="post-category">
+                <a href="#">Covid19</a>
+              </div>
+              <a href="blog-details.html" class="post-thumb">
+                <img src="../assets-compro/assets/img/blog/blog_2.jpg" alt="">
+              </a>
+            </div>
+            <div class="body">
+              <h5 class="post-title"><a href="blog-details.html">Recovery Room: News beyond the pandemic</a></h5>
+              <div class="site-info">
+                <div class="avatar mr-2">
+                  <div class="avatar-img">
+                    <img src="../assets-compro/assets/img/person/person_1.jpg" alt="">
+                  </div>
+                  <span>Roger Adams</span>
+                </div>
+                <span class="mai-time"></span> 4 weeks ago
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 py-2 wow zoomIn">
+          <div class="card-blog">
+            <div class="header">
+              <div class="post-category">
+                <a href="#">Covid19</a>
+              </div>
+              <a href="blog-details.html" class="post-thumb">
+                <img src="../assets-compro/assets/img/blog/blog_3.jpg" alt="">
+              </a>
+            </div>
+            <div class="body">
+              <h5 class="post-title"><a href="blog-details.html">What is the impact of eating too much sugar?</a></h5>
+              <div class="site-info">
+                <div class="avatar mr-2">
+                  <div class="avatar-img">
+                    <img src="../assets-compro/assets/img/person/person_2.jpg" alt="">
+                  </div>
+                  <span>Diego Simmons</span>
+                </div>
+                <span class="mai-time"></span> 2 months ago
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 text-center mt-4 wow zoomIn">
+          <a href="blog.html" class="btn btn-primary">
+            Lihat Berita Lainya &emsp;
+            <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+ </div>
   
   <!-- .page-section -->
-  <div class="page-section bg-light mt-4 dokter-home-wrapper">
+  <div class="page-section dokter-home-wrapper">
     <div class="container">
       <span class="text-center text-primary"><strong>Dokter Kami</strong></span>
       <h3 class="text-center mb-5 wow fadeInUp">Temukan Dokter Berpengalaman di Orthopedi</h3>
@@ -266,110 +368,8 @@
       </div>
     </div>
   </div>
-  
-  <section class="mx-auto mb-4 pt-4 pb-4 mt-4 fitur-unggulan-home">
-    <div class="container">
-      <div class="mt-4 fitur-unggulan-wrapper">
-        <span class="text-center text-primary"><strong>Fitur Unggulan</strong></span>
-        <h3 class="text-center mb-5 wow fadeInUp">Layanan Unggulan Rumah Sakit Orthopedi</h3>
-      </div>
-      <div class="slick-wrapper">
-       
-        <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card py-9">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">01</h1>
-                <p class="card-text"><strong>Excelent Center</strong></p>
-                <span style="color: #999;">Layanan Orthopedi & Traumatologi Terbaik dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">02</h1>
-                <p class="card-text"><strong>Fisioterapi</strong></p>
-                <span style="color: #999;">Layanan Fisioterapi Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">03</h1>
-                <p class="card-text"><strong>MRI Open Bore</strong></p>
-                <span style="color: #999;">Layanan MRI Open Bore Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">04</h1>
-                <p class="card-text"><strong>Orthotik & Prostetik</strong></p>
-                <span style="color: #999;">Layanan Orthotik & Prostetik Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-         <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">05</h1>
-                <p class="card-text"><strong>Spine Endoscopy</strong></p>
-                <span style="color: #999;">Layanan Spine Endoscopy Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-         <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">06</h1>
-                <p class="card-text"><strong>Arthroscopy</strong></p>
-                <span style="color: #999;">Layanan Arthroscopy Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-         <div>
-          <div class="col-sm card-fitur-unggulan">
-            <div class="card">
-              <div class="card-body d-flex flex-column">
-                <h1 class="card-title">06</h1>
-                <p class="card-text"><strong>Arthroplasty</strong></p>
-                <span style="color: #999;">Layanan Arthroplasty Terbaik  dari RS Orthopedi Siaga Raya</span>
-                <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="maps-wrapper py-4 mt-5 bg-light wow fadeInUp">
+  <div class="maps-wrapper py-4 bg-light wow fadeInUp bg-light">
     <div class="container">
       <div class="row">
         <div class="col-sm-4">

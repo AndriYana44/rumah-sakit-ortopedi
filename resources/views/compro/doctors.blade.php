@@ -29,28 +29,38 @@
                 </div>
                 <div class="card-body">
                   <form id="form-karir-filter">
+                    @csrf
+                    <div class="form-group">
+                      <label for="dokter">Pilih Dokter</label>
+                      <select name="dokter" id="dokter">
+                          <option value="">Pilih Dokter</option>
+                          @foreach($dokter as $dr)
+                            <option value="{{ $dr->id }}">{{ $dr->nama_dokter }}</option>
+                          @endforeach
+                      </select>
+                    </div>
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Cari Dokter" name="dokter">
-                      </div>
-                      @csrf
-                      <div class="form-group">
-                        <label for="kategori">Pilih Hari</label>
-                        <select name="kategori" id="kategori_list">
+                        <label for="hari">Pilih Hari</label>
+                        <select name="hari" id="hari">
                             <option value="">Pilih Hari</option>
-                            
+                            @foreach($hari as $hr)
+                              <option value="{{ $hr->id }}">{{ $hr->hari }}</option>
+                            @endforeach
                         </select>
                       </div>
                       <div class="form-group">
                         <label class="mb-2">Pilih Spesialis</label>
                         <select name="spesialis" id="spesialis">
                           <option value="">Pilih Spesialis</option>
+                          @foreach ($spesialis as $item)
+                              <option value="{{ $item->id }}">{{ $item->spesialis }}</option>
+                          @endforeach
                         </select>
                       </div>
                       <div class="form-group d-flex flex-column">
-                        <span class="mb-2">Jenjang Pendidikan</span>
-                        <label for="smk"><input name="jk[]" value="SMK" class="mr-2" id="smk" type="checkbox">SMK/SMA</label>
-                        <label for="d1"><input name="jk[]" value="L" class="mr-2" id="L" type="checkbox">Laki-laki</label>
-                        <label for="d3"><input name="jk[]" value="P" class="mr-2" id="P" type="checkbox">Perempuan</label>
+                        <span class="mb-2">Gender</span>
+                        <label for="L"><input name="jk[]" value="L" class="mr-2" id="L" type="checkbox">Laki-laki</label>
+                        <label for="P"><input name="jk[]" value="P" class="mr-2" id="P" type="checkbox">Perempuan</label>
                       </div>
                       <button type="submit" class="btn btn-primary btn-sm mb-2"><i class="fa fa-search"></i> Cari</button>
                       <a href="{{ route('doctors') }}" class="btn btn-info btn-sm"><i class="fa fa-refresh" aria-hidden="true"></i> Reset Filter</a>
@@ -99,8 +109,10 @@
 @section('script')
 <script>
   $(document).ready(function() {
+    $('#dokter').selectize();
     $('#spesialis').selectize();
-    
+    $('#hari').selectize();
+
     const getDayName = function() {
       var today = new Date();
       var dd = String(today.getDate()).padStart(2, '0');
