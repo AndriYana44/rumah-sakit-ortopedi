@@ -12,15 +12,13 @@ class DokterController extends Controller
         $data = Dokter::paginate(6);
         if($request->method() == "POST"){
             $data = Dokter::where(function($query) use ($request) {
-                $query->orWhere("nama_dokter", "like", "%{$request->dokter}%")
+                $query->orWhere("nama_dokter", $request->dokter)
                       ->orWhere("spesialis", $request->spesialis);
             })->paginate(6);
-
         }
         
         return view ('compro.doctors', [
             'data'=> $data
         ]);
     }
-
 }

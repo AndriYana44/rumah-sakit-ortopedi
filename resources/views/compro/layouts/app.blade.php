@@ -28,11 +28,31 @@
   <link href="{{ asset('assets/DataTables/datatables.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/select-option.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"/>
+  <style>
+    .whatsap-wrapper {
+      transition: .5s;
+      position: fixed;
+      z-index: 9999;
+      bottom: 10px;
+      right: 15px;
+      cursor: pointer;
+    }
+    .whatsap-wrapper img {
+      transition: .3s;
+      width: 70px;
+    }
+    .whatsap-wrapper img:hover {
+      width: 80px;
+    }
+  </style>
 </head>
 <body>
 
     <!-- Back to top button -->
-    <div class="back-to-top"></div>
+    <div class="whatsap-wrapper wow zoomIn" id="whatsap-wrapper">
+      <img src="{{ asset('assets/images/logos/whatsapp_icon.png') }}" alt="whatsapp icon">
+    </div>
+    <div class="back-to-top wow zoomIn"></div>
     
     @include('compro.layouts.header')
     @yield('content')
@@ -75,6 +95,23 @@
     $('ul.navbar-nav a').filter(function () {
       return this.href == url;
     }).parent().addClass('active');
+
+    $(document).on("scroll", function() {
+      var scrollHeight = $(this).scrollTop();
+      if(scrollHeight >= 470) {
+        $('#whatsap-wrapper').css({"bottom": "75px"});
+      }else{
+        $('#whatsap-wrapper').css({"bottom": "10px"});
+      }
+      console.log(scrollHeight);
+    });
+
+    $('#whatsap-wrapper').on('click', function() {
+      let newWindow = window.open("", "_blank");
+      if(newWindow) {
+        newWindow.location.href = 'https://wa.me/0895612206018';
+      }
+    });
   });
 </script>
 @yield('script')

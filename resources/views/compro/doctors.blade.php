@@ -34,17 +34,17 @@
                       </div>
                       @csrf
                       <div class="form-group">
-                          <label for="kategori">Pilih Hari</label>
-                          <select name="kategori" id="kategori_list" class="form-control">
-                              <option value="">Pilih Hari</option>
-                              
-                          </select>
+                        <label for="kategori">Pilih Hari</label>
+                        <select name="kategori" id="kategori_list">
+                            <option value="">Pilih Hari</option>
+                            
+                        </select>
                       </div>
-                      <div class="form-group d-flex flex-column">
-                          <span class="mb-2">Pilih Spesialis</span>
-                          <select name="spesialis" id="spesialis">
-                            <option value="">Pilih Spesialis</option>
-                          </select>
+                      <div class="form-group">
+                        <label class="mb-2">Pilih Spesialis</label>
+                        <select name="spesialis" id="spesialis">
+                          <option value="">Pilih Spesialis</option>
+                        </select>
                       </div>
                       <div class="form-group d-flex flex-column">
                         <span class="mb-2">Jenjang Pendidikan</span>
@@ -87,7 +87,7 @@
               </div>
             </div>
             <div style="width: 100%; display:flex; justify-content:center; align-items:center;">
-              {{-- {{ $data->links('pagination::bootstrap-4') }} --}}
+              {{ $data->links('pagination::bootstrap-4') }}
             </div>
           </div>
         </div>
@@ -99,6 +99,8 @@
 @section('script')
 <script>
   $(document).ready(function() {
+    $('#spesialis').selectize();
+    
     const getDayName = function() {
       var today = new Date();
       var dd = String(today.getDate()).padStart(2, '0');
