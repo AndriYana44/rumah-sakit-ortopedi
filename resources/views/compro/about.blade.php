@@ -14,38 +14,88 @@
     </div> <!-- .banner-section -->
   </div> <!-- .page-banner -->
 
-  
+  <style>
+    .sejarah-wrapper {
+      z-index: 9999;
+    }
+    .history-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+      z-index: 9999999999999;
+    }
+    .history-wrapper .img-history img {
+      /* position: absolute; */
+      width: 60%;
+    }
+
+    .history-wrapper .text-history {
+      position: absolute;
+      width: 80%;
+      padding: 30px;
+      background-color: #f0f0f0;
+      box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.3);
+      font-size: 14px;
+      color: #777;
+      border-radius: 18px;
+      top: 0;
+    }
+    .visi-wrapper {
+      padding: 15px;
+      border-radius: 18px;
+      background-color: #f0f0f0;
+      box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.3);
+    }
+    .misi-wrapper {
+      margin-top: 10px;
+      padding: 15px;
+      border-radius: 18px;
+      background-color: #f0f0f0;
+      box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.3);
+    }
+  </style>
 
   <div class="page-section">
     <div class="sejarah-wrapper mb-5 wow zoomIn">
-      <div class="container">
-        <h1>Sejarah Rumah Sakit Orthopedi Siaga Raya</h1>
-        <hr>
-        <p>
-          RS Orthopedi Siaga Raya yang dahulu dikenal dengan nama RS Siaga Raya, merupakan suatu unit usaha PT Siaga Bhakti Wirasta yang bergerak dibidang pelayanan kesehatan. PT Siaga Bhakti Wirasta didirikan pada tanggal 29 Maret 1988 oleh lima orang yang menaruh minat dan bergerak di bidang kesehatan. Pada tanggal 18 Agustus 1990 telah dilakukan soft opening yang ditandai pembukaan praktek pertama Prof. dr. Chehab Rukni Hilmy, Sp.OT, FICS. Pada Tanggal 3 November 1990 peresmiannya dilakukan oleh Dr. Broto Warsito selaku Dirjen Pelayanan Medis Departemen Kesehatan.<br><br>
-  
-          Pada Tanggal 18 Juli 2022, berdasarkan SK Direktur nomor NOMOR 01 1/SK/DrR/RSSWM2022 Rumah Sakit Siaga Raya resmi berubah nama menjadi RS Orthopedi Siaga Raya. Perubahan nama tersebut juga diikuti dengan perubahan kelas / tipe rumah sakit dari Kelas C Umum menjadi Kelas C Khusus.
-        </p>
+      <div class="history-wrapper px-5">
+        {{-- <div class="img-history">
+          <img src="{{ asset('') }}assets\images\banner\hospital.jpg" alt="hospital">
+        </div> --}}
+        <div class="text-history">
+          <h1>Sejarah Rumah Sakit Orthopedi Siaga Raya</h1>
+          <hr>
+          <p>
+            RS Orthopedi Siaga Raya yang dahulu dikenal dengan nama RS Siaga Raya, merupakan suatu unit usaha PT Siaga Bhakti Wirasta yang bergerak dibidang pelayanan kesehatan. PT Siaga Bhakti Wirasta didirikan pada tanggal 29 Maret 1988 oleh lima orang yang menaruh minat dan bergerak di bidang kesehatan. Pada tanggal 18 Agustus 1990 telah dilakukan soft opening yang ditandai pembukaan praktek pertama Prof. dr. Chehab Rukni Hilmy, Sp.OT, FICS. Pada Tanggal 3 November 1990 peresmiannya dilakukan oleh Dr. Broto Warsito selaku Dirjen Pelayanan Medis Departemen Kesehatan.<br><br>
+    
+            Pada Tanggal 18 Juli 2022, berdasarkan SK Direktur nomor NOMOR 01 1/SK/DrR/RSSWM2022 Rumah Sakit Siaga Raya resmi berubah nama menjadi RS Orthopedi Siaga Raya. Perubahan nama tersebut juga diikuti dengan perubahan kelas / tipe rumah sakit dari Kelas C Umum menjadi Kelas C Khusus.
+          </p>
+        </div>
       </div>
     </div>
-    <div class="visi-misi-wrapper bg-light wow zoomIn">
+    <div class="visi-misi-wrapper bg-light wow zoomIn pb-5">
       <div class="container">
         <h1 class="pt-5">VISI & MISI</h1>
         <hr>
-        <h4><strong>Visi</strong></h4>
-        <p>Menjadi Rumah Sakit rujukan bedah Orthopedi dan Traumatologi Orthopedi di seluruh Indonesia.</p><br><br>
-        <h4><strong>Misi</strong></h4>
-        <p class="pb-5">
-          Menjadi rumah sakit pilihan rujukan orthopedi Indonesia 
-          <br><br>
-          Menjadikan RS Orthopedi Siaga Raya sebagai unggulan dalam memberikan pelayanan kesehatan paripurna khususnya dibidang Orthopedi, traumatologi dan cidera olahraga yang menjamin kepuasan pelanggan dan bermutu tinggi.
-          <br><br>
-          Menjamin pelanggan melalui manajemen yang mandiri dan modern tidak lepas dari sifat profesionalisme dan prinsip-prinsip arahan berupa kebersamaan, kesejawatan, humanitas, integritas dan inovatif.
-          <br><br>
-          Menyelenggarakan dan mengembangkan manajemen rumah sakit modern yang tepat guna dan berhasil guna dalam upaya peningkatan pelayanan kesehatan sebagai lahan pengabdian profesi medik khususnya orthopedi, traumatologi, dan degeneratif.
-          <br><br>
-          mengembangkan sumber daya manusia yang profesional sesuai dengan perkembangan ilmu pengetahuan dan teknologi dalam ilmu orthopedi.
-        </p>
+        <div class="visi-wrapper">
+          <h4><strong>Visi</strong></h4>
+          <p>Menjadi Rumah Sakit rujukan bedah Orthopedi dan Traumatologi Orthopedi di seluruh Indonesia.</p>
+        </div>
+        <div class="misi-wrapper">
+          <h4><strong>Misi</strong></h4>
+          <p>
+            Menjadi rumah sakit pilihan rujukan orthopedi Indonesia 
+            <br><br>
+            Menjadikan RS Orthopedi Siaga Raya sebagai unggulan dalam memberikan pelayanan kesehatan paripurna khususnya dibidang Orthopedi, traumatologi dan cidera olahraga yang menjamin kepuasan pelanggan dan bermutu tinggi.
+            <br><br>
+            Menjamin pelanggan melalui manajemen yang mandiri dan modern tidak lepas dari sifat profesionalisme dan prinsip-prinsip arahan berupa kebersamaan, kesejawatan, humanitas, integritas dan inovatif.
+            <br><br>
+            Menyelenggarakan dan mengembangkan manajemen rumah sakit modern yang tepat guna dan berhasil guna dalam upaya peningkatan pelayanan kesehatan sebagai lahan pengabdian profesi medik khususnya orthopedi, traumatologi, dan degeneratif.
+            <br><br>
+            mengembangkan sumber daya manusia yang profesional sesuai dengan perkembangan ilmu pengetahuan dan teknologi dalam ilmu orthopedi.
+          </p>
+        </div>
       </div>
     </div>
 

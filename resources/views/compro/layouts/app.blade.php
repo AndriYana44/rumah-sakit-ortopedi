@@ -103,7 +103,6 @@
       }else{
         $('#whatsap-wrapper').css({"bottom": "10px"});
       }
-      console.log(scrollHeight);
     });
 
     $('#whatsap-wrapper').on('click', function() {
@@ -112,6 +111,7 @@
         newWindow.location.href = 'https://wa.me/0895612206018';
       }
     });
+
   });
 </script>
 @yield('script')

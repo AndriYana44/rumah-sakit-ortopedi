@@ -17,87 +17,69 @@
 
   <div class="page-section bg-light">
     <div class="container">
-      <div class="row justify-content-center">
-
-        <div class="col-lg-12">
-          <div class="row">
-            {{-- @dd($data->first()) --}}
-            <div class="col-sm-3">
-              <div class="card my-3 shadow">
-                <div class="card-header">
-                    <span>Cari Dokter</span>
-                </div>
-                <div class="card-body">
-                  <form id="form-karir-filter">
-                    @csrf
-                    <div class="form-group">
-                      <label for="dokter">Pilih Dokter</label>
-                      <select name="dokter" id="dokter">
-                          <option value="">Pilih Dokter</option>
-                          @foreach($dokter as $dr)
-                            <option value="{{ $dr->id }}">{{ $dr->nama_dokter }}</option>
-                          @endforeach
-                      </select>
-                    </div>
-                      <div class="form-group">
-                        <label for="hari">Pilih Hari</label>
-                        <select name="hari" id="hari">
-                            <option value="">Pilih Hari</option>
-                            @foreach($hari as $hr)
-                              <option value="{{ $hr->id }}">{{ $hr->hari }}</option>
-                            @endforeach
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label class="mb-2">Pilih Spesialis</label>
-                        <select name="spesialis" id="spesialis">
-                          <option value="">Pilih Spesialis</option>
-                          @foreach ($spesialis as $item)
-                              <option value="{{ $item->id }}">{{ $item->spesialis }}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                      <div class="form-group d-flex flex-column">
-                        <span class="mb-2">Gender</span>
-                        <label for="L"><input name="jk[]" value="L" class="mr-2" id="L" type="checkbox">Laki-laki</label>
-                        <label for="P"><input name="jk[]" value="P" class="mr-2" id="P" type="checkbox">Perempuan</label>
-                      </div>
-                      <button type="submit" class="btn btn-primary btn-sm mb-2"><i class="fa fa-search"></i> Cari</button>
-                      <a href="{{ route('doctors') }}" class="btn btn-info btn-sm"><i class="fa fa-refresh" aria-hidden="true"></i> Reset Filter</a>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-9">
+      <div class="row">
+        <div class="d-flex flex-column w-100">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link text-primary" id="senin">Senin</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" id="selasa">Selasa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" id="rabu">Rabu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" id="kamis">Kamis</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" id="jumat">Jumat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" id="sabtu">Sabtu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" id="minggu">Minggu</a>
+            </li>
+          </ul>
+          <div class="card">
+            <div class="card-body">
               <div class="row">
-                @foreach($data as $key => $dt)
-                <div class="col-sm-4 py-3 wow zoomIn">
-                  <div class="card-doctor">
-                    <div class="header">
-                      @if ($dt->foto == null || file_exists('files/foto-dokter/'.$dt->foto) == false)
-                        <img class="rounded" src="{{ asset('') }}files/foto-dokter/default.jpg" alt="pict" width="30">
-                      @else
-                        <img class="rounded" src="{{ asset('') }}files/foto-dokter/{{ $dt->foto }}" alt="pict" width="30">
-                      @endif
-                      <div class="meta d-flex align-items-center justify-content-center" style="width: 100%;">
-                        <a href="#"><span class="mai-logo-whatsapp"></span></a>
-                        <span class="ml-2 text-white" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
-                          <strong>Buat Janji</strong>
-                        </span>
-                        {{-- <a href="#"><span class="mai-logo-whatsapp"></span></a> --}}
+
+                @foreach ($data->jadwalDokter as $item)
+                {{-- @dd($item) --}}
+                <div class="col-sm-6">
+                  <div class="card card-dokter mt-3">
+                    <div class="card-body">
+                      <div class="dokter-wrapper d-flex align-items-center">
+                        <div class="rounded-circle-container">
+                          @if ($item->dokter->foto == null)
+                            <img src="{{ asset('files\foto-dokter\default.jpg') }}" alt="dokter">  
+                          @else
+                            <img src="{{ asset('') }}files/foto-dokter/{{ $item->dokter->foto }}" alt="doktor">
+                          @endif
+                        </div>
+                        <div class="keterangan d-flex flex-column ml-3 justify-content-center">
+                          <span class="name">{{ $item->dokter->nama_dokter }}</span>
+                          <span class="spesialis">{{ $item->dokter->spesialis }}</span>
+                          <small class="jadwal" style="color: #999;">{{ $item->jamMulai->jam . ' - ' . $item->jamSelesai->jam }}</small>
+                        </div>
                       </div>
                     </div>
-                    <div class="body">
-                      <p class="text-xl mb-0">{{ $dt->nama_dokter }}</p>
-                      <span class="text-sm text-grey">{{ $dt->spesialis }}</span>
+                    <div class="dottree">
+                      <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                    </div>
+                    <div class="aksi-dokter">
+                      <span>Lihat profile dokter</span>
+                      <span>Jadwalkan konsultasi</span>
                     </div>
                   </div>
                 </div>
                 @endforeach
+                <div class="mt-4" style="width: 100%; display:flex; justify-content:center; align-items:center;">
+                  {{-- {{ $data->links('pagination::bootstrap-4') }} --}}
+                </div>
               </div>
-            </div>
-            <div style="width: 100%; display:flex; justify-content:center; align-items:center;">
-              {{ $data->links('pagination::bootstrap-4') }}
             </div>
           </div>
         </div>
@@ -131,6 +113,41 @@
     $('.btn-jadwal').click(function(e) {
       var dayName = getDayName();
       var url = "{{ url('') }}/dokter/jadwal/hari-ini/" + dayName;
+      window.location.href = url;
+    });
+
+    // $('.nav-tabs').
+    function todayName() {
+      var today = new Date();
+      // Daftar nama hari
+      var daysOfWeek = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+      // Mendapatkan indeks hari saat ini
+      var dayIndex = today.getDay();
+      // Mendapatkan nama hari saat ini
+      var todayName = daysOfWeek[dayIndex];
+      return todayName;
+    }
+    
+    var todayName = '{{ $hari_active }}';
+    console.log(todayName.toLowerCase());
+    $(`#${todayName.toLowerCase()}`).addClass('active');
+    $(`#${todayName.toLowerCase()}`).css({
+      'color': '#333',
+      'font-weight': 'bold',
+    });
+
+    $('.card-dokter').mouseenter(function() {
+      $(this).children('.aksi-dokter').css('display', 'flex');
+    });
+    $('.card-dokter').mouseleave(function() {
+      $(this).children('.aksi-dokter').css('display', 'none');
+    });
+
+    $('.nav-link').click(function() {
+      var hari = $(this).attr('id');
+      var url = '{{ url("doctors/:hari") }}';
+      url = url.replace(':hari', hari);
+      console.log(url);
       window.location.href = url;
     });
   });

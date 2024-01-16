@@ -33,36 +33,19 @@
 
   <div class="content" id="content">
 
-    <div class="search-wrapper wow zoomIn">
-      <div class="card search-card">
-        <div class="card-body">
-          <h3 class="text-primary">Temukan Dokter yang tepat</h3>
-          <span class="mb-4" style="color: #999;">Cari dan temukan dokter yang tepat untuk kebutuhan medis Anda, dan buat janji dengan langkah mudah</span>
-          <form action="{{ route('doctors') }}" method="POST" class="mt-4">
-            @csrf
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <input type="text" name="dokter" class="form-control" placeholder="Nama Dokter">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <select name="spesialis" id="spesialis">
-                    <option value="">Pilih Spesialis</option>
-                    @foreach ($spesialis as $item)
-                      <option value="{{ $item->spesialis }}">{{ $item->spesialis }}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-4 d-grid gap-2">
-                <button type="submit" class="btn btn-primary btn-block">Cari <i class="fa fa-search"></i></button>
-              </div>
-            </div>
-          </form>
+    <div class="dokter-image-wrapper py-5 mt-5" style="padding: 0 100px 0 100px;">
+      {{-- <div class="container"> --}}
+        <div class="row">
+          <div class="col-sm-6">
+            <img src="{{ asset('assets/images/dokter/all-dokter.jpg') }}" style="width: 100%" alt="">
+          </div>
+          <div class="col-sm-6">
+            <h1 class="text-primary mb-3">Kesembuhan Anda Adalah Kebahagiaan Kami</h1>
+            <p style="color: #999">Pada Tanggal 18 Juli 2022, Rumah Sakit Siaga Raya resmi berubah nama menjadi RS Orthopedi Siaga Raya. Perubahan nama tersebut juga diikuti dengan perubahan kelas / tipe rumah sakit dari Kelas C Umum menjadi Kelas C Khusus</p>
+            <button class="btn btn-primary mt-4">Selengkapnya</button>
+          </div>
         </div>
-      </div>
+      {{-- </div> --}}
     </div>
 
     <div class="page-section" style="position: relative; margin-top: -50px;">
@@ -191,9 +174,99 @@
         </div>
       </div>
     </section>
-
-    
   </div>
+
+  <div class="page-section promo-home-wrapper" style="padding: 20px 100px 20px 100px;">
+    <div class="d-flex justify-content-center align-items-center flex-column">
+      <span class="text-center text-primary"><strong>Promo</strong></span>
+      <h3 class="text-center mb-5 wow fadeInUp">🌟 Promo Kesehatan Terbaik di Orthopedi! 🌟</h3>
+  
+      <div class="owl-carousel wow fadeInUp" id="promoSlideshow">
+        <div class="item">
+          <div class="card-promo">
+            <div class="header">
+              <img src="{{ asset('assets/images/promo/promo-1.jpg') }}" alt="">
+              <div class="meta">
+                <a href="#"><span class="mai-call"></span></a>
+                <a href="#"><span class="mai-logo-whatsapp"></span></a>
+              </div>
+            </div>
+            <div class="body">
+              <h6 class="mb-3">🏥 Paket Pemeriksaan Kesehatan Komprehensif:</h6>
+              <p>
+                ✅ Pemeriksaan Darah Lengkap <br>
+                ✅ Tes Kolesterol dan Gula Darah <br>
+                ✅ USG Abdomen <br>
+                ✅ Konsultasi Dokter Umum <br><br>
+                💰 Hanya Rp 500.000,- <s>Rp 750.000,-</s>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card-promo">
+            <div class="header">
+              <img src="{{ asset('assets/images/promo/promo-2.jpg') }}" alt="">
+              <div class="meta">
+                <a href="#"><span class="mai-call"></span></a>
+                <a href="#"><span class="mai-logo-whatsapp"></span></a>
+              </div>
+            </div>
+            <div class="body">
+              <h6 class="mb-3">🚑 Paket Keluarga Sehat:</h6>
+              <p>
+                ✅ Pemeriksaan Kesehatan Anak-Anak <br>
+                ✅ Imunisasi <br>
+                ✅ Konsultasi Dokter Spesialis Anak <br><br>
+                💰 Diskon 20% untuk Pemesanan 3 Paket atau Lebih!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card-promo">
+            <div class="header">
+              <img src="{{ asset('assets/images/promo/promo-2.jpg') }}" alt="">
+              <div class="meta">
+                <a href="#"><span class="mai-call"></span></a>
+                <a href="#"><span class="mai-logo-whatsapp"></span></a>
+              </div>
+            </div>
+            <div class="body">
+              <h6 class="mb-3">🚑 Paket Keluarga Sehat:</h6>
+              <p>
+                ✅ Pemeriksaan Kesehatan Anak-Anak <br>
+                ✅ Imunisasi <br>
+                ✅ Konsultasi Dokter Spesialis Anak <br><br>
+                💰 Diskon 20% untuk Pemesanan 3 Paket atau Lebih!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card-promo">
+            <div class="header">
+              <img src="{{ asset('assets/images/promo/promo-2.jpg') }}" alt="">
+              <div class="meta">
+                <a href="#"><span class="mai-call"></span></a>
+                <a href="#"><span class="mai-logo-whatsapp"></span></a>
+              </div>
+            </div>
+            <div class="body">
+              <h6 class="mb-3">🚑 Paket Keluarga Sehat:</h6>
+              <p>
+                ✅ Pemeriksaan Kesehatan Anak-Anak <br>
+                ✅ Imunisasi <br>
+                ✅ Konsultasi Dokter Spesialis Anak <br><br>
+                💰 Diskon 20% untuk Pemesanan 3 Paket atau Lebih!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="berita-wrapper bg-light py-5">
     <span class="text-primary"><strong>Berita & Acara</strong></span>
     <h3>Kabar Terbaru Orthopedi</h3>
@@ -282,89 +355,36 @@
       </div>
     </div>
  </div>
-  
+
   <!-- .page-section -->
   <div class="page-section dokter-home-wrapper">
     <div class="container">
       <span class="text-center text-primary"><strong>Dokter Kami</strong></span>
       <h3 class="text-center mb-5 wow fadeInUp">Temukan Dokter Berpengalaman di Orthopedi</h3>
-
       <div class="owl-carousel wow fadeInUp" id="doctorSlideshow">
+
+        @foreach ($dokter as $item) 
         <div class="item">
           <div class="card-doctor">
             <div class="header">
-              <img src="../assets-compro/assets/img/doctors/doctor_1.jpg" alt="">
+              @if ($item->foto == null)
+                <img src="{{ asset('files\foto-dokter\default.jpg') }}" alt="dokter">  
+              @else
+                <img src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="doktor">
+              @endif
               <div class="meta">
                 <a href="#"><span class="mai-call"></span></a>
                 <a href="#"><span class="mai-logo-whatsapp"></span></a>
               </div>
             </div>
             <div class="body">
-              <p class="text-xl mb-0">Dr. Stein Albert</p>
-              <span class="text-sm text-grey">Cardiology</span>
+              <p class="text-xl mb-0">{{ $item->nama_dokter }}</p>
+              <span class="text-sm text-grey">{{ $item->spesialis }}</span>
             </div>
           </div>
         </div>
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="../assets-compro/assets/img/doctors/doctor_2.jpg" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Alexa Melvin</p>
-              <span class="text-sm text-grey">Dental</span>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="../assets-compro/assets/img/doctors/doctor_3.jpg" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Rebecca Steffany</p>
-              <span class="text-sm text-grey">General Health</span>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="../assets-compro/assets/img/doctors/doctor_3.jpg" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Rebecca Steffany</p>
-              <span class="text-sm text-grey">General Health</span>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-doctor">
-            <div class="header">
-              <img src="../assets-compro/assets/img/doctors/doctor_3.jpg" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <p class="text-xl mb-0">Dr. Rebecca Steffany</p>
-              <span class="text-sm text-grey">General Health</span>
-            </div>
-          </div>
-        </div>
+        @endforeach
+
       </div>
     </div>
   </div>

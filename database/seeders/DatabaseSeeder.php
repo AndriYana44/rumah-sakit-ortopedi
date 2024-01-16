@@ -27,6 +27,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Dokter::factory(15)->create();
+        // Dokter::factory(15)->create();
     }
 }

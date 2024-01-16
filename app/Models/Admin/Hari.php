@@ -17,4 +17,9 @@ class Hari extends Model
     {
         return self::all();
     }
+
+    public function jadwalDokter()
+    {
+        return $this->hasMany(DokterJadwal::class,'hari_id','id');
+    }
 }

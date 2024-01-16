@@ -46,7 +46,7 @@
               <a class="nav-link" href="{{ route('home') }}">Beranda</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('doctors') }}">Dokter</a>
+              <a class="nav-link" href="{{ route('doctorsToday') }}">Dokter</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('blog') }}">Berita</a>
@@ -74,7 +74,7 @@
                 </li>
             @else
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle ml-lg-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle ml-lg-3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
