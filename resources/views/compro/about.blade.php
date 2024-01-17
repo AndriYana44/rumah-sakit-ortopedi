@@ -15,16 +15,12 @@
   </div> <!-- .page-banner -->
 
   <style>
-    .sejarah-wrapper {
-      z-index: 9999;
-    }
     .history-wrapper {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 300px;
-      z-index: 9999999999999;
     }
     .history-wrapper .img-history img {
       /* position: absolute; */
@@ -32,7 +28,7 @@
     }
 
     .history-wrapper .text-history {
-      position: absolute;
+      position: relative;
       width: 80%;
       padding: 30px;
       background-color: #f0f0f0;
@@ -55,11 +51,24 @@
       background-color: #f0f0f0;
       box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.3);
     }
+    @media screen and (max-width: 840px) {
+      .history-wrapper .text-history {
+        position: relative;
+        padding: 15px;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: none;
+      }
+
+      .text-history h1 {
+        font-size: 24px;
+      }
+    }
   </style>
 
   <div class="page-section">
     <div class="sejarah-wrapper mb-5 wow zoomIn">
-      <div class="history-wrapper px-5">
+      <div class="history-wrapper pb-3">
         {{-- <div class="img-history">
           <img src="{{ asset('') }}assets\images\banner\hospital.jpg" alt="hospital">
         </div> --}}
