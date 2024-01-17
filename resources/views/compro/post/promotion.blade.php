@@ -11,7 +11,7 @@
         </div> <!-- .banner-section -->
     </div> <!-- .page-banner -->
 
-    <div class="page-section bg-light">
+    <div class="page-section bg-light wow fadeInUp">
         {{-- @dd($data) --}}
         <div class="container">
           <div class="row">

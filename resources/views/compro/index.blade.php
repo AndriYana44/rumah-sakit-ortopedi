@@ -285,7 +285,7 @@
         </div>
 
         <div class="col-12 text-center mt-4 wow zoomIn">
-          <a href="blog.html" class="btn btn-primary">
+          <a href="{{ route('blog') }}" class="btn btn-primary">
             Lihat Berita Lainya &emsp;
             <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
           </a>
