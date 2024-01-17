@@ -199,6 +199,22 @@ section .card:hover{
   .dottree:hover {
     font-size: 18px;
   }
+
+  .info-promo-btn {
+    transition: .3s;
+    border: 1px solid #999;
+  }
+  .info-promo-btn:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #999;
+  }
+
+  .konten-promo {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 4;
+  }
     @media screen and (max-width: 767px) {
         .search-wrapper {
             width: 90%;

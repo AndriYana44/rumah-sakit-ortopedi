@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\PendaftaranBerobatController;
 use App\Http\Controllers\Compro\PostController;
 use App\Http\Controllers\Middle\ComproApiController;
+use App\Http\Controllers\PromoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,8 @@ Route::get('/blog-details',[HomeController::class,'blogDetails'])->name('blog.de
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/karir-info',[KarirController::class,'index'])->name('karir');
 Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
+
+Route::get('/promo/{slug}', [PromoController::class, 'promotion'])->name('promotion');
 
 // API
 Route::get('/get-dokter-api', [ComproApiController::class, 'getDokter'])->name('get.dokter.api');
@@ -114,6 +117,12 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/store', [AdminKarirController::class, 'store'])->name('karir.admin.store');
             Route::delete('/destroy/{id}', [AdminKarirController::class, 'destroy'])->name('karir.admin.destroy');
             Route::post('/get-all-data', [AdminKarirController::class, 'getAllData'])->name('karir.admin.getAllData');
+        });
+
+        Route::prefix('list-promo')->group(function() {
+            Route::get('/', [PromoController::class, 'list'])->name('listPromo');
+            Route::get('/create', [PromoController::class, 'create'])->name('listPromo.create');
+            Route::post('/store', [PromoController::class, 'store'])->name('listPromo.store');
         });
 
         Route::prefix('pendaftaran-berobat')->group(function() {

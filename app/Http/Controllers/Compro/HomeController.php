@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Compro;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Dokter;
+use App\Models\Promo;
 use App\Models\TempDaftarBerobat;
 use Illuminate\Http\Request;
 
@@ -14,11 +15,13 @@ class HomeController extends Controller
     public function index (){
         // dokter with relation
         $spesialis = Dokter::select("spesialis")->distinct()->get();
+        $promo = Promo::all();
         // dd($spesialis);
         $dokter = Dokter::getAllWithJadwal();
         return view ('compro.index', [
             'dokter' => $dokter,
-            'spesialis' => $spesialis
+            'spesialis' => $spesialis,
+            'promo' => $promo
         ]);
     }
 

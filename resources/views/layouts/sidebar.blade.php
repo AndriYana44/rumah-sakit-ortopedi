@@ -82,6 +82,10 @@
                         <i class="fa fa-hashtag"></i>
                         Karir
                     </a></li>
+                    <li><a class="sidebar-link" href="{{ route('listPromo') }}">
+                        <i class="fa fa-hashtag"></i>
+                        Promo
+                    </a></li>
                 </ul>
             </li>
             <li class="sidebar-item has-submenu">

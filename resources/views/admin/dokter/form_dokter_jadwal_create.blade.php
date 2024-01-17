@@ -3,6 +3,11 @@
 
 @section('content')
 {{-- {{ dd($data->hari) }} --}}
+<style>
+    .bg-primary {
+        background-color: #3f73a8;
+    }
+</style>
     <h3>Tetapkan Jadwal Dokter</h3>
     <hr>
     <form action="{{ route('dokter.jadwal.update') }}" method="POST">
@@ -37,16 +42,16 @@
             </div>
         </div>
         <div class="row" {{ $data == null ? 'hidden' : '' }}>
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <strong class="mt-3">Jam Kerja</strong>
                 <hr>
                 <div class="row card-wrapper">
                     @if ($data != null)
                         @foreach ($jadwalHariDokter as $key => $item)
-                            <div class="col-6" data-card-id="{{ $item }}">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <span class="{{ $hari->where('id', $item)->first()->hari }}"><i class="ti ti-calendar"></i>&emsp;{{ $hari->where('id', $item)->first()->hari }}</span>
+                            <div class="col-4" data-card-id="{{ $item }}">
+                                <div class="card" style="border: 1px solid #999;">
+                                    <div class="card-header text-white" style="background-color: #3f73a8;">
+                                        <span class="{{ $hari->where('id', $item)->first()->hari }}"><i class="ti ti-calendar"></i>&emsp;<b>{{ $hari->where('id', $item)->first()->hari }}</b></span>
                                     </div>
                                     <div class="card-body">
                                         <div class="mb-3">
@@ -132,7 +137,7 @@
                     // add element jika ada value baru tanpa merubah yang sudah ada
                     if ($(`.card-wrapper .${hari}`).length == 0) {
                         $('.card-wrapper').append(`
-                            <div class="col-6" data-card-id="${element}">
+                            <div class="col-4" data-card-id="${element}">
                                 <div class="card">
                                     <div class="card-header">
                                         <span class="${hari}"><i class="ti ti-calendar"></i>&emsp;${hari}</span>

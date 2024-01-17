@@ -42,7 +42,7 @@
           <div class="col-sm-6">
             <h1 class="text-primary mb-3">Kesembuhan Anda Adalah Kebahagiaan Kami</h1>
             <p style="color: #999">Pada Tanggal 18 Juli 2022, Rumah Sakit Siaga Raya resmi berubah nama menjadi RS Orthopedi Siaga Raya. Perubahan nama tersebut juga diikuti dengan perubahan kelas / tipe rumah sakit dari Kelas C Umum menjadi Kelas C Khusus</p>
-            <button class="btn btn-primary mt-4">Selengkapnya</button>
+            <a href="{{ route('about') }}" class="btn btn-primary mt-4">Selengkapnya</a>
           </div>
         </div>
       {{-- </div> --}}
@@ -180,89 +180,28 @@
     <div class="d-flex justify-content-center align-items-center flex-column">
       <span class="text-center text-primary"><strong>Promo</strong></span>
       <h3 class="text-center mb-5 wow fadeInUp">🌟 Promo Kesehatan Terbaik di Orthopedi! 🌟</h3>
-  
       <div class="owl-carousel wow fadeInUp" id="promoSlideshow">
+
+        @foreach ($promo as $item)
         <div class="item">
+          <a href="{{ route('promotion', ['slug' => $item->slug]) }}" style="text-decoration: none;">
           <div class="card-promo">
             <div class="header">
-              <img src="{{ asset('assets/images/promo/promo-1.jpg') }}" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
+              <img src="{{ asset('') }}files/gambar_promo/{{ $item->gambar }}" alt="">
+            </div>
+            <div class="card-body" style="text-decoration: none;">
+              <h6 class="mb-3 d-flex">
+                🌟 {{ $item->judul }}
+              </h6>
+              <div class="konten-promo" style="color: #777">
+                {!! $item->konten !!}
               </div>
             </div>
-            <div class="body">
-              <h6 class="mb-3">🏥 Paket Pemeriksaan Kesehatan Komprehensif:</h6>
-              <p>
-                ✅ Pemeriksaan Darah Lengkap <br>
-                ✅ Tes Kolesterol dan Gula Darah <br>
-                ✅ USG Abdomen <br>
-                ✅ Konsultasi Dokter Umum <br><br>
-                💰 Hanya Rp 500.000,- <s>Rp 750.000,-</s>
-              </p>
-            </div>
           </div>
+          </a>
         </div>
-        <div class="item">
-          <div class="card-promo">
-            <div class="header">
-              <img src="{{ asset('assets/images/promo/promo-2.jpg') }}" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <h6 class="mb-3">🚑 Paket Keluarga Sehat:</h6>
-              <p>
-                ✅ Pemeriksaan Kesehatan Anak-Anak <br>
-                ✅ Imunisasi <br>
-                ✅ Konsultasi Dokter Spesialis Anak <br><br>
-                💰 Diskon 20% untuk Pemesanan 3 Paket atau Lebih!
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-promo">
-            <div class="header">
-              <img src="{{ asset('assets/images/promo/promo-2.jpg') }}" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <h6 class="mb-3">🚑 Paket Keluarga Sehat:</h6>
-              <p>
-                ✅ Pemeriksaan Kesehatan Anak-Anak <br>
-                ✅ Imunisasi <br>
-                ✅ Konsultasi Dokter Spesialis Anak <br><br>
-                💰 Diskon 20% untuk Pemesanan 3 Paket atau Lebih!
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card-promo">
-            <div class="header">
-              <img src="{{ asset('assets/images/promo/promo-2.jpg') }}" alt="">
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
-              </div>
-            </div>
-            <div class="body">
-              <h6 class="mb-3">🚑 Paket Keluarga Sehat:</h6>
-              <p>
-                ✅ Pemeriksaan Kesehatan Anak-Anak <br>
-                ✅ Imunisasi <br>
-                ✅ Konsultasi Dokter Spesialis Anak <br><br>
-                💰 Diskon 20% untuk Pemesanan 3 Paket atau Lebih!
-              </p>
-            </div>
-          </div>
-        </div>
+        @endforeach
+
       </div>
     </div>
   </div>
@@ -357,11 +296,11 @@
  </div>
 
   <!-- .page-section -->
-  <div class="page-section dokter-home-wrapper">
+  <div class="page-section dokter-home-wrapper wow fadeInUp">
     <div class="container">
       <span class="text-center text-primary"><strong>Dokter Kami</strong></span>
-      <h3 class="text-center mb-5 wow fadeInUp">Temukan Dokter Berpengalaman di Orthopedi</h3>
-      <div class="owl-carousel wow fadeInUp" id="doctorSlideshow">
+      <h3 class="text-center mb-5">Temukan Dokter Berpengalaman di Orthopedi</h3>
+      <div class="owl-carousel" id="doctorSlideshow">
 
         @foreach ($dokter as $item) 
         <div class="item">
@@ -384,8 +323,8 @@
           </div>
         </div>
         @endforeach
-
       </div>
+      <a href="{{ route('doctorsToday') }}" class="btn btn-primary">Lihat Semua Dokter</a>
     </div>
   </div>
 

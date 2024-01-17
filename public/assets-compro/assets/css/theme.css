@@ -1300,6 +1300,7 @@ a.text-dark:hover, a.text-dark:focus {
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 2px 6px rgba(154, 159, 151, 0.2);
+  transition: .2s;
   overflow: hidden;
 }
 
@@ -1338,6 +1339,10 @@ a.text-dark:hover, a.text-dark:focus {
   background-color: rgba(52, 53, 49, 0.36);
   opacity: 0;
   transition: opacity .2s linear;
+}
+
+.card-promo:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .card-doctor:hover .header::before {

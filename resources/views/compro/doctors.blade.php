@@ -71,7 +71,7 @@
                     </div>
                     <div class="aksi-dokter">
                       <span>Lihat profile dokter</span>
-                      <span>Jadwalkan konsultasi</span>
+                      <span id="konsultasi">Jadwalkan konsultasi</span>
                     </div>
                   </div>
                 </div>
@@ -149,6 +149,13 @@
       url = url.replace(':hari', hari);
       console.log(url);
       window.location.href = url;
+    });
+
+    $('#konsultasi').click(function() {
+      let newWindow = window.open("", "_blank");
+      if(newWindow) {
+        newWindow.location.href = 'https://wa.me/0895612206018';
+      }
     });
   });
 </script>

@@ -81,3 +81,15 @@ Breadcrumbs::for('dashboard_karir_edit', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard_karir');
     $trail->push('Edit', route('karir.admin.edit', ['id' => 1]));
 });
+
+// home > promo
+Breadcrumbs::for('dashboard_promo', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Promo', route('listPromo'));
+});
+
+// home > promo > create
+Breadcrumbs::for('dashboard_promo_create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_promo');
+    $trail->push('Tambah', route('listPromo.create'));
+});
