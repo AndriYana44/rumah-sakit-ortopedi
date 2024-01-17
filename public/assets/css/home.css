@@ -215,6 +215,14 @@ section .card:hover{
     overflow: hidden;
     -webkit-line-clamp: 4;
   }
+
+  .dokter-image-wrapper {
+    padding: 0 100px 0 100px;
+  }
+
+  .promo-home-wrapper {
+    padding: 20px 100px 20px 100px;
+  }
     @media screen and (max-width: 767px) {
         .search-wrapper {
             width: 90%;
@@ -253,6 +261,13 @@ section .card:hover{
         }
 
         .dokter-image-wrapper p {
-          font-size: 12px;
+          font-size: 14px;
+        }
+
+        .dokter-image-wrapper {
+          padding: 0 50px 0 50px;
+        }
+        .promo-home-wrapper {
+          padding: 20px 50px 20px 50px;
         }
     }

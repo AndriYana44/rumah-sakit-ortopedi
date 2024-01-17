@@ -33,7 +33,7 @@
 
   <div class="content" id="content">
 
-    <div class="dokter-image-wrapper py-5 mt-5" style="padding: 0 100px 0 100px;">
+    <div class="dokter-image-wrapper py-5 mt-5">
       {{-- <div class="container"> --}}
         <div class="row">
           <div class="col-sm-6">
@@ -176,7 +176,7 @@
     </section>
   </div>
 
-  <div class="page-section promo-home-wrapper" style="padding: 20px 100px 20px 100px;">
+  <div class="page-section promo-home-wrapper">
     <div class="d-flex justify-content-center align-items-center flex-column">
       <span class="text-center text-primary"><strong>Promo</strong></span>
       <h3 class="text-center mb-5 wow fadeInUp">🌟 Promo Kesehatan Terbaik di Orthopedi! 🌟</h3>
