@@ -33,7 +33,7 @@
       <div class="container">
         {{-- <a class="navbar-brand" href="#"><span class="text-primary">One</span>-Health</a> --}}
         <div class="logo-wrapper d-flex flex-column justify-content-center align-items-center py-2">
-          <img src="{{ asset('assets/images/logos/logo.png') }}" width="250" alt="logos">
+          <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logos/logo.png') }}" width="250" alt="logos"></a>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport" aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">

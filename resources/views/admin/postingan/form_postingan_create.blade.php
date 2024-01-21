@@ -18,6 +18,15 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="mb-3">
+                    <label for="judul" class="form-label">Kategori</label>
+                    <select name="kategori" id="kategori">
+                        <option value=""></option>
+                        @foreach ($kategori as $item)
+                            <option value="{{ $item->id }}">{{ $item->kategori }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="judul" class="form-label">Judul</label>
                     <input type="text" class="form-control" name="judul" id="judul" placeholder="...">
                 </div>
@@ -48,6 +57,10 @@
 @section('script')
 <script>
     $(document).ready(function() {
+        $('#kategori').select2({
+            width: "100%",
+            placeholder: "Pilih Kategori"
+        })
         // create slug from judul
         $("#judul").keyup(function() {
             var judul = $("#judul").val();

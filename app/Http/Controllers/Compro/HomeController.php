@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Compro;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Dokter;
+use App\Models\Admin\Kategori;
+use App\Models\Admin\Postingan;
 use App\Models\Promo;
 use App\Models\TempDaftarBerobat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -16,12 +19,14 @@ class HomeController extends Controller
         // dokter with relation
         $spesialis = Dokter::select("spesialis")->distinct()->get();
         $promo = Promo::all();
+        $berita = Postingan::with("kategori")->get();
         // dd($spesialis);
         $dokter = Dokter::getAllWithJadwal();
         return view ('compro.index', [
             'dokter' => $dokter,
             'spesialis' => $spesialis,
-            'promo' => $promo
+            'promo' => $promo,
+            'berita' => $berita
         ]);
     }
 
@@ -37,11 +42,35 @@ class HomeController extends Controller
     // }
 
     public function blog (){
-        return view ('compro.blog');
+        $kategori = DB::table('m_kategori')
+                        ->select('kategori', DB::raw('COUNT(kategori) as jml'))
+                        ->where('terkait', 'berita')
+                        ->groupBy('kategori')
+                        ->get();
+        $data = Postingan::with('kategori')->get();
+        $recent = Postingan::with('kategori')->limit(3)->get();
+        return view ('compro.blog', [
+            'data' => $data,
+            'recent' => $recent,
+            'kategori' => $kategori
+        ]);
     }
 
-    public function blogDetails (){
-        return view ('compro.blog-details');
+    public function blogDetails ($slug){
+        $kategori = DB::table('m_kategori')
+                        ->select('kategori', DB::raw('COUNT(kategori) as jml'))
+                        ->where('terkait', 'berita')
+                        ->groupBy('kategori')
+                        ->get();
+
+        $data = Postingan::with('kategori')->where('slug', $slug)->get();
+        $recent = Postingan::with('kategori')->limit(3)->get();
+        // dd($recent);
+        return view ('compro.blog-details', [
+            'data'=> $data,
+            'kategori' => $kategori,
+            'recent' => $recent
+        ]);
     }
 
     public function contact (){

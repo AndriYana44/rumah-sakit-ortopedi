@@ -1,14 +1,16 @@
 @extends('compro.layouts.app')
 @section('content')
+
 <div class="page-section pt-5">
     <div class="container">
+      @foreach ($data as $item)
       <div class="row">
         <div class="col-lg-8">
           <nav aria-label="Breadcrumb">
             <ol class="breadcrumb bg-transparent py-0 mb-5">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item"><a href="blog.html">Blog</a></li>
-              <li class="breadcrumb-item active" aria-current="page">List of Countries without Coronavirus case</li>
+              <li class="breadcrumb-item"><a href="index.html" class="text-primary">Beranda</a></li>
+              <li class="breadcrumb-item"><a href="blog.html" class="text-primary">Berita</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><strong>{{ $item->judul }}</strong></li>
             </ol>
           </nav>
         </div>
@@ -18,7 +20,7 @@
         <div class="col-lg-8">
           <article class="blog-details">
             <div class="post-thumb">
-              <img src="{{ asset('') }}assets-compro/assets/img/blog/blog_1.jpg" alt="">
+              <img src="{{ asset('') }}files/gambar_postingan/banner/{{ $item->gambar }}" alt="">
             </div>
             <div class="post-meta">
               <div class="post-author">
@@ -26,31 +28,27 @@
               </div>
               <span class="divider">|</span>
               <div class="post-date">
-                <a href="#">22 Jan, 2018</a>
-              </div>
-              <span class="divider">|</span>
-              <div>
-                <a href="#">StreetStyle</a>, <a href="#">Fashion</a>, <a href="#">Couple</a>  
-              </div>
-              <span class="divider">|</span>
-              <div class="post-comment-count">
-                <a href="#">8 Comments</a>
+                <a href="#">22 Jan, 2024</a>
               </div>
             </div>
-            <h2 class="post-title h1">List of Countries without Coronavirus case</h2>
+            <h2 class="post-title h1">{{ $item->judul }}</h2>
             <div class="post-content">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet est vel orci luctus sollicitudin. Duis eleifend vestibulum justo, varius semper lacus condimentum dictum. Donec pulvinar a magna ut malesuada. In posuere felis diam, vel sodales metus accumsan in. Duis viverra dui eu pharetra pellentesque. Donec a eros leo. Quisque sed ligula vitae lorem efficitur faucibus. Praesent sit amet imperdiet ante. Nulla id tellus auctor, dictum libero a, malesuada nisi. Nulla in porta nibh, id vestibulum ipsum. Praesent dapibus tempus erat quis aliquet. Donec ac purus id sapien condimentum feugiat.</p>
-
-              <p>Praesent vel mi bibendum, finibus leo ac, condimentum arcu. Pellentesque sem ex, tristique sit amet suscipit in, mattis imperdiet enim. Integer tempus justo nec velit fringilla, eget eleifend neque blandit. Sed tempor magna sed congue auctor. Mauris eu turpis eget tortor ultricies elementum. Phasellus vel placerat orci, a venenatis justo. Phasellus faucibus venenatis nisl vitae vestibulum. Praesent id nibh arcu. Vivamus sagittis accumsan felis, quis vulputate</p>
-            </div>
-            <div class="post-tags">
-              <a href="#" class="tag-link">LifeStyle</a>
-              <a href="#" class="tag-link">Food</a>
-              <a href="#" class="tag-link">Coronavirus</a>
+              {!! $item->konten !!}
             </div>
           </article> <!-- .blog-details -->
 
-          <div class="comment-form-wrap pt-5">
+          <hr>
+
+          <div class="row">
+            <div class="col-6">
+              <ul class="categories">
+                @foreach ($kategori as $ktgr)
+                  <li><a href="#">{{ $ktgr->kategori }} <span>{{ $ktgr->jml }}</span></a></li>
+                @endforeach
+              </ul>
+            </div>
+          </div>
+          {{-- <div class="comment-form-wrap pt-5">
             <h3 class="mb-5">Leave a comment</h3>
             <form action="#" class="">
               <div class="form-row form-group">
@@ -77,94 +75,51 @@
               </div>
   
             </form>
-          </div>
+          </div> --}}
         </div>
         <div class="col-lg-4">
           <div class="sidebar">
             <div class="sidebar-block">
-              <h3 class="sidebar-title">Search</h3>
+              <h3 class="sidebar-title">Cari</h3>
               <form action="#" class="search-form">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+                  <input type="text" class="form-control" placeholder="pencarian berita ..">
                   <button type="submit" class="btn"><span class="icon mai-search"></span></button>
                 </div>
               </form>
             </div>
             <div class="sidebar-block">
-              <h3 class="sidebar-title">Categories</h3>
+              <h3 class="sidebar-title">Kategori</h3>
               <ul class="categories">
-                <li><a href="#">Food <span>12</span></a></li>
-                <li><a href="#">Dish <span>22</span></a></li>
-                <li><a href="#">Desserts <span>37</span></a></li>
-                <li><a href="#">Drinks <span>42</span></a></li>
-                <li><a href="#">Ocassion <span>14</span></a></li>
+                @foreach ($kategori as $ktgr)
+                  <li><a href="#">{{ $ktgr->kategori }} <span>{{ $ktgr->jml }}</span></a></li>
+                @endforeach
               </ul>
             </div>
 
             <div class="sidebar-block">
-              <h3 class="sidebar-title">Recent Blog</h3>
+              <h3 class="sidebar-title">Berita Terbaru</h3>
+              
+              @foreach ($recent as $rc) 
               <div class="blog-item">
                 <a class="post-thumb" href="">
-                  <img src="{{ asset('') }}assets-compro/assets/img/blog/blog_1.jpg" alt="">
+                  <img src="{{ asset('') }}files/gambar_postingan/banner/{{ $rc->gambar }}" alt="">
                 </a>
                 <div class="content">
-                  <h5 class="post-title"><a href="#">Even the all-powerful Pointing has no control</a></h5>
+                  <h5 class="post-title"><a href="#">{{ $rc->judul }}</a></h5>
                   <div class="meta">
-                    <a href="#"><span class="mai-calendar"></span> July 12, 2018</a>
+                    <a href="#"><span class="mai-calendar"></span> July 12, 2024</a>
                     <a href="#"><span class="mai-person"></span> Admin</a>
-                    <a href="#"><span class="mai-chatbubbles"></span> 19</a>
                   </div>
                 </div>
               </div>
-              <div class="blog-item">
-                <a class="post-thumb" href="">
-                  <img src="{{ asset('') }}assets-compro/assets/img/blog/blog_2.jpg" alt="">
-                </a>
-                <div class="content">
-                  <h5 class="post-title"><a href="#">Even the all-powerful Pointing has no control</a></h5>
-                  <div class="meta">
-                    <a href="#"><span class="mai-calendar"></span> July 12, 2018</a>
-                    <a href="#"><span class="mai-person"></span> Admin</a>
-                    <a href="#"><span class="mai-chatbubbles"></span> 19</a>
-                  </div>
-                </div>
-              </div>
-              <div class="blog-item">
-                <a class="post-thumb" href="">
-                  <img src="{{ asset('') }}assets-compro/assets/img/blog/blog_3.jpg" alt="">
-                </a>
-                <div class="content">
-                  <h5 class="post-title"><a href="#">Even the all-powerful Pointing has no control</a></h5>
-                  <div class="meta">
-                    <a href="#"><span class="mai-calendar"></span> July 12, 2018</a>
-                    <a href="#"><span class="mai-person"></span> Admin</a>
-                    <a href="#"><span class="mai-chatbubbles"></span> 19</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sidebar-block">
-              <h3 class="sidebar-title">Tag Cloud</h3>
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">dish</a>
-                <a href="#" class="tag-cloud-link">menu</a>
-                <a href="#" class="tag-cloud-link">food</a>
-                <a href="#" class="tag-cloud-link">sweet</a>
-                <a href="#" class="tag-cloud-link">tasty</a>
-                <a href="#" class="tag-cloud-link">delicious</a>
-                <a href="#" class="tag-cloud-link">desserts</a>
-                <a href="#" class="tag-cloud-link">drinks</a>
-              </div>
-            </div>
-
-            <div class="sidebar-block">
-              <h3 class="sidebar-title">Paragraph</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+              @endforeach
+              
             </div>
           </div>
         </div> 
       </div> <!-- .row -->
+      @endforeach
     </div> <!-- .container -->
   </div> <!-- .page-section -->
   @endsection

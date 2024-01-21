@@ -35,8 +35,12 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/doctors',[DokterCompro::class,'index'])->name('doctorsToday');
 Route::get('/doctors/{hari}',[DokterCompro::class,'index'])->name('doctors');
-Route::get('/blog',[HomeController::class,'blog'])->name('blog');
-Route::get('/blog-details',[HomeController::class,'blogDetails'])->name('blog.details');
+
+Route::prefix('blog')->group(function () {
+    Route::get('/', [HomeController::class,'blog'])->name('blog');
+    Route::get('/details/{slug}', [HomeController::class, 'blogDetails'])->name('blog.details');
+});
+
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/karir-info',[KarirController::class,'index'])->name('karir');
 Route::get('/post/{id}', [PostController::class, 'index'])->name('post');

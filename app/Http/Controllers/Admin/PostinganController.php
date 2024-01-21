@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Kategori;
 use App\Models\Admin\Postingan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,10 @@ class PostinganController extends Controller
     // create
     public function create()
     {
-        return view('admin.postingan.form_postingan_create');
+        $kategori = Kategori::where('terkait', 'berita')->get();
+        return view('admin.postingan.form_postingan_create', [
+            'kategori' => $kategori
+        ]);
     }
 
     // upload
@@ -50,6 +54,7 @@ class PostinganController extends Controller
         }
 
         $data = new Postingan();
+        $data->kategori_id = $request->kategori;
         $data->judul = $request->judul;
         $data->slug = $request->slug;
         $data->konten = $request->konten;
