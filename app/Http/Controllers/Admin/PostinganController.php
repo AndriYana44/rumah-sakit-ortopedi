@@ -34,8 +34,8 @@ class PostinganController extends Controller
             $extension = $request->file('upload')->getClientOriginalExtension();
             $filename = 'post_'.time().'.'.$extension;
 
-            $request->file('upload')->move(public_path('files/gambar_postingan'), $filename);
-
+            $request->file('upload')->move(upload_path('files/gambar_postingan'), $filename);
+ 
             $url = asset('files/gambar_postingan/'.$filename);
             return response()->json(['filename' => $filename, 'uploaded' => 1, 'url' => $url]);
         }
@@ -48,7 +48,7 @@ class PostinganController extends Controller
             $file = $request->file('gambar_postingan');
             $extension = $file->getClientOriginalExtension();
             $file_name = 'post_banner_'.time().'.'.$extension;
-            $file->move(public_path('files/gambar_postingan/banner'), $file_name);
+            $file->move(upload_path('files/gambar_postingan/banner'), $file_name);
         } else {
             $file_name = null;
         }
@@ -86,15 +86,15 @@ class PostinganController extends Controller
         if($request->hasFile('gambar_postingan')) {
             // delete gambar lama 
             $old_pict = $data->gambar;
-            if(file_exists(public_path('files/gambar_postingan/banner/'.$old_pict))) {
-                unlink(public_path('files/gambar_postingan/banner/'.$old_pict));
+            if(file_exists(upload_path('files/gambar_postingan/banner/'.$old_pict))) {
+                unlink(upload_path('files/gambar_postingan/banner/'.$old_pict));
             }
 
             // upload gambar baru
             $file = $request->file('gambar_postingan');
             $extension = $file->getClientOriginalExtension();
             $file_name = 'post_banner_'.time().'.'.$extension;
-            $file->move(public_path('files/gambar_postingan/banner'), $file_name);
+            $file->move(upload_path('files/gambar_postingan/banner'), $file_name);
         } else {
             $file_name = $data->gambar;
         }

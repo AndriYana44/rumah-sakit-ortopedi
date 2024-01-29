@@ -36,7 +36,7 @@ class PromoController extends Controller
             $file = $request->file('gambar');
             $extension = $file->getClientOriginalExtension();
             $file_name = 'promo_'.time().'.'.$extension;
-            $file->move(public_path('files/gambar_promo/'), $file_name);
+            $file->move(upload_path('files/gambar_promo/'), $file_name);
         } else {
             $file_name = null;
         }
@@ -63,5 +63,55 @@ class PromoController extends Controller
                     'message' => 'Data gagal ditambahkan'
                 ]);
         }
+    }
+
+    public function edit($id)
+    {
+        $data = Promo::find($id);
+        return view('admin.promotion.form_promo_edit', [
+            'data' => $data
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $id = $request->id;
+        // get data by id
+        $data = Promo::find($id);
+        // get gambar
+        if($request->hasFile('gambar')) {
+            // delete gambar lama 
+            $old_pict = $data->gambar;
+            if(file_exists(upload_path('files/gambar_promo/banner/'.$old_pict))) {
+                unlink(upload_path('files/gambar_promo/banner/'.$old_pict));
+            }
+
+            // upload gambar baru
+            $file = $request->file('gambar_promo');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = 'post_banner_'.time().'.'.$extension;
+            $file->move(upload_path('files/gambar_promo/banner'), $file_name);
+        } else {
+            $file_name = $data->gambar;
+        }
+
+        $data->judul = $request->promo;
+        $data->slug = $request->slug;
+        $data->gambar = $file_name;
+        $data->konten = $request->konten;
+        $data->deadline = $request->deadline;
+        $data->save();
+
+        return redirect()->back()->with([
+            'message' => 'Data berhasil diubah!',
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        Promo::find($id)->delete();
+        return redirect()->back()->with([
+            'message' => 'Data berhasil dihapus!'
+        ]);
     }
 }

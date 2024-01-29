@@ -45,7 +45,7 @@
           <div class="card">
             <div class="card-body">
               <div class="row">
-
+                @if($data != null)
                 @foreach ($data->jadwalDokter as $item)
                 {{-- @dd($item) --}}
                 <div class="col-sm-6">
@@ -76,6 +76,7 @@
                   </div>
                 </div>
                 @endforeach
+                @endif
                 <div class="mt-4" style="width: 100%; display:flex; justify-content:center; align-items:center;">
                   {{-- {{ $data->links('pagination::bootstrap-4') }} --}}
                 </div>

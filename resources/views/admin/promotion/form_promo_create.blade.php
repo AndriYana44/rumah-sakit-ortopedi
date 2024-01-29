@@ -11,7 +11,7 @@
             min-height: 200px;
         }
     </style>
-    <h3>Tambah Postingan</h3>
+    <h3>Tambah Promo</h3>
     <hr>
     <form action="{{ route('listPromo.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -23,7 +23,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="slug" class="form-label">Slug</label>
-                    <input type="text" class="form-control" id="slug" name="slug">
+                    <input type="text" class="form-control slug" disabled>
+                    <input type="text" class="form-control slug" id="slug" name="slug" hidden>
                 </div>
                 <div class="mb-3">
                     <label for="gambar" class="form-label">Gambar</label>
@@ -51,6 +52,12 @@
 @section('script')
 <script>
     $(document).ready(function() {
+        $("#promo").keyup(function() {
+            var judul = $("#promo").val();
+            var slug = judul.replace(/\s+/g, '-').toLowerCase();
+            $(".slug").val(slug);
+        });
+
         $('#deadline').datepicker({
             dateFormat: 'yy-mm-dd'
         });

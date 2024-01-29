@@ -31,8 +31,8 @@
                 <td><a href="{{ route('promotion', ['slug' => $item->slug]) }}">{{ route('promotion', ['slug' => $item->slug]) }}</a></td>
                 <td>{{ $item->deadline }}</td>
                 <td>
-                    <a href="{{ route('karir.admin.edit', ['id' => $item->id]) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('karir.admin.destroy', ['id' => $item->id]) }}" method="POST" class="d-inline">
+                    <a href="{{ route('listPromo.edit', ['id' => $item->id]) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ route('listPromo.delete', ['id' => $item->id]) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger karir-delete">Hapus</button>
@@ -48,8 +48,10 @@
 @section('script')
 <script>
     $(document).ready(function () {
-        $('.__datatables').DataTable();
-
+        $('.__datatables').DataTable({
+            scrollX: true,
+        });
+        
         $('.karir-delete').click(function (e) { 
             e.preventDefault();
             const form = $(this).closest('form');

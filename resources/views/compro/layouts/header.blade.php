@@ -74,7 +74,7 @@
                 </li>
             @else
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle ml-lg-3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="dropdown-toggle ml-lg-3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">

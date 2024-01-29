@@ -91,6 +91,16 @@
         }); // addEventListener
       }) // forEach
     }); 
+
+    $(document).ready(function() {
+      @if($message = Session::get('message'))
+        Swal.fire({
+          icon: "success",
+          text: "{{ $message }}",
+          showConfirmButton: true
+        });
+      @endif
+    });
     // DOMContentLoaded  end
 
     // jquery script

@@ -56,7 +56,12 @@
                 </div>
               </div>
               <h3 style="font-weight: 600" class="text-primary mt-5 mb-3">{{ $data->judul }}</h3>
-              <div class="content" style="color: #777;">
+              <style>
+                #content * {
+                  text-align: left;
+                }
+              </style>
+              <div class="content" id="content" style="color: #777;">
                   {!! $data->konten !!}
                   <small>Berlaku Hingga {{ $data->deadline }}</small>
               </div>

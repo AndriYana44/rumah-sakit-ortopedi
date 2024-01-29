@@ -127,6 +127,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [PromoController::class, 'list'])->name('listPromo');
             Route::get('/create', [PromoController::class, 'create'])->name('listPromo.create');
             Route::post('/store', [PromoController::class, 'store'])->name('listPromo.store');
+            Route::delete('/delete/{id}', [PromoController::class, 'destroy'])->name('listPromo.delete');
+            Route::get('/edit/{id}', [PromoController::class, 'edit'])->name('listPromo.edit');
+            Route::post('/update', [PromoController::class, 'update'])->name('listPromo.update');
         });
 
         Route::prefix('pendaftaran-berobat')->group(function() {
