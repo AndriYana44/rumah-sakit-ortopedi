@@ -8,6 +8,7 @@ use App\Models\Admin\DokterJadwal;
 use Illuminate\Http\Request;
 use App\Models\Admin\Hari;
 use App\Models\Admin\Jam;
+use App\Models\DokterDetail;
 
 class DokterController extends Controller
 {
@@ -43,7 +44,7 @@ class DokterController extends Controller
     // edit
     public function edit($id)
     {
-        $data = Dokter::find($id);
+        $data = Dokter::with(['dokterDetail'])->where('id', $id)->get();
         return view('admin.dokter.form_dokter_edit', [
             'data' => $data
         ]);
@@ -61,20 +62,31 @@ class DokterController extends Controller
             // set nama file
             $file_name = time() . "_file_dokter_profile." . $extension;
             // set path file
-            $path = public_path('files/foto-dokter');
+            $path = upload_path('files/foto-dokter');
             // upload file
             $file->move($path, $file_name);
         }
 
         $data = new Dokter();
         $data->nama_dokter = $request->nama;
-        $data->nip = $request->nip;
         $data->spesialis = $request->spesialis;
-        $data->alamat = $request->alamat;
+        $data->keterangan = $request->keterangan;
         $data->no_telp = $request->tlp;
         $data->email = $request->email;
+        $data->alamat = $request->alamat;
         $data->foto = is_null($file_name) ? $data->foto : $file_name;
         $data->save();
+
+        $dokter_id = $data->id;
+        foreach($request->pendidikan as $key => $item) {
+            $dokterDetail = new DokterDetail();
+            $dokterDetail->dokter_id = $dokter_id;
+            $dokterDetail->pendidikan = $item;
+            $dokterDetail->jurusan = $request->jurusan[$key];
+            $dokterDetail->nama_kampus = $request->univ[$key];
+            $dokterDetail->tahun_lulus = $request->lulus[$key];
+            $dokterDetail->save();
+        }
 
         return redirect()->route('dokter')
             ->with('success', 'Data berhasil ditambahkan');
@@ -91,9 +103,9 @@ class DokterController extends Controller
         if ($request->hasFile('foto')) {
             $old_pict = $data->foto;
             // check file exists
-            if (file_exists(public_path('files/foto-dokter/' . $old_pict))) {
+            if ($old_pict != null && file_exists(upload_path('files/foto-dokter/' . $old_pict))) {
                 // delete file
-                unlink(public_path('files/foto-dokter/' . $old_pict));
+                unlink(upload_path('files/foto-dokter/' . $old_pict));
             }
             // get file upload
             $file = $request->file('foto');
@@ -102,20 +114,31 @@ class DokterController extends Controller
             // set nama file
             $file_name = time() . "_file_dokter_profile." . $extension;
             // set path file
-            $path = public_path('files/foto-dokter');
+            $path = upload_path('files/foto-dokter');
             // upload file
             $file->move($path, $file_name);
         }
 
         $data = Dokter::find($id);
         $data->nama_dokter = $request->nama;
-        $data->nip = $request->nip;
+        $data->keterangan = $request->keterangan;
         $data->spesialis = $request->spesialis;
         $data->alamat = $request->alamat;
         $data->no_telp = $request->tlp;
         $data->foto = is_null($file_name) ? $data->foto : $file_name;
         $data->email = $request->email;
         $data->save();
+
+        DokterDetail::where('dokter_id', $id)->delete();
+        foreach($request->pendidikan as $key => $item) {
+            $detail = new DokterDetail();
+            $detail->dokter_id = $data->id;
+            $detail->pendidikan = $item;
+            $detail->jurusan = $request->jurusan[$key];
+            $detail->nama_kampus = $request->univ[$key];
+            $detail->tahun_lulus = $request->lulus[$key];
+            $detail->save();
+        }
 
         return redirect()->route('dokter')
             ->with('success', 'Data berhasil diupdate');

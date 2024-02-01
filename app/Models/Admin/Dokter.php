@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\DokterDetail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +27,11 @@ class Dokter extends Model
     public function dokterJadwal()
     {
         return $this->hasMany(DokterJadwal::class, 'dokter_id');
+    }
+
+    public function dokterDetail()
+    {
+        return $this->hasMany(DokterDetail::class, 'dokter_id', 'id');
     }
 
     // join dokter_jadwal & hari

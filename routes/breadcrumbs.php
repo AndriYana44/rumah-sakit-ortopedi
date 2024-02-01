@@ -40,6 +40,12 @@ Breadcrumbs::for('dashboard_dokter_create', function (BreadcrumbTrail $trail) {
     $trail->push('Tambah', route('dokter.create'));
 });
 
+// home > doker > edit
+Breadcrumbs::for('dashboard_dokter_edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_dokter');
+    $trail->push('Edit', route('dokter.edit', ['id' => 1]));
+});
+
 // home > user
 Breadcrumbs::for('dashboard_user', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');

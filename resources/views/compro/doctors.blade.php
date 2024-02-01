@@ -5,7 +5,7 @@
       <div class="container text-center wow fadeInUp">
         <nav aria-label="Breadcrumb">
           <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
-            <li class="breadcrumb-item"><a href="index.html" class="text-success">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.html" class="text-success">Beranda</a></li>
             <li class="breadcrumb-item active" aria-current="page">Dokter</li>
           </ol>
         </nav>
@@ -60,14 +60,11 @@
                           @endif
                         </div>
                         <div class="keterangan d-flex flex-column ml-3 justify-content-center">
-                          <span class="name">{{ $item->dokter->nama_dokter }}</span>
+                          <span class="name text-primary"><strong>{{ $item->dokter->nama_dokter }}</strong></span>
                           <span class="spesialis">{{ $item->dokter->spesialis }}</span>
                           <small class="jadwal" style="color: #999;">{{ $item->jamMulai->jam . ' - ' . $item->jamSelesai->jam }}</small>
                         </div>
                       </div>
-                    </div>
-                    <div class="dottree">
-                      <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                     </div>
                     <div class="aksi-dokter">
                       <span>Lihat profile dokter</span>
@@ -119,7 +116,7 @@
 
     // $('.nav-tabs').
     function todayName() {
-      var today = new Date();
+      var today = new Date(); 
       // Daftar nama hari
       var daysOfWeek = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
       // Mendapatkan indeks hari saat ini
@@ -135,14 +132,7 @@
     $(`#${todayName.toLowerCase()}`).css({
       'color': '#333',
       'font-weight': 'bold',
-    });
-
-    $('.card-dokter').mouseenter(function() {
-      $(this).children('.aksi-dokter').css('display', 'flex');
-    });
-    $('.card-dokter').mouseleave(function() {
-      $(this).children('.aksi-dokter').css('display', 'none');
-    });
+    }); 
 
     $('.nav-link').click(function() {
       var hari = $(this).attr('id');

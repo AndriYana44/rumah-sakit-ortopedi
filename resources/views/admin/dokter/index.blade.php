@@ -15,7 +15,6 @@
                 <th>No.</th>
                 <th>Foto</th>
                 <th>Nama</th>
-                <th>NIP</th>
                 <th>Spesialis</th>
                 <th>No.Tlp</th>
                 <th>Aksi</th>
@@ -33,7 +32,6 @@
                         @endif
                     </td>
                     <td>{{ $item->nama_dokter }}</td>
-                    <td>{{ $item->nip }}</td>
                     <td>{{ $item->spesialis }}</td>
                     <td>{{ $item->no_telp }}</td>
                     <td>

@@ -108,8 +108,19 @@
     $('#whatsap-wrapper').on('click', function() {
       let newWindow = window.open("", "_blank");
       if(newWindow) {
-        newWindow.location.href = 'https://wa.me/0895612206018';
+        newWindow.location.href = 'https://wa.me/+628118996581';
       }
+    });
+
+    var dokterDropdown = $(".dokter-dropdown");
+    // Menanggapi mouse masuk ke nav-link-dokter
+    $("#nav-link-dokter, .dokter-dropdown").mouseenter(function() {
+        dokterDropdown.show();
+    });
+
+    // Menanggapi mouse keluar dari dokter-dropdown atau nav-link-dokter
+    $("#nav-link-dokter, .dokter-dropdown").mouseleave(function() {
+        dokterDropdown.hide();
     });
 
   });

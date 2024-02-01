@@ -35,6 +35,8 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/doctors',[DokterCompro::class,'index'])->name('doctorsToday');
 Route::get('/doctors/{hari}',[DokterCompro::class,'index'])->name('doctors');
+Route::get('/doctors-profile',[DokterCompro::class,'profile'])->name('doctorsProfile');
+Route::get('/doctor-profile/{id}', [DokterCompro::class, 'personal'])->name('doctorProfile');
 
 Route::prefix('blog')->group(function () {
     Route::get('/', [HomeController::class,'blog'])->name('blog');
@@ -43,6 +45,7 @@ Route::prefix('blog')->group(function () {
 
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/karir-info',[KarirController::class,'index'])->name('karir');
+Route::post('/karir/get-all-data', [AdminKarirController::class, 'getAllData'])->name('karir.admin.getAllData');
 Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
 
 Route::get('/promo/{slug}', [PromoController::class, 'promotion'])->name('promotion');
@@ -53,6 +56,9 @@ Route::get('/get-dokter-jadwal-api', [ComproApiController::class, 'getJadwal'])-
 Route::get('/get-filter-dokter-jadwal-api/{hari}', [ComproApiController::class, 'getJadwalFilter'])->name('get.filter.jadwal.api');
 Route::get('/get-postingan-api', [ComproApiController::class, 'getPostingan'])->name('get.postingan.api');
 
+Route::prefix('dokter')->group(function() {
+    Route::get('/jadwal/hari-ini/{hari}', [DokterController::class,'infoJadwalHariIni']);
+});
 // Auth
 Route::middleware(['guest'])->group(function() {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -66,9 +72,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/daftar-berobat', [HomeController::class, 'daftarBerobat'])->name('daftarBerobat');
 
-    Route::prefix('dokter')->group(function() {
-        Route::get('/jadwal/hari-ini/{hari}', [DokterController::class,'infoJadwalHariIni']);
-    });
 
     Route::middleware(['admin'])->group(function() {
         Route::group(['prefix' => 'dashboard'], function () {
@@ -119,8 +122,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/create', [AdminKarirController::class, 'create'])->name('karir.admin.create');
             Route::get('/edit/{id}', [AdminKarirController::class, 'edit'])->name('karir.admin.edit');
             Route::post('/store', [AdminKarirController::class, 'store'])->name('karir.admin.store');
+            Route::post('/update', [AdminKarirController::class, 'update'])->name('karir.admin.update');
             Route::delete('/destroy/{id}', [AdminKarirController::class, 'destroy'])->name('karir.admin.destroy');
-            Route::post('/get-all-data', [AdminKarirController::class, 'getAllData'])->name('karir.admin.getAllData');
         });
 
         Route::prefix('list-promo')->group(function() {

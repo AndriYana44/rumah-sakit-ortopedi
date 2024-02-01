@@ -87,7 +87,7 @@
                 <div class="card-body d-flex flex-column">
                   <h1 class="card-title">01</h1>
                   <p class="card-text"><strong>Excelent Center</strong></p>
-                  <span style="color: #999;">Layanan Orthopedi & Traumatologi Terbaik dari RS Orthopedi Siaga Raya</span>
+                  <span style="color: #999;">Layanan Orthopedi & Traumatologi dari RS Orthopedi Siaga Raya</span>
                   <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
                 </div>
               </div>
@@ -100,7 +100,7 @@
                 <div class="card-body d-flex flex-column">
                   <h1 class="card-title">02</h1>
                   <p class="card-text"><strong>Fisioterapi</strong></p>
-                  <span style="color: #999;">Layanan Fisioterapi Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <span style="color: #999;">Layanan Fisioterapi dari RS Orthopedi Siaga Raya</span>
                   <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
                 </div>
               </div>
@@ -113,7 +113,7 @@
                 <div class="card-body d-flex flex-column">
                   <h1 class="card-title">03</h1>
                   <p class="card-text"><strong>MRI Open Bore</strong></p>
-                  <span style="color: #999;">Layanan MRI Open Bore Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <span style="color: #999;">Layanan MRI Open Bore dari RS Orthopedi Siaga Raya</span>
                   <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
                 </div>
               </div>
@@ -126,7 +126,7 @@
                 <div class="card-body d-flex flex-column">
                   <h1 class="card-title">04</h1>
                   <p class="card-text"><strong>Orthotik & Prostetik</strong></p>
-                  <span style="color: #999;">Layanan Orthotik & Prostetik Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <span style="color: #999;">Layanan Orthotik & Prostetik dari RS Orthopedi Siaga Raya</span>
                   <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
                 </div>
               </div>
@@ -139,7 +139,7 @@
                 <div class="card-body d-flex flex-column">
                   <h1 class="card-title">05</h1>
                   <p class="card-text"><strong>Spine Endoscopy</strong></p>
-                  <span style="color: #999;">Layanan Spine Endoscopy Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <span style="color: #999;">Layanan Spine Endoscopy dari RS Orthopedi Siaga Raya</span>
                   <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
                 </div>
               </div>
@@ -152,7 +152,7 @@
                 <div class="card-body d-flex flex-column">
                   <h1 class="card-title">06</h1>
                   <p class="card-text"><strong>Arthroscopy</strong></p>
-                  <span style="color: #999;">Layanan Arthroscopy Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <span style="color: #999;">Layanan Arthroscopy dari RS Orthopedi Siaga Raya</span>
                   <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
                 </div>
               </div>
@@ -165,7 +165,7 @@
                 <div class="card-body d-flex flex-column">
                   <h1 class="card-title">07</h1>
                   <p class="card-text"><strong>Arthroplasty</strong></p>
-                  <span style="color: #999;">Layanan Arthroplasty Terbaik  dari RS Orthopedi Siaga Raya</span>
+                  <span style="color: #999;">Layanan Arthroplasty dari RS Orthopedi Siaga Raya</span>
                   <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
                 </div>
               </div>
@@ -179,7 +179,7 @@
   <div class="page-section promo-home-wrapper">
     <div class="d-flex justify-content-center align-items-center flex-column">
       <span class="text-center text-primary"><strong>Promo</strong></span>
-      <h3 class="text-center mb-5 wow fadeInUp">🌟 Promo Kesehatan Terbaik di Orthopedi! 🌟</h3>
+      <h3 class="text-center mb-5 wow fadeInUp">🌟 Promo Kesehatan Kami! 🌟</h3>
       <div class="owl-carousel wow fadeInUp" id="promoSlideshow">
 
         @foreach ($promo as $item)
@@ -273,7 +273,7 @@
         </div>
         @endforeach
       </div>
-      <a href="{{ route('doctorsToday') }}" class="btn btn-primary">Lihat Semua Dokter</a>
+      <a href="{{ route('doctorsProfile') }}" class="btn btn-primary">Lihat Semua Dokter</a>
     </div>
   </div>
 

@@ -12,7 +12,8 @@ use Carbon\Carbon;
 
 class DokterController extends Controller
 {
-    public function index ($filterDay = null){
+    public function index ($filterDay = null)
+    {
         $filter = is_null($filterDay) ? Carbon::now()->locale('id')->dayName : $filterDay;
         // dd($filter);
         $dokter = Dokter::all();
@@ -28,6 +29,24 @@ class DokterController extends Controller
             'spesialis' => $spesialis,
             'hari_active' => $filter,
             'hari' => $hari
+        ]);
+    }
+
+    public function profile()
+    {
+        $data = Dokter::with(['hari', 'jamMulai', 'jamSelesai'])->get();
+        $spesialis = DB::select('select distinct spesialis, id from m_dokter');
+        return view('compro.doctors-profile', [
+            'data' => $data,
+            'spesialis' => $spesialis
+        ]);
+    }
+
+    public function personal($id)
+    {
+        $data = Dokter::with(['hari', 'jamMulai', 'jamSelesai', 'dokterDetail'])->where('id', $id)->get();
+        return view('compro.doctor-profile', [
+            'data' => $data
         ]);
     }
 }

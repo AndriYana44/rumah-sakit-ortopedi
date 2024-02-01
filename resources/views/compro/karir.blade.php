@@ -13,7 +13,7 @@
 
 <div class="container mt-4">
     <div class="row">
-        <div class="col-3">
+        <div class="col-sm-6 col-md-3">
             <div class="card my-3 shadow">
                 <div class="card-header">
                     <span>Filter Kriteria</span>
@@ -52,7 +52,7 @@
 @section('script')
 <script>
     $(document).ready(function() {
-
+        const csrfToken = $('meta[name="csrf-token"]').attr('content');
         $('#kategori_list').select2({
             placeholder: "Pilih Kategori"
         });
@@ -83,14 +83,14 @@
             getKarir(dataObj);
         });
 
-        function getKarir(data = {kategori: null, pendidikan: null, _token: $('input[name="_token"]').val()}) {
+        var getKarir = function(data = {kategori: null, pendidikan: null, _token: csrfToken}) {
             $('#karir-list-wrapper').empty();
             $.ajax({
+                url: "{{ route('karir.admin.getAllData') }}",
                 type: "POST",
                 data: data,
-                url: "{{ route('karir.admin.getAllData') }}",
-                dataType: "JSON",
                 success: function (res) {
+                    console.log(res);
                     if(res.length == 0) {
                         $('#karir-list-wrapper').append(`
                             <div class="card my-3 shadow">
@@ -101,10 +101,13 @@
                         `);
                     } else {
                         $.each(res, function (indexInArray, valueOfElement) { 
-                            let keterangan = `Minimal pengalaman ${valueOfElement.pengalaman} tahun`;
-                            keterangan += `<br>`;
-                            keterangan += `Berpengalaman sebagai ${valueOfElement.bidang_pengalaman}`;
-                            keterangan += `<br>`;
+                            let keterangan = '';
+                            if(valueOfElement.pengalaman != null) {
+                                keterangan += `Minimal pengalaman ${valueOfElement.pengalaman} tahun`;
+                                keterangan += `<br>`;
+                                keterangan += `Berpengalaman sebagai ${valueOfElement.bidang_pengalaman}`;
+                                keterangan += `<br>`;
+                            }
                             keterangan += `Kriteria: ${valueOfElement.kriteria}`;
     
                             let deadline = `Deadline: ${valueOfElement.deadline}`;
@@ -113,9 +116,14 @@
                             `<div class="card my-3">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-9">
+                                        <div class="col-md-9 col-sm-6">
                                             <div class="job d-flex flex-column">
-                                                <span><strong id="kategori">${valueOfElement.kategori.kategori}</strong></span>
+                                                <span><strong id="kategori">${valueOfElement.posisi_kerja}</strong></span>
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <small class="badge badge-info">${valueOfElement.kategori.kategori}</small>
+                                                    </div>
+                                                </div>
                                                 <span class="d-flex mt-3">
                                                     <div class="location-wrapper">
                                                         <i class="fa fa-map-marker text-success" aria-hidden="true"></i>
@@ -123,7 +131,7 @@
                                                     </div>
                                                     <div class="graduation-wrapper ml-4">
                                                         <i class="fa fa-graduation-cap text-success" aria-hidden="true"></i>
-                                                        <small id="pendidikan">${valueOfElement.pendidikan}</small>
+                                                        <small id="pendidikan">${valueOfElement.pendidikan} - ${valueOfElement.jurusan}</small>
                                                     </div>
                                                 </span>
                                                 <div class="requirement mt-2 limited-text" id="pengalaman">
@@ -163,7 +171,7 @@
                                                 <div class="col-4">
                                                     <div class="graduation-wrapper ml-4">
                                                         <i class="fa fa-graduation-cap text-success" aria-hidden="true"></i>
-                                                        <small id="pendidikan">${valueOfElement.pendidikan}</small>
+                                                        <small id="pendidikan">${valueOfElement.pendidikan} - ${valueOfElement.jurusan}</small>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -196,9 +204,7 @@
                     }
                 }
             });
-        };
-
-        getKarir();
+        }();
     });
 </script>
 @endsection

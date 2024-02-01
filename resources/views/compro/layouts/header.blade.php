@@ -12,9 +12,9 @@
         <div class="row">
           <div class="col-sm-8 text-sm">
             <div class="site-info">
-              <a href="#"><span class="mai-call text-primary"></span> +00 123 4455 6666</a>
+              <a href="#"><span class="mai-call text-primary"></span> +62 811 899 6581</a>
               <span class="divider">|</span>
-              <a href="#"><span class="mai-mail text-primary"></span> mail@example.com</a>
+              <a href="#"><span class="mai-mail text-primary"></span> rsosiagaraya@gmail.com</a>
             </div>
           </div>
           <div class="col-sm-4 text-right text-sm">
@@ -39,14 +39,50 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport" aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
+        <style>
+          #nav-item-dokter {
+            position: relative;
+          }
+          .dokter-dropdown {
+            display: none;
+            z-index: 99999;
+            border-top: 3px solid #2a4988;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            width: 180px;
+          }
+          .dokter-dropdown ul {
+            list-style: none;
+          }
+          .dokter-dropdown ul li {
+            padding: 8px 5px;
+          }
+          .dokter-dropdown ul li a {
+            color: #999;
+            padding: 5px 0;
+            transition: .3s;
+            font-size: 14px;
+          }
+          .dokter-dropdown ul li a:hover {
+            text-decoration: none;
+            color: #555;
+          }
+        </style>
         <div class="collapse navbar-collapse" id="navbarSupport">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link" href="{{ route('home') }}">Beranda</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('doctorsToday') }}">Dokter</a>
+            <li class="nav-item dropdown" id="nav-item-dokter">
+              <span class="nav-link dropdown-toggle" id="nav-link-dokter">Dokter</span>
+              {{-- <a class="nav-link dropdown-toggle" id="nav-link-dokter" href="#">Dokter </a>  --}}
+              <div class="dokter-dropdown">
+                <ul>
+                  <li><a href="{{ route('doctorsProfile') }}">Profile Dokter</a></li>
+                  <li><a href="{{ route('doctorsToday') }}">Jadwal Dokter</a></li>
+                </ul>
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('blog') }}">Berita</a>
@@ -78,7 +114,7 @@
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @if(Auth::user()->role === 1)
+                        @if(Auth::user()->role == 1)
                           <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                         @else
                           <a class="dropdown-item" href="#">Profile</a>

@@ -28,12 +28,12 @@
           </ul>
         </div>
         <div class="col-sm-6 col-lg-3 py-3">
-          <h5>Contact</h5>
-          <p class="footer-link mt-2">351 Willow Street Franklin, MA 02038</p>
-          <a href="#" class="footer-link">701-573-7582</a>
-          <a href="#" class="footer-link">healthcare@temporary.net</a>
+          <h5>Kontak</h5>
+          <p class="footer-link mt-2">Jl. Siaga Raya No.4-8, RT.14/RW.3, Pejaten Bar., Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12510</p>
+          <a href="#" class="footer-link">+62 811 899 6581</a>
+          <a href="#" class="footer-link">rsosiagaraya@gmail.com</a>
 
-          <h5 class="mt-3">Social Media</h5>
+          <h5 class="mt-3">Sosial Media</h5>
           <div class="footer-sosmed mt-3">
             <a href="#" target="_blank"><span class="mai-logo-facebook-f"></span></a>
             <a href="#" target="_blank"><span class="mai-logo-twitter"></span></a>
@@ -46,6 +46,6 @@
 
       <hr>
 
-      <p id="copyright">Copyright &copy; 2020 <a href="https://macodeid.com/" target="_blank">MACode ID</a>. All right reserved</p>
+      <p id="copyright">Copyright &copy; 2024 RS Orthopedi Siaga Raya. All right reserved</p>
     </div>
   </footer>

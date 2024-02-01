@@ -102,7 +102,7 @@ class PromoController extends Controller
         $data->deadline = $request->deadline;
         $data->save();
 
-        return redirect()->back()->with([
+        return redirect()->route('listPromo')->with([
             'message' => 'Data berhasil diubah!',
         ]);
     }

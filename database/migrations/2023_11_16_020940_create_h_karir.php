@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('h_karir', function (Blueprint $table) {
             $table->id();
             $table->integer('kategori_id');
+            $table->string('posisi_kerja');
             $table->string('pendidikan');
             $table->string('jurusan');
-            $table->string('pengalaman');
-            $table->string('bidang_pengalaman');
+            $table->string('pengalaman')->nullable();
+            $table->string('bidang_pengalaman')->nullable();
             $table->text('kriteria');
-            $table->text('jobdesk');
             $table->text('informasi')->nullable();
             $table->date('deadline')->format('yyyy-mm-dd');
             $table->boolean('is_active')->default(true);

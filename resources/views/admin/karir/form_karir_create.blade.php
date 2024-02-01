@@ -11,14 +11,24 @@
             min-height: 200px;
         }
     </style>
-    <h3>Tambah Postingan</h3>
+    <h3>Tambah Karir</h3>
     <hr>
     <form action="{{ route('karir.admin.store') }}" method="POST">
         @csrf
         <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group mb-4">
+                            <label for="posisi" class="form-label">Posisi Lowongan</label>
+                            <input type="text" class="form-control" name="posisi">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-sm-6">
                 <div class="mb-4 form-group d-flex flex-column">
-                    <label for="judul" class="form-label">Kategori</label>
+                    <label for="kategori" class="form-label">Kategori</label>
                     <select name="kategori" id="kategori" class="select2">
                         <option value=""></option>
                         @foreach ($kategori as $k)
@@ -62,10 +72,6 @@
                 <div class="mb-3">
                     <label for="kriteria" class="form-label">Kriteria</label>
                     <textarea type="text" class="form-control" id="kriteria" name="kriteria"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="jobdesk" class="form-label">Jobdesk</label>
-                    <textarea id="jobdesk" class="form-control" name="jobdesk"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="informasi" class="form-label">Informasi Tambahan</label>
