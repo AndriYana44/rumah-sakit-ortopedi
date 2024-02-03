@@ -57,7 +57,7 @@
                             var url = `{{ route('postingan.edit', ':id') }}`;
                             url = url.replace(':id', row.id);
                             return `<button type="button" class="btn btn-danger btn-sm user-delete" data-id="${row.id}">Delete</button>
-                                    <a href="" class="btn btn-sm btn-warning">Edit</a>`;
+                                    <a href="{{ url('') }}/postingan/edit/${row.id}" class="btn btn-sm btn-warning">Edit</a>`;
                         }
                     }
                 ],
