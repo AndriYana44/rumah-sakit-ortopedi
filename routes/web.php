@@ -115,7 +115,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{id}', [PostinganController::class, 'edit'])->name('postingan.edit');
             Route::post('/store', [PostinganController::class, 'store'])->name('postingan.store');
             Route::put('/update', [PostinganController::class, 'update'])->name('postingan.update');
-            Route::delete('/delete/{id}', [PostinganController::class, 'destroy'])->name('postingan.delete');
+            Route::post('/delete', [PostinganController::class, 'delete'])->name('postingan.delete');
+
+            Route::get('/getBerita', [PostinganController::class, 'getDataBerita'])->name('getBerita');
         });
 
         Route::prefix('karir')->group(function() {
