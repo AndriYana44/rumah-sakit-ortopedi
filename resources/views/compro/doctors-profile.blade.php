@@ -9,8 +9,7 @@
             <li class="breadcrumb-item active" aria-current="page">Dokter</li>
           </ol>
         </nav>
-        <h1 class="font-weight-normal">Dokter Kami</h1>
-        <button type="button" class="btn btn-primary btn-jadwal mt-5">Jadwal praktek hari ini</button>
+        <h1 class="font-weight-normal">Profile Dokter</h1>
       </div> <!-- .container -->
     </div> <!-- .banner-section -->
   </div> <!-- .page-banner -->
@@ -24,8 +23,9 @@
               <div class="row">
                 {{-- @dd($item) --}}
                 <div class="col-md-8">
-                @if($data != null)
+                  @if($data->first() != null)
                     @foreach ($data as $item)
+                    @if($item->hari->first() != null)
                         <style>
                             .info-profile-wrapper {
                                 display: flex;
@@ -116,14 +116,19 @@
                                 </div>
                             </div>
                         </div>
+                      @endif
                     @endforeach
-                    @endif
+                  @endif
+                  <div class="d-flex justify-content-center align-items-center">
+                    {{ $data->links('pagination::bootstrap-4') }}
+                  </div>
                 </div>
                 <div class="col-md-4">
-                    <form action="" method="POST" class="my-3">
+                    <form action="{{ route('doctorsProfileFilter') }}" method="POST" class="my-3">
+                      @csrf
                         <select name="dokter" id="dokter">
                             <option value="">Filter Dokter</option>
-                            @foreach ($data as $item)
+                            @foreach ($dokter_all as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama_dokter }}</option>
                             @endforeach
                         </select>
@@ -135,8 +140,8 @@
                                 <ul>
                                     @foreach ($spesialis as $item)
                                     <li>
-                                        <input type="radio" class="form-check-input" name="spesialis" id="{{ $item->id }}">
-                                        <label for="{{ $item->id }}">{{ $item->spesialis }}</label>    
+                                        <input type="radio" class="form-check-input" value="{{ $item->spesialis }}" name="spesialis" id="{{ $item->spesialis }}">
+                                        <label for="{{ $item->spesialis }}">{{ $item->spesialis }}</label>    
                                     </li>    
                                     @endforeach
                                 </ul>

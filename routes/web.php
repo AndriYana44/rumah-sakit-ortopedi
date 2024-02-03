@@ -36,6 +36,7 @@ Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/doctors',[DokterCompro::class,'index'])->name('doctorsToday');
 Route::get('/doctors/{hari}',[DokterCompro::class,'index'])->name('doctors');
 Route::get('/doctors-profile',[DokterCompro::class,'profile'])->name('doctorsProfile');
+Route::post('/doctors-profile',[DokterCompro::class,'profile'])->name('doctorsProfileFilter');
 Route::get('/doctor-profile/{id}', [DokterCompro::class, 'personal'])->name('doctorProfile');
 
 Route::prefix('blog')->group(function () {
