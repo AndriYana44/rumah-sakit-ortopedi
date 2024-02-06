@@ -36,6 +36,7 @@ Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/doctors',[DokterCompro::class,'index'])->name('doctorsToday');
 Route::get('/doctors/{hari}',[DokterCompro::class,'index'])->name('doctors');
 Route::get('/doctors-profile',[DokterCompro::class,'profile'])->name('doctorsProfile');
+Route::post('/doctors-profile',[DokterCompro::class,'profile'])->name('doctorsProfileFilter');
 Route::get('/doctor-profile/{id}', [DokterCompro::class, 'personal'])->name('doctorProfile');
 
 Route::prefix('blog')->group(function () {
@@ -117,7 +118,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{id}', [PostinganController::class, 'edit'])->name('postingan.edit');
             Route::post('/store', [PostinganController::class, 'store'])->name('postingan.store');
             Route::put('/update', [PostinganController::class, 'update'])->name('postingan.update');
-            Route::delete('/delete/{id}', [PostinganController::class, 'destroy'])->name('postingan.delete');
+            Route::post('/delete', [PostinganController::class, 'delete'])->name('postingan.delete');
+
+            Route::get('/getBerita', [PostinganController::class, 'getDataBerita'])->name('getBerita');
         });
 
         Route::prefix('karir')->group(function() {

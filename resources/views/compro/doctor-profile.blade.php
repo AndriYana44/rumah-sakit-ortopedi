@@ -91,7 +91,11 @@
         @foreach ($data as $item)
         <div class="profile-dokter">
             <div class="image-wrapper">
-                <img src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="foto-dokter">
+                @if ($item->foto == null)
+                    <img style="width: 100px; height: 110px;" src="{{ asset('files\foto-dokter\default.jpg') }}" alt="dokter">  
+                @else
+                    <img style="width: 100px; height: 110px;" src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="doktor">
+                @endif
                 <div class="data-diri-wrapper">
                     <span><strong>{{ $item->nama_dokter }}</strong></span>
                     <span><i class="fa fa-stethoscope" aria-hidden="true"></i> {{ $item->spesialis }}</span>

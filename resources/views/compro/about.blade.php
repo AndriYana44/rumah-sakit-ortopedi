@@ -110,7 +110,7 @@
 
     <div class="fasilitas-wrapper  wow zoomIn">
       <div class="container py-5">
-        <h1>Layanan medis terbaik & perawatan terbaik</h1>
+        <h1>Layanan medis & perawatan</h1>
         <hr>
         <div class="row">
           <div class="col-12 col-lg-3 col-sm-6 col-md-4">

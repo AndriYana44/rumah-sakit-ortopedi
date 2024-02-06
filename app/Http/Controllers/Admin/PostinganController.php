@@ -7,6 +7,7 @@ use App\Models\Admin\Kategori;
 use App\Models\Admin\Postingan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DataTables;
 
 class PostinganController extends Controller
 {
@@ -16,6 +17,12 @@ class PostinganController extends Controller
         return view('admin.postingan.index', [
             'data' => $data
         ]);
+    }
+
+    public function getDataBerita()
+    {
+        $data = Postingan::all();
+        return DataTables::of($data)->make(true);
     }
 
     // create
@@ -111,11 +118,20 @@ class PostinganController extends Controller
     }
 
     // delete
-    public function delete($id)
+    public function delete(Request $request)
     {
+        $id = $request->id;
         $data = Postingan::find($id);
+        if($data->gambar != null) {
+            if(file_exists(upload_path('files/gambar_postingan/banner/'.$data->gambar))) {
+                unlink(upload_path('files/gambar_postingan/banner/'.$data->gambar));
+            }
+        }
         $data->delete();
 
-        return redirect()->route('postingan')->with('success', 'Data berhasil dihapus');
+        return response()->json([
+            'success' => true,
+            'message' => 'Berita berhasil dihapus!'
+        ]);
     }
 }
