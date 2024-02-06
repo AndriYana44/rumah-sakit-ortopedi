@@ -97,6 +97,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [KategoriController::class, 'index'])->name('kategori');
             Route::post('/store', [KategoriController::class, 'store'])->name('kategori.store');
             Route::post('/getAllData', [KategoriController::class, 'getAllData'])->name('kategori.getAllData');
+            Route::get('/getById/{id}', [KategoriController::class, 'getById'])->name('kategori.by.id');
+            Route::post('/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+            Route::get('/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.delete');
         });
     
         Route::prefix('user')->group(function () {

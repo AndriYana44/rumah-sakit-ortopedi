@@ -34,7 +34,7 @@ class DokterController extends Controller
 
     public function profile()
     {
-        $data = Dokter::with(['hari', 'jamMulai', 'jamSelesai'])->get();
+        $data = Dokter::with(['hari', 'jamMulai', 'jamSelesai'])->paginate(6);
         $spesialis = DB::select('select distinct spesialis, id from m_dokter');
         return view('compro.doctors-profile', [
             'data' => $data,

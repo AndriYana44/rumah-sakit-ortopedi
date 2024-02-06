@@ -90,6 +90,8 @@
         }
     });
 
+    $('input').attr('autocomplete', 'off');
+
     var url = window.location;
     $('ul.navbar-nav a[href="' + url + '"]').parent().addClass('active');
     $('ul.navbar-nav a').filter(function () {
@@ -108,7 +110,7 @@
     $('#whatsap-wrapper').on('click', function() {
       let newWindow = window.open("", "_blank");
       if(newWindow) {
-        newWindow.location.href = 'https://wa.me/+628118996581';
+        newWindow.location.href = 'https://api.whatsapp.com/send?phone=+628118996581&text=Halo,%20saya%20dapat%20info%20tentang%20RS%20Orthopedi%20Siaga%20Raya%20dari%20website%20www.rsorthopedisiagaraya.co.id.%20Bisa%20minta%20info%20lebih%20lanjut%3F';
       }
     });
 

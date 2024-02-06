@@ -53,4 +53,34 @@ class KategoriController extends Controller
             'message' => 'Data berhasil disimpan',
         ]);
     }
+
+    public function getById($id)
+    {
+        $kategori = Kategori::find($id);
+        return response()->json($kategori);
+    }
+
+    public function update(Request $request, $id)
+    {
+        Kategori::where('id', $id)
+            ->update([
+                'terkait' => $request->terkait,
+                'kategori' => $request->kategori
+            ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data behasil di edit!'
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        Kategori::find($id)->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data behasil dihapus!'
+        ]);
+    }
 }

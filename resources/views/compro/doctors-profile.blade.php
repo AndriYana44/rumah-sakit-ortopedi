@@ -118,6 +118,9 @@
                         </div>
                     @endforeach
                     @endif
+                    <div class="d-flex justify-content-center align-items-center">
+                      {{ $data->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <form action="" method="POST" class="my-3">

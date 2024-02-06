@@ -90,6 +90,38 @@
             </div>
         </div>
     </div>
+
+    {{-- modal edit --}}
+    <div class="modal fade" id="editKategoriModal" tabindex="-1" aria-labelledby="editKategoriModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="filterKategoriModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="form-edit-kategori">
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <label for="filterBerita" class="mx-3">
+                                <input type="radio" class="edit-terkait" value="berita" name="terkait">
+                                Berita
+                            </label>
+                            <label for="filterKarir">
+                                <input type="radio" class="edit-terkait" value="karir" name="terkait">
+                                Karir
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <input type="text" class="form-control kategori-edit" id="kategori" name="kategori" placeholder="Nama Kategori..">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary edit-btn">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
@@ -112,7 +144,7 @@
 
         const form = '#form-filter-kategori';
         //set datatables
-        $('#kategori-table').DataTable({
+        var dataTable = $('#kategori-table').DataTable({
             processing: true,
             serverSide: true,
             searching: false,
@@ -170,8 +202,8 @@
                     // "data": id,
                     "render": function(data, type, row) {
                         return `
-                            <button class="btn btn-sm btn-danger" data-id="${row.id}">Delete</button>
-                            <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editKategori" data-id="${row.id}" data-terkait="${row.terkait}" data-kategori="${row.nama_kategori}">Edit</button>
+                            <button class="btn btn-sm btn-danger delete-btn" data-id="${row.id}">Delete</button>
+                            <button class="btn btn-sm btn-warning edit-kategori" id="" data-bs-toggle="modal" data-bs-target="#editKategori" data-id="${row.id}" data-terkait="${row.terkait}" data-kategori="${row.kategori}">Edit</button>
                         `;
                     }
                 },
@@ -201,6 +233,87 @@
                         $('#form-add-kategori').trigger('reset');
                         $('#kategori-table').DataTable().ajax.reload();
                     }
+                }
+            });
+        });
+
+        $(document).on('click', '.edit-kategori', function() {
+            var id = $(this).attr('data-id');
+            var url = '{{ route("kategori.by.id", ":id") }}';
+            url = url.replace(':id', id);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(res) {
+                    $('#editKategoriModal').modal('show');
+                    $(`input:radio[name="terkait"][value="${res.terkait}"]`).attr('checked', 'checked');
+                    $('.kategori-edit').val(res.kategori);
+                    $('.edit-btn').attr('data-id', res.id);
+                }
+            })
+        });
+
+        $(document).on('click', '.edit-btn', function() {
+            // set route update
+            var id = $(this).attr('data-id');
+            var url = '{{ route("kategori.update", ":id") }}';
+            url = url.replace(':id', id);
+            
+            // reset value radio
+            $('input:radio[name="terkait"]').removeAttr('checked');
+
+            // create data for update
+            var data = {
+                '_token': "{{ csrf_token() }}",
+                'terkait': $('input:radio[name="terkait"]:checked').val(),
+                'kategori': $('.kategori-edit').val()
+            }
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                success: function(res) {
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: res.message,
+                        });
+                        $('#editKategoriModal').modal('hide');
+                        dataTable.ajax.reload();
+                }
+            });
+        });
+
+        $(document).on('click', '.delete-btn', function(){
+            var id = $(this).attr('data-id');
+            var url = "{{ route('kategori.delete', ':id') }}";
+            url = url.replace(':id', id);
+            
+            swal.fire({
+                title: "Apakah anda yakin?",
+                text: "Data ini akan dihapus dari sistem.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log('oke');    
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function(res) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil',
+                                text: res.message,
+                            });
+                            dataTable.ajax.reload();
+                        }
+                    });
                 }
             });
         });

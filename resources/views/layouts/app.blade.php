@@ -102,6 +102,8 @@
         });
       @endif
     });
+
+    $('input').attr('autocomplete', 'off');
     // DOMContentLoaded  end
 
     // jquery script

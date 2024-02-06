@@ -51,7 +51,7 @@
     <div class="page-section" style="position: relative; margin-top: -50px;">
       <div class="container">
         <div class="row">
-          <a href="#">
+          <a href="{{ route('doctorsProfile') }}">
             <div class="col-md-4 py-3 wow zoomIn">
               <div class="card-service">
                 <div class="circle-shape bg-secondary text-white">
@@ -61,14 +61,6 @@
               </div>
             </div>
           </a>
-          <div class="col-md-4 py-3 wow zoomIn">
-            <div class="card-service">
-              <div class="circle-shape bg-primary text-white">
-                <span class="mai-shield-checkmark"></span>
-              </div>
-              <p>Konsultasi dengan dokter</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
