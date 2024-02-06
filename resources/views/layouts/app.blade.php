@@ -21,6 +21,40 @@
       padding: 0; 
       padding-left: 1.3rem;  
       padding-right: 1rem;
+      z-index: 99999;
+    }
+    .loader-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, .3);
+      z-index: 999;
+    }
+    .loader-button {
+      border: 3px solid #f3f3f3; /* Light grey */
+      border-top: 3px solid rgba(0, 0, 0, 0); /* Blue */
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      animation: spin 1.5s linear infinite;
+    }
+    .loader-window {
+      border: 10px solid #1077b7; /* Light grey */
+      border-top: 10px solid rgba(0, 0, 0, 0); /* Blue */
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1.5s linear infinite;
+      z-index: 99998;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>

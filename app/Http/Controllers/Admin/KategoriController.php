@@ -62,10 +62,11 @@ class KategoriController extends Controller
 
     public function update(Request $request, $id)
     {
+        $kategori = Kategori::find($id);
         Kategori::where('id', $id)
             ->update([
-                'terkait' => $request->terkait,
-                'kategori' => $request->kategori
+                'terkait' => $request->terkait == null ? $kategori->terkait : $request->terkait,
+                'kategori' => $request->kategori == null ? $kategori->kategori : $request->kategori
             ]);
 
         return response()->json([

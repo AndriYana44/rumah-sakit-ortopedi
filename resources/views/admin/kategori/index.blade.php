@@ -6,6 +6,9 @@
 @endsection
 
 @section('content')
+    <div class="loader-wrapper">
+        <div class="loader-window"></div>
+    </div>
     <h3>Data Kategori</h3>
     <hr>
     <div class="d-flex justify-content-between">
@@ -52,7 +55,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary d-flex justify-content-center align-items-center">
+                        <span>Simpan &nbsp;</span>
+                        <div class="loader-button"></div>
+                    </button>
                 </div>
             </form>
         </div>
@@ -103,12 +109,12 @@
                     <div class="modal-body">
                         <div class="form-group mb-3">
                             <label for="filterBerita" class="mx-3">
-                                <input type="radio" class="edit-terkait" value="berita" name="terkait">
-                                Berita
+                                <input type="radio" class="edit-terkait" value="berita" id="berita-edit" name="terkait">
+                                <label for="berita-edit" class="form-label">Berita</label>
                             </label>
                             <label for="filterKarir">
-                                <input type="radio" class="edit-terkait" value="karir" name="terkait">
-                                Karir
+                                <input type="radio" class="edit-terkait" id="terkait-edit" value="karir" name="terkait">
+                                <label for="terkait-edit" class="form-label">Karir</label>
                             </label>
                         </div>
                         <div class="form-group mb-2">
@@ -116,7 +122,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary edit-btn">Simpan</button>
+                        <button type="button" class="btn btn-primary edit-btn d-flex justify-content-center align-items-center">
+                            <span>Simpan &nbsp; </span>
+                            <div class="loader-button"></div>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -127,7 +136,8 @@
 @section('script')
 <script>
     $(document).ready(function() {
-
+        $('.loader-button').hide();
+        $('.loader-wrapper').hide();
         // filter kategori
         $('#form-filter-kategori').submit(function (e) { 
             e.preventDefault();
@@ -211,18 +221,19 @@
         });
 
         $('#form-add-kategori').submit(function (e) { 
+            $('.loader-button').show();
             e.preventDefault();
             
             var data = $(this).serialize();
             // csrf token
             data += "&_token={{ csrf_token() }}";
-            console.log(data);
             $.ajax({
                 type: "post",
                 url: "{{ route('kategori.store') }}",
                 data: data,
                 dataType: "json",
                 success: function (response) {
+                    $('.loader-button').hide();
                     if(response.success) {
                         Swal.fire({
                             icon: 'success',
@@ -231,7 +242,7 @@
                         });
                         $('#createKategori').modal('hide');
                         $('#form-add-kategori').trigger('reset');
-                        $('#kategori-table').DataTable().ajax.reload();
+                        dataTable.ajax.reload();
                     }
                 }
             });
@@ -255,6 +266,7 @@
         });
 
         $(document).on('click', '.edit-btn', function() {
+            $('.loader-button').show();
             // set route update
             var id = $(this).attr('data-id');
             var url = '{{ route("kategori.update", ":id") }}';
@@ -275,6 +287,7 @@
                 type: 'POST',
                 data: data,
                 success: function(res) {
+                    $('.loader-button').hide();
                     Swal.fire({
                             icon: 'success',
                             title: 'Berhasil',
@@ -300,12 +313,13 @@
                 confirmButtonText: "Ya, hapus!",
                 cancelButtonText: "Cancel",
             }).then((result) => {
-                if (result.isConfirmed) {
-                    console.log('oke');    
+                if (result.isConfirmed) { 
+                    $('.loader-wrapper').show();
                     $.ajax({
                         url: url,
                         type: 'GET',
                         success: function(res) {
+                            $('.loader-wrapper').hide();
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Berhasil',
