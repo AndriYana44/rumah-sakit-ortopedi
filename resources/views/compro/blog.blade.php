@@ -5,7 +5,7 @@
       <div class="container text-center wow fadeInUp">
         <nav aria-label="Breadcrumb">
           <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
-            <li class="breadcrumb-item"><a class=" text-success" href="index.html">Beranda</a></li>
+            <li class="breadcrumb-item"><a class=" text-success" href="{{ route('home') }}">Beranda</a></li>
             <li class="breadcrumb-item active" aria-current="page">Berita</li>
           </ol>
         </nav>

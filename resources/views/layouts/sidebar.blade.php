@@ -86,6 +86,10 @@
                         <i class="fa fa-hashtag"></i>
                         Promo
                     </a></li>
+                    <li><a class="sidebar-link" href="{{ route('layanan') }}">
+                        <i class="fa fa-hashtag"></i>
+                        Layanan Unggulan
+                    </a></li>
                 </ul>
             </li>
             <li class="sidebar-item has-submenu">

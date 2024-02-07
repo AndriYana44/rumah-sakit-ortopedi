@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Compro\KarirController;
 use App\Http\Controllers\Admin\KarirController as AdminKarirController;
 use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Admin\LayananController;
 use App\Http\Controllers\Admin\PendaftaranBerobatController;
 use App\Http\Controllers\Compro\PostController;
 use App\Http\Controllers\Middle\ComproApiController;
@@ -50,6 +51,8 @@ Route::post('/karir/get-all-data', [AdminKarirController::class, 'getAllData'])-
 Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
 
 Route::get('/promo/{slug}', [PromoController::class, 'promotion'])->name('promotion');
+
+Route::get('/layanan-unggulan/{slug}', [HomeController::class, 'layananUnggulan'])->name('layananUnggulan');
 
 // API
 Route::get('/get-dokter-api', [ComproApiController::class, 'getDokter'])->name('get.dokter.api');
@@ -139,6 +142,11 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/delete/{id}', [PromoController::class, 'destroy'])->name('listPromo.delete');
             Route::get('/edit/{id}', [PromoController::class, 'edit'])->name('listPromo.edit');
             Route::post('/update', [PromoController::class, 'update'])->name('listPromo.update');
+        });
+
+        Route::prefix('layanan')->group(function() {
+            Route::get('/', [LayananController::class, 'index'])->name('layanan');
+            Route::get('/create', [LayananController::class, 'create'])->name('layananCreate');
         });
 
         Route::prefix('pendaftaran-berobat')->group(function() {

@@ -10,7 +10,7 @@
 </style>
     <h3>Tetapkan Jadwal Dokter</h3>
     <hr>
-    <form action="{{ route('dokter.jadwal.update') }}" method="POST">
+    <form id="form-dokter-jadwal" action="{{ route('dokter.jadwal.update') }}" method="POST">
         @csrf
         <div class="row">
             <div class="col-sm-6">
@@ -28,7 +28,7 @@
                 <div class="mb-3">
                     <div class="form-group mb-3">
                         <label for="hari" class="form-label">Hari Kerja</label>
-                        <select id="select-hari" class="form-control" name="hari[]" multiple="multiple">
+                        <select id="select-hari" class="form-control" id="hari" name="hari[]" multiple="multiple">
                             @foreach ($hari as $item)
                                 @if ($data != null)
                                     <option {{ in_array($item->id, $jadwalHariDokter) ? 'selected' : '' }} value="{{ $item->id }}" data-code="BJ">{{ $item->hari }}</option>
@@ -37,6 +37,7 @@
                                 @endif
                             @endforeach
                         </select>
+                        <small class="error text-danger" id="hari-error"></small>
                     </div>
                 </div>
             </div>
@@ -72,6 +73,7 @@
                                                     <option {{ $selected ? 'selected' : '' }} value="{{ $jamItem->id }}">{{ $jamItem->jam }}</option>
                                                 @endforeach
                                             </select>
+                                            <small class="error text-danger jam_mulai-error"></small>
                                         </div>
                                         <div class="mb-3">
                                             <label for="spesialis" class="form-label">Selesai</label>
@@ -91,6 +93,7 @@
                                                     <option {{ $selected ? 'selected' : '' }} value="{{ $jamItem->id }}">{{ $jamItem->jam }}</option>
                                                 @endforeach
                                             </select>
+                                            <small class="error text-danger jam_selesai-error"></small>
                                         </div>
                                     </div>
                                 </div>
@@ -151,6 +154,7 @@
                                                     <option value="{{ $item->id }}">{{ $item->jam }}</option>
                                                 @endforeach
                                             </select>
+                                            <small class="error text-danger jam_mulai-error"></small>
                                         </div>
                                         <div class="mb-3">
                                             <label for="spesialis" class="form-label">Selesai</label>
@@ -160,6 +164,7 @@
                                                     <option value="{{ $item->id }}">{{ $item->jam }}</option>
                                                 @endforeach
                                             </select>
+                                            <small class="error text-danger jam_mulai-error"></small>
                                         </div>
                                     </div>
                                 </div>
@@ -178,6 +183,63 @@
 
                 $('.jam_mulai').select2({placeholder: "Jam Mulai"});
                 $('.jam_selesai').select2({placeholder: "Jam Selesai"});
+            });
+
+            var validateMulti = function(classEl) {
+                var formDataMulti = {};
+                var constraintsMulti = {};
+                var isValid = true;
+                $('.' + classEl).each(function(index, element) {
+                    var obj = $(this).attr('name');
+                    obj = obj.replace(/\[[^\]]*\]/g, '');
+                    formDataMulti[obj] = $(this).val();
+
+                    constraintsMulti[obj] = {
+                        presence: {
+                            allowEmpty: false,
+                            message: "tidak boleh kosong!"
+                        }
+                    };
+                    var errorsMulti = validate(formDataMulti, constraintsMulti);
+                    if(errorsMulti) {
+                        $.each(errorsMulti, function (key, val) { 
+                            isValid = false;
+                            $(element).nextAll('.error').text(val[0]);
+                            // $(element).nextAll('.error').css('border', '1px solid red');
+                        });
+                    }else{
+                        $(element).nextAll('.error').text('');
+                    }
+                });
+                return isValid;
+            }
+
+            $('#form-dokter-jadwal').submit(function(e) {
+                e.preventDefault();
+                var formData = {
+                    hari: $('#select-hari').val(),
+                }
+
+                var constraints = {
+                    hari: {
+                        presence: {
+                            allowEmpty: false,
+                            message: 'tidak boleh kosong!' 
+                        }
+                    }
+                }
+
+                
+                var jam_mulai = validateMulti('jam_mulai');
+                var jam_selesai = validateMulti('jam_selesai');
+                var errors = validate(formData, constraints);
+                if(errors || jam_mulai == false || jam_selesai == false) {
+                    $.each(errors, function (key, val) { 
+                         $(`#${key}-error`).text(val[0]);
+                    });
+                } else {
+                    $('#form-dokter-jadwal').off('submit').submit();
+                }
             });
         });
     </script>

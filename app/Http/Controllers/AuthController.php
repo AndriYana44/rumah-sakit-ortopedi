@@ -32,9 +32,13 @@ class AuthController extends Controller
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
             return redirect(RouteServiceProvider::DASHBOARD);
+        }else{
+            return redirect("login")->with([
+                'auth' => 'fail',
+                'message' => 'Username / password tidak valid!'
+            ]);
         }
-  
-        return redirect("login")->with(['failed' => 'Login details are not valid']);
+
     }
 
     public function registration(Request $request)

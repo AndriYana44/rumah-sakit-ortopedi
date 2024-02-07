@@ -80,7 +80,8 @@
                   <h1 class="card-title">01</h1>
                   <p class="card-text"><strong>Excelent Center</strong></p>
                   <span style="color: #999;">Layanan Orthopedi & Traumatologi dari RS Orthopedi Siaga Raya</span>
-                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
+                  @php $slug = 'Excelent Center'; @endphp
+                  <a href="{{ route('layananUnggulan', $slug) }}" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
                 </div>
               </div>
             </div>

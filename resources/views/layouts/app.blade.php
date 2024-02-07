@@ -33,7 +33,7 @@
       justify-content: center;
       align-items: center;
       background-color: rgba(0, 0, 0, .3);
-      z-index: 999;
+      z-index: 997;
     }
     .loader-button {
       border: 3px solid #f3f3f3; /* Light grey */
@@ -50,7 +50,7 @@
       width: 80px;
       height: 80px;
       animation: spin 1.5s linear infinite;
-      z-index: 99998;
+      z-index: 998;
     }
     @keyframes spin {
       0% { transform: rotate(0deg); }
@@ -97,6 +97,7 @@
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
   <script>
     // vanilla script
     document.addEventListener("DOMContentLoaded", function(){
