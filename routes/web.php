@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\PendaftaranBerobatController;
 use App\Http\Controllers\Compro\PostController;
 use App\Http\Controllers\Middle\ComproApiController;
 use App\Http\Controllers\PromoController;
+use App\Models\LayananUnggulan;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,7 @@ Route::get('/post/{id}', [PostController::class, 'index'])->name('post');
 
 Route::get('/promo/{slug}', [PromoController::class, 'promotion'])->name('promotion');
 
-Route::get('/layanan-unggulan/{slug}', [HomeController::class, 'layananUnggulan'])->name('layananUnggulan');
+Route::get('/layanan-unggulan/{id}', [HomeController::class, 'layananDetail'])->name('layananDetail');
 
 // API
 Route::get('/get-dokter-api', [ComproApiController::class, 'getDokter'])->name('get.dokter.api');
@@ -147,6 +148,8 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('layanan')->group(function() {
             Route::get('/', [LayananController::class, 'index'])->name('layanan');
             Route::get('/create', [LayananController::class, 'create'])->name('layananCreate');
+            Route::post('/store', [LayananController::class, 'store'])->name('layananStore');
+            Route::post('/getLayanan', [LayananController::class, 'getLayanan'])->name('getLayanan');
         });
 
         Route::prefix('pendaftaran-berobat')->group(function() {

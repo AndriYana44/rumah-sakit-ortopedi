@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Dokter;
 use App\Models\Admin\Kategori;
 use App\Models\Admin\Postingan;
+use App\Models\LayananUnggulan;
 use App\Models\Promo;
 use App\Models\TempDaftarBerobat;
 use Illuminate\Http\Request;
@@ -20,13 +21,15 @@ class HomeController extends Controller
         $spesialis = Dokter::select("spesialis")->distinct()->get();
         $promo = Promo::all();
         $berita = Postingan::with("kategori")->get();
+        $layanan = LayananUnggulan::all();
         // dd($spesialis);
         $dokter = Dokter::getAllWithJadwal();
         return view ('compro.index', [
             'dokter' => $dokter,
             'spesialis' => $spesialis,
             'promo' => $promo,
-            'berita' => $berita
+            'berita' => $berita,
+            'layanan' => $layanan
         ]);
     }
 
@@ -87,5 +90,13 @@ class HomeController extends Controller
         $daftarBerobat->save();
 
         return response()->json(['success' => true]);
+    }
+
+    public function layananDetail($id)
+    {
+        $layanan = LayananUnggulan::find($id);
+        return view('compro.layanan', [
+            'layanan' => $layanan
+        ]);
     }
 }

@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 
 @section('breadcrumb')
-{{ Breadcrumbs::render('dashboard_postingan_create') }}
+{{ Breadcrumbs::render('dashboard_layanan_create') }}
 @endsection
 
 @section('content')
@@ -13,19 +13,19 @@
     </style>
     <h3>Tambah Layanan</h3>
     <hr>
-    <form action="{{ route('postingan.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('layananStore') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-sm-6">
                 <div class="mb-3">
-                    <label for="judul" class="form-label">Judul</label>
-                    <input type="text" class="form-control" name="judul" id="judul" placeholder="...">
+                    <label for="layanan" class="form-label">Nama Layanan</label>
+                    <input type="text" class="form-control" name="layanan" id="layanan" placeholder="...">
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="mb-3">
-                    <label for="nip" class="form-label">Gambar Utama</label>
-                    <input type="file" class="form-control" name="gambar_postingan">
+                    <label for="gambar" class="form-label">Gambar</label>
+                    <input type="file" class="form-control" id="gambar" name="gambar">
                 </div>
             </div>
             <div class="col-12">

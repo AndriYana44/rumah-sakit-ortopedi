@@ -9,7 +9,19 @@
     display: flex;
     /* justify-content: center; */
     align-items: center;
+  }
 
+  .layanan-content p {
+    max-width: 200px; /* Atur lebar maksimum untuk sel */
+    overflow: hidden; /* Sembunyikan konten yang melebihi lebar maksimum */
+    white-space: nowrap; /* Pastikan konten tidak terpotong ke baris baru */
+    text-overflow: ellipsis;
+  }
+  #card-layanan.card-layanan:hover {
+    background-color: #fff;
+  }
+  #card-layanan.card-layanan:hover p {
+    color: #555;
   }
  </style>
   <div class="page-hero bg-image overlay-dark" style="background-image: url({{ asset('') }}assets-compro/assets/img/banner/banner-1.jpg);">
@@ -22,11 +34,11 @@
             DI RS ORTHOPEDI SIAGA RAYA
       
           </h1>
-          @auth
+          {{-- @auth
           <button class="btn btn-primary" data-toggle="modal" data-target="#berobat">Daftar Berobat</button>
           @else
           <a class="btn btn-primary" href="{{ route('login') }}">Daftar Berobat</a>
-          @endauth
+          @endauth --}}
       </div>
     </div>
   </div>
@@ -43,127 +55,43 @@
             <h1 class="text-primary mb-3">Kesembuhan Anda Adalah Kebahagiaan Kami</h1>
             <p style="color: #999">Pada Tanggal 18 Juli 2022, Rumah Sakit Siaga Raya resmi berubah nama menjadi RS Orthopedi Siaga Raya. Perubahan nama tersebut juga diikuti dengan perubahan kelas / tipe rumah sakit dari Kelas C Umum menjadi Kelas C Khusus</p>
             <a href="{{ route('about') }}" class="btn btn-primary mt-4">Selengkapnya</a>
-          </div>
-        </div>
-      {{-- </div> --}}
-    </div>
 
-    <div class="page-section" style="position: relative; margin-top: -50px;">
-      <div class="container">
-        <div class="row">
-          <a href="{{ route('doctorsProfile') }}">
-            <div class="col-md-4 py-3 wow zoomIn">
-              <div class="card-service">
+            <a href="{{ route('doctorsProfile') }}">
+              <div class="card-service ml-4">
                 <div class="circle-shape bg-secondary text-white">
                   <span class="mai-chatbubbles-outline"></span>
                 </div>
                 <p class="text-dark">Buat janji dengan dokter</p>
               </div>
-            </div>
-          </a>
+            </a>
+
+          </div>
         </div>
-      </div>
+      {{-- </div> --}}
     </div>
 
     <section class="mx-auto mb-4 py-5 fitur-unggulan-home">
       <div class="container">
+        
         <div class="mt-4 fitur-unggulan-wrapper">
           <span class="text-center text-primary"><strong>Fitur Unggulan</strong></span>
           <h3 class="text-center mb-5 wow fadeInUp">Layanan Unggulan Rumah Sakit Orthopedi</h3>
         </div>
         <div class="slick-wrapper">
          
-          <div>
-            <div class="col-sm card-fitur-unggulan">
-              <div class="card py-9">
-                <div class="card-body d-flex flex-column">
-                  <h1 class="card-title">01</h1>
-                  <p class="card-text"><strong>Excelent Center</strong></p>
-                  <span style="color: #999;">Layanan Orthopedi & Traumatologi dari RS Orthopedi Siaga Raya</span>
-                  @php $slug = 'Excelent Center'; @endphp
-                  <a href="{{ route('layananUnggulan', $slug) }}" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-                </div>
+          @foreach ($layanan as $key => $ly) 
+          <div class="mx-2">
+            <div class="card card-layanan" id="card-layanan" style="width: 18rem;">
+              <img src="{{ asset('') }}files/gambar_layanan/{{ $ly->gambar }}" class="card-img-top" alt="layanan-image">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">{{ $ly->layanan }}</h6>
+                <span class="card-text layanan-content">{!! $ly->konten !!}</span>
+                <a href="{{ route('layananDetail', $ly->id) }}" class="card-link">Selengkapnya..</a>
               </div>
             </div>
           </div>
+          @endforeach
   
-          <div>
-            <div class="col-sm card-fitur-unggulan">
-              <div class="card">
-                <div class="card-body d-flex flex-column">
-                  <h1 class="card-title">02</h1>
-                  <p class="card-text"><strong>Fisioterapi</strong></p>
-                  <span style="color: #999;">Layanan Fisioterapi dari RS Orthopedi Siaga Raya</span>
-                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-          <div>
-            <div class="col-sm card-fitur-unggulan">
-              <div class="card">
-                <div class="card-body d-flex flex-column">
-                  <h1 class="card-title">03</h1>
-                  <p class="card-text"><strong>MRI Open Bore</strong></p>
-                  <span style="color: #999;">Layanan MRI Open Bore dari RS Orthopedi Siaga Raya</span>
-                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-          <div>
-            <div class="col-sm card-fitur-unggulan">
-              <div class="card">
-                <div class="card-body d-flex flex-column">
-                  <h1 class="card-title">04</h1>
-                  <p class="card-text"><strong>Orthotik & Prostetik</strong></p>
-                  <span style="color: #999;">Layanan Orthotik & Prostetik dari RS Orthopedi Siaga Raya</span>
-                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-           <div>
-            <div class="col-sm card-fitur-unggulan">
-              <div class="card">
-                <div class="card-body d-flex flex-column">
-                  <h1 class="card-title">05</h1>
-                  <p class="card-text"><strong>Spine Endoscopy</strong></p>
-                  <span style="color: #999;">Layanan Spine Endoscopy dari RS Orthopedi Siaga Raya</span>
-                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-           <div>
-            <div class="col-sm card-fitur-unggulan">
-              <div class="card">
-                <div class="card-body d-flex flex-column">
-                  <h1 class="card-title">06</h1>
-                  <p class="card-text"><strong>Arthroscopy</strong></p>
-                  <span style="color: #999;">Layanan Arthroscopy dari RS Orthopedi Siaga Raya</span>
-                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-           <div>
-            <div class="col-sm card-fitur-unggulan">
-              <div class="card">
-                <div class="card-body d-flex flex-column">
-                  <h1 class="card-title">07</h1>
-                  <p class="card-text"><strong>Arthroplasty</strong></p>
-                  <span style="color: #999;">Layanan Arthroplasty dari RS Orthopedi Siaga Raya</span>
-                  <a href="#" class="text-info mt-3"><strong>Lihat Selengkapnya</strong></a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -582,11 +510,11 @@
   });
 
     $('.slick-wrapper').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        dots:true,
-      });
+      slidesToShow: {{ count($layanan) < 3 ? count($layanan) : 3 }},
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      dots: true,
+    }); 
   </script>
   @endsection

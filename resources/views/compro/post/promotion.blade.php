@@ -58,6 +58,7 @@
               <h3 style="font-weight: 600" class="text-primary mt-5 mb-3">{{ $data->judul }}</h3>
               <style>
                 #content * {
+                  width: 100%;
                   text-align: left;
                 }
               </style>

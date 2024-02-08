@@ -83,7 +83,7 @@
             getKarir(dataObj);
         });
 
-        var getKarir = function(data = {kategori: null, pendidikan: null, _token: csrfToken}) {
+        function getKarir(data = {kategori: null, pendidikan: null, _token: csrfToken}) {
             $('#karir-list-wrapper').empty();
             $.ajax({
                 url: "{{ route('karir.admin.getAllData') }}",
@@ -142,7 +142,7 @@
                                         </div>
                                         <div class="col-3">
                                             <div class="d-flex flex-column align-items-center justify-content-center">
-                                                <button class="btn btn-primary btn-sm">Apply Now</button>
+                                                <a href="${valueOfElement.kategori.kategori.toLowerCase() == 'medis' ? 'https://s.id/Rekruitmennakes' : 'https://s.id/Rekruitmennonnakes'}" class="btn btn-primary btn-sm">Apply</a>
                                                 <small class="mt-2" id="deadline" style="color: #999">${deadline}</small>
                                             </div>
                                         </div>
@@ -183,10 +183,6 @@
                                                         <br>
                                                         ${valueOfElement.informasi == null ? '' : '<br>'+valueOfElement.informasi}
                                                         <br>
-                                                        <br>
-                                                        <strong>Bagi yang berminat, silahkan kirimkan CV ke email: <a href="mailto:
-                                                        andri.yana349@gmail.com">andri.yana349@gmail.com</a></strong><br><br>
-                                                        <small style="color: #999">Lowongan pekerjaan ini berakhir pada : ${valueOfElement.deadline}</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,7 +200,8 @@
                     }
                 }
             });
-        }();
+        };
+        getKarir();
     });
 </script>
 @endsection

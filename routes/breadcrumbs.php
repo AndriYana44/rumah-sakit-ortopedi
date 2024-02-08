@@ -99,3 +99,15 @@ Breadcrumbs::for('dashboard_promo_create', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard_promo');
     $trail->push('Tambah', route('listPromo.create'));
 });
+
+// home > promo
+Breadcrumbs::for('dashboard_layanan', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Layanan', route('layanan'));
+});
+
+// home > promo > create
+Breadcrumbs::for('dashboard_layanan_create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_layanan');
+    $trail->push('Tambah', route('layananStore'));
+});
