@@ -124,31 +124,33 @@
                   </div>
                 </div>
                 <div class="col-md-4">
-                    <form action="{{ route('doctorsProfileFilter') }}" method="POST" class="my-3">
-                      @csrf
-                        <select name="dokter" id="dokter">
-                            <option value="">Filter Dokter</option>
-                            @foreach ($dokter_all as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama_dokter }}</option>
-                            @endforeach
-                        </select>
-                        <div class="card mt-2">
-                            <div class="card-header">
-                                <span>Spesialis</span>
-                            </div>
-                            <div class="card-body">
-                                <ul>
-                                    @foreach ($spesialis as $item)
-                                    <li>
-                                        <input type="radio" class="form-check-input" value="{{ $item->spesialis }}" name="spesialis" id="{{ $item->spesialis }}">
-                                        <label for="{{ $item->spesialis }}">{{ $item->spesialis }}</label>    
-                                    </li>    
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-sm mt-3"><i class="fa fa-filter"></i> Submit Filter</button>
-                    </form>
+                  <form action="{{ route('doctorsProfileFilter') }}" method="POST" class="my-3">
+                    @csrf
+                    <div class="form-group d-flex">
+                      <input type="text" placeholder="Cari dokter.." name="dokter" class="form-control">
+                      <button class="btn btn-primary btn-sm ml-2" type="submit">Cari</button>
+                    </div>
+                  </form>
+                  <hr>
+                  <form action="{{ route('doctorsProfileFilter') }}" method="POST" class="my-3">
+                    @csrf
+                      <div class="card mt-2">
+                          <div class="card-header">
+                              <span>Filter Spesialis</span>
+                          </div>
+                          <div class="card-body">
+                              <ul>
+                                  @foreach ($spesialis as $item)
+                                  <li>
+                                      <input type="radio" class="form-check-input" value="{{ $item->spesialis }}" name="spesialis" id="{{ $item->spesialis }}">
+                                      <label for="{{ $item->spesialis }}">{{ $item->spesialis }}</label>    
+                                  </li>    
+                                  @endforeach
+                              </ul>
+                          </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary btn-sm mt-3"><i class="fa fa-filter"></i> Submit Filter</button>
+                  </form>
                 </div>
                 <div class="mt-4" style="width: 100%; display:flex; justify-content:center; align-items:center;">
                   {{-- {{ $data->links('pagination::bootstrap-4') }} --}}

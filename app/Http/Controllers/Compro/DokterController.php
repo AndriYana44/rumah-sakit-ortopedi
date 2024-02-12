@@ -37,11 +37,11 @@ class DokterController extends Controller
         $dokterAll = Dokter::all();
         $data = Dokter::with(['hari', 'jamMulai', 'jamSelesai'])->paginate(6);
         $spesialis = DB::select('select distinct spesialis from m_dokter');
-
+        
         if(request()->isMethod('post')) {
             $data = Dokter::with(['hari', 'jamMulai', 'jamSelesai'])
                         ->where('spesialis', $request->spesialis)
-                        ->orWhere('id', $request->dokter)
+                        ->orWhere('nama_dokter', 'like', $request->dokter)
                         ->paginate(6);
         }
 

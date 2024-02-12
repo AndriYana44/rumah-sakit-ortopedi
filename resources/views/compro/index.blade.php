@@ -56,20 +56,21 @@
             <p style="color: #999">Pada Tanggal 18 Juli 2022, Rumah Sakit Siaga Raya resmi berubah nama menjadi RS Orthopedi Siaga Raya. Perubahan nama tersebut juga diikuti dengan perubahan kelas / tipe rumah sakit dari Kelas C Umum menjadi Kelas C Khusus</p>
             <a href="{{ route('about') }}" class="btn btn-primary mt-4">Selengkapnya</a>
 
-            <a href="{{ route('doctorsProfile') }}">
+            {{-- <a href="{{ route('doctorsProfile') }}">
               <div class="card-service ml-4">
                 <div class="circle-shape bg-secondary text-white">
                   <span class="mai-chatbubbles-outline"></span>
                 </div>
                 <p class="text-dark">Buat janji dengan dokter</p>
               </div>
-            </a>
+            </a> --}}
 
           </div>
         </div>
       {{-- </div> --}}
     </div>
 
+    @if ($layanan->first() != null)   
     <section class="mx-auto mb-4 py-5 fitur-unggulan-home">
       <div class="container">
         
@@ -95,8 +96,10 @@
         </div>
       </div>
     </section>
+    @endif
   </div>
 
+  @if ($promo->first() != null)  
   <div class="page-section promo-home-wrapper">
     <div class="d-flex justify-content-center align-items-center flex-column">
       <span class="text-center text-primary"><strong>Promo</strong></span>
@@ -126,7 +129,9 @@
       </div>
     </div>
   </div>
+  @endif
 
+  @if ($berita->first() != null)  
   <div class="berita-wrapper bg-light py-5">
     <span class="text-primary"><strong>Berita & Acara</strong></span>
     <h3>Kabar Terbaru Orthopedi</h3>
@@ -164,7 +169,9 @@
       </div>
     </div>
  </div>
+  @endif
 
+  @if ($dokter->first() != null)  
   <!-- .page-section -->
   <div class="page-section dokter-home-wrapper wow fadeInUp">
     <div class="container">
@@ -197,6 +204,7 @@
       <a href="{{ route('doctorsProfile') }}" class="btn btn-primary">Lihat Semua Dokter</a>
     </div>
   </div>
+  @endif
 
   <div class="maps-wrapper py-4 bg-light wow fadeInUp bg-light">
     <div class="container">

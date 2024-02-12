@@ -92,7 +92,7 @@
           <p>Menjadi Rumah Sakit rujukan bedah Orthopedi dan Traumatologi Orthopedi di seluruh Indonesia.</p>
         </div>
         <div class="misi-wrapper">
-          <h4><strong>Misi</strong></h4>
+          <h4><strong>Misi & Tujuan</strong></h4>
           <p>
             Menjadi rumah sakit pilihan rujukan orthopedi Indonesia 
             <br><br>

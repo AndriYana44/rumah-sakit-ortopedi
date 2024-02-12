@@ -252,9 +252,6 @@ section .card:hover{
             position: relative;
             top: 50px;
         }
-        .fitur-unggulan-home {
-            display: none;
-        }
 
         .dokter-image-wrapper h1 {
           font-size: 24px;
