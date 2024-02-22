@@ -22,7 +22,7 @@
                 min-height: 400px;
             }
             .profile-dokter {
-                height: 400px;
+                height: 450px;
                 width: 70%;
                 box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
                 position: absolute;
@@ -36,7 +36,7 @@
             }
             .profile-dokter .image-wrapper {
                 margin: 20px;
-                height: 350px;
+                height: 400px;
                 width: 250px;
                 box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
                 display: flex;
@@ -92,9 +92,9 @@
         <div class="profile-dokter">
             <div class="image-wrapper">
                 @if ($item->foto == null)
-                    <img style="width: 100px; height: 110px;" src="{{ asset('files\foto-dokter\default.jpg') }}" alt="dokter">  
+                    <img style="width: 80%;" src="{{ asset('files\foto-dokter\default.jpg') }}" alt="dokter">  
                 @else
-                    <img style="width: 100px; height: 110px;" src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="doktor">
+                    <img style="width: 80%;" src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="doktor">
                 @endif
                 <div class="data-diri-wrapper">
                     <span><strong>{{ $item->nama_dokter }}</strong></span>

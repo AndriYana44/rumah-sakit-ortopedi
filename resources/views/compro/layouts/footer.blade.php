@@ -1,51 +1,35 @@
 <footer class="page-footer">
     <div class="container">
       <div class="row px-md-3">
-        <div class="col-sm-6 col-lg-3 py-3">
-          <h5>Company</h5>
+        <div class="col-sm-6 col-lg-4 py-3 d-flex flex-column align-items-center">
           <ul class="footer-menu">
-            <li><a href="{{ route('about') }}">About Us</a></li>
-            <li><a href="#">Career</a></li>
-            <li><a href="#">Editorial Team</a></li>
-            <li><a href="#">Protection</a></li>
+            <div class="logo-wrapper py-2 px-2" style="background-color: azure; border-radius: 8px;">
+              <img src="{{ asset('assets/images/logos/logo.png') }}" alt="logo" width="250">
+            </div>
+            <li class="mt-3"><span>SOSIAL MEDIA</span></li>
+            <div class="social-mini-button mt-2">
+              <a target="_blank" href="https://www.facebook.com/rumahsakitorthopedisiagaraya?mibextid=LQQJ4d"><span class="mai-logo-facebook-f"></span></a>
+              <!-- <a href="#"><span class="mai-logo-twitter"></span></a> -->
+              <a class="ml-2" target="_blank" href="https://www.instagram.com/rssiagaraya?igsh=MXIwc2g2MjY1Nm5udQ%3D%3D&utm_source=qr"><span class="mai-logo-instagram"></span></a>
+            </div>
           </ul>
         </div>
-        <div class="col-sm-6 col-lg-3 py-3">
-          <h5>More</h5>
+        <div class="col-sm-6 col-lg-4 py-3 d-flex flex-column align-items-center">
           <ul class="footer-menu">
-            <li><a href="#">Terms & Condition</a></li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Advertise</a></li>
-            <li><a href="#">Join as Doctors</a></li>
+            <li><h5>LAINNYA</h5></li>
+            <li><a href="#">Partner & Asuransi</a></li>
+            <li><a href="#">Karir</a></li>
+            <li><a href="#">Kontak Kami</a></li>
           </ul>
         </div>
-        <div class="col-sm-6 col-lg-3 py-3">
-          <h5>Our partner</h5>
+        <div class="col-sm-6 col-lg-4 py-3 d-flex flex-column align-items-center">
           <ul class="footer-menu">
-            <li><a href="#">One-Fitness</a></li>
-            <li><a href="#">One-Drugs</a></li>
-            <li><a href="#">One-Live</a></li>
+            <li><h5>KONTAK</h5></li>
+            <li><a href="#">Jl. Siaga Raya No.4-8, RT.14/RW.3, Pejaten Bar., Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12510</a></li>
+            <li><a href="#">+62 811 899 6581</a></li>
+            <li><a href="#">Copyright &copy; 2024 RS Orthopedi Siaga Raya</a></li>
           </ul>
-        </div>
-        <div class="col-sm-6 col-lg-3 py-3">
-          <h5>Kontak</h5>
-          <p class="footer-link mt-2">Jl. Siaga Raya No.4-8, RT.14/RW.3, Pejaten Bar., Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12510</p>
-          <a href="#" class="footer-link">+62 811 899 6581</a>
-          <a href="#" class="footer-link">rsosiagaraya@gmail.com</a>
-
-          <h5 class="mt-3">Sosial Media</h5>
-          <div class="footer-sosmed mt-3">
-            <a href="#" target="_blank"><span class="mai-logo-facebook-f"></span></a>
-            <a href="#" target="_blank"><span class="mai-logo-twitter"></span></a>
-            <a href="#" target="_blank"><span class="mai-logo-google-plus-g"></span></a>
-            <a href="#" target="_blank"><span class="mai-logo-instagram"></span></a>
-            <a href="#" target="_blank"><span class="mai-logo-linkedin"></span></a>
-          </div>
         </div>
       </div>
-
-      <hr>
-
-      <p id="copyright">Copyright &copy; 2024 RS Orthopedi Siaga Raya. All right reserved</p>
     </div>
   </footer>

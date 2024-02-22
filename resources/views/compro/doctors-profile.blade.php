@@ -127,7 +127,7 @@
                   <form action="{{ route('doctorsProfileFilter') }}" method="POST" class="my-3">
                     @csrf
                     <div class="form-group d-flex">
-                      <input type="text" placeholder="Cari dokter.." name="dokter" class="form-control">
+                      <input type="text" placeholder="Cari dokter.." value="{{ $search != null ? $search : '' }}" name="dokter" class="form-control">
                       <button class="btn btn-primary btn-sm ml-2" type="submit">Cari</button>
                     </div>
                   </form>

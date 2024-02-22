@@ -35,21 +35,27 @@ class DokterController extends Controller
     public function profile(Request $request)
     {
         $dokterAll = Dokter::all();
-        $data = Dokter::with(['hari', 'jamMulai', 'jamSelesai'])->paginate(6);
+        $data = Dokter::with(['hari', 'jamMulai', 'jamSelesai']);
         $spesialis = DB::select('select distinct spesialis from m_dokter');
         
         if(request()->isMethod('post')) {
-            $data = Dokter::with(['hari', 'jamMulai', 'jamSelesai'])
-                        ->where('spesialis', $request->spesialis)
-                        ->orWhere('nama_dokter', 'like', $request->dokter)
-                        ->paginate(6);
+            if(isset($request->spesialis)) {
+                $data = $data->where('spesialis', $request->spesialis);
+            }
+            
+            if(isset($request->dokter)) {
+                $data = $data->where('nama_dokter', 'like', '%' . $request->dokter . '%');
+            }
         }
+        
+        $data = $data->paginate(6);
 
         return view('compro.doctors-profile', [
+            'search' => isset($request->dokter) ? $request->dokter : null,
             'data' => $data,
             'spesialis' => $spesialis,
             'dokter_all' => $dokterAll,
-        ]);
+        ]); 
     }
 
     public function personal($id)
