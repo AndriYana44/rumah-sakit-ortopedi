@@ -111,3 +111,15 @@ Breadcrumbs::for('dashboard_layanan_create', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard_layanan');
     $trail->push('Tambah', route('layananStore'));
 });
+
+// home > layanan medis
+Breadcrumbs::for('dashboard_layanan_medis', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Layanan Medis', route('listLayananMedis'));
+});
+
+// home > layanan medis > create
+Breadcrumbs::for('dashboard_layanan_medis_create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_layanan_medis');
+    $trail->push('Tambah', route('listLayananMedis.create'));
+});

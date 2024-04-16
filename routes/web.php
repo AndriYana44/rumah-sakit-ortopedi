@@ -55,6 +55,10 @@ Route::get('/promo/{slug}', [PromoController::class, 'promotion'])->name('promot
 
 Route::get('/layanan-unggulan/{id}', [HomeController::class, 'layananDetail'])->name('layananDetail');
 
+Route::get('/layanan-medis/detail/{slug}', [LayananController::class, 'layananMedis'])->name('layananMedis');
+
+Route::get('/promo', [HomeController::class, 'promo'])->name('promo');
+
 // API
 Route::get('/get-dokter-api', [ComproApiController::class, 'getDokter'])->name('get.dokter.api');
 Route::get('/get-dokter-jadwal-api', [ComproApiController::class, 'getJadwal'])->name('get.dokter.jadwal.api');
@@ -150,6 +154,16 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/create', [LayananController::class, 'create'])->name('layananCreate');
             Route::post('/store', [LayananController::class, 'store'])->name('layananStore');
             Route::post('/getLayanan', [LayananController::class, 'getLayanan'])->name('getLayanan');
+        });
+
+        Route::prefix('layanan-medis')->group(function() {
+            Route::get('/list', [LayananController::class, 'listLayananMedis'])->name('listLayananMedis');
+            Route::get('/create', [LayananController::class, 'createLayananMedis'])->name('listLayananMedis.create');
+            Route::post('/store', [LayananController::class, 'storeLayananMedis'])->name('listLayananMedis.store');
+            Route::post('/delete', [LayananController::class, 'deleteLayananMedis'])->name('listLayananMedis.delete');
+            Route::get('/edit/{id}', [LayananController::class, 'editLayananMedis'])->name('listLayananMedis.edit');
+            Route::post('/update/{id}', [LayananController::class, 'updateLayananMedis'])->name('listLayananMedis.update');
+            Route::get('/getDataLayananMedis', [LayananController::class, 'getDataLayananMedis'])->name('listLayananMedis.getData');
         });
 
         Route::prefix('pendaftaran-berobat')->group(function() {

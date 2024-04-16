@@ -49,7 +49,7 @@
                     </div>
                   </div>
 
-                  <a class="btn btn-light mt-5 info-promo-btn" target="_blank" href="https://wa.me/0895612206018">
+                  <a class="btn btn-light mt-5 info-promo-btn" target="_blank" href="https://api.whatsapp.com/send?phone=+628118996581">
                     <i class="fab fa-whatsapp"></i>
                     Info Selanjutnya <img src="{{ asset('') }}assets/images/gif/gif-right.gif" width="20" alt="">
                   </a>

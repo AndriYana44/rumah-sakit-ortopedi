@@ -138,6 +138,16 @@
         dokterDropdown.hide();
     });
 
+    // Menanggapi mouse masuk ke nav-link-postingan
+    $("#nav-link-postingan, .postingan-dropdown").mouseenter(function() {
+        $(".postingan-dropdown").show();
+    });
+
+    // Menanggapi mouse keluar dari postingan-dropdown atau nav-link-postingan
+    $("#nav-link-postingan, .postingan-dropdown").mouseleave(function() {
+        $(".postingan-dropdown").hide();
+    });
+
   });
 </script>
 @yield('script')

@@ -39,10 +39,10 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <style>
-          #nav-item-dokter {
+          #nav-item-dokter, #nav-item-postingan {
             position: relative;
           }
-          .dokter-dropdown {
+          .dokter-dropdown, .postingan-dropdown {
             display: none;
             z-index: 99999;
             border-top: 3px solid #2a4988;
@@ -50,20 +50,25 @@
             background-color: #fff;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             width: 180px;
+            transition: .5s;
           }
-          .dokter-dropdown ul {
+          .dokter-dropdown ul, .postingan-dropdown ul{
             list-style: none;
           }
-          .dokter-dropdown ul li {
+          .dokter-dropdown ul li, .postingan-dropdown ul li{
             padding: 8px 5px;
           }
-          .dokter-dropdown ul li a {
+          .dokter-dropdown ul li a, .postingan-dropdown ul li a{
             color: #999;
             padding: 5px 0;
             transition: .3s;
             font-size: 14px;
           }
           .dokter-dropdown ul li a:hover {
+            text-decoration: none;
+            color: #555;
+          }
+          .postingan-dropdown ul li a:hover {
             text-decoration: none;
             color: #555;
           }
@@ -83,12 +88,19 @@
                 </ul>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('blog') }}">Berita</a>
+
+            <li class="nav-item dropdown" id="nav-item-postingan">
+              <span class="nav-link dropdown-toggle" id="nav-link-postingan">Informasi</span>
+              {{-- <a class="nav-link dropdown-toggle" id="nav-link-dokter" href="#">Dokter </a>  --}}
+              <div class="postingan-dropdown">
+                <ul>
+                  <li><a href="{{ route('blog') }}">Berita Terkini</a></li>
+                  <li><a href="{{ route('karir') }}">Karir Otrhopedi</a></li>
+                  <li><a href="{{ route('promo') }}">Promo</a></li>
+                </ul>
+              </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('karir') }}">Karir</a>
-            </li>
+
             <li class="nav-item">
               <a class="nav-link" href="{{ route('about') }}">Tentang Kami</a>
             </li>

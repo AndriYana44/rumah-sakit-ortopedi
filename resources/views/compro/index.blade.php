@@ -188,9 +188,8 @@
               @else
                 <img src="{{ asset('') }}files/foto-dokter/{{ $item->foto }}" alt="doktor">
               @endif
-              <div class="meta">
-                <a href="#"><span class="mai-call"></span></a>
-                <a href="#"><span class="mai-logo-whatsapp"></span></a>
+              <div class="meta d-flex justify-content-center align-items-center">
+                <a target="_blank" href="https://wa.me/+628118996581"><span class="mai-logo-whatsapp"></span></a>
               </div>
             </div>
             <div class="body">

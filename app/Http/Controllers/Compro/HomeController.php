@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Dokter;
 use App\Models\Admin\Kategori;
 use App\Models\Admin\Postingan;
+use App\Models\LayananMedis;
 use App\Models\LayananUnggulan;
 use App\Models\Promo;
 use App\Models\TempDaftarBerobat;
@@ -34,7 +35,10 @@ class HomeController extends Controller
     }
 
     public function about (){
-        return view ('compro.about');
+        $layananMedis = LayananMedis::all();
+        return view ('compro.about', [
+            'layananMedis' => $layananMedis
+        ]);
     }
 
     // public function doctors (){
@@ -97,6 +101,14 @@ class HomeController extends Controller
         $layanan = LayananUnggulan::find($id);
         return view('compro.layanan', [
             'layanan' => $layanan
+        ]);
+    }
+
+    public function promo()
+    {
+        $promo = Promo::all();
+        return view('compro.promo', [
+            'promo' => $promo
         ]);
     }
 }

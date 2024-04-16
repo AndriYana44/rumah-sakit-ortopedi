@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\LayananMedis;
 use App\Models\LayananUnggulan;
 use Illuminate\Http\Request;
-use Yajra\DataTables\Contracts\DataTable;
+use DataTables;
 
 class LayananController extends Controller
 {
@@ -50,6 +51,105 @@ class LayananController extends Controller
             "data" => $layanan,
             "recordsTotal" => $count,
             "recordsFiltered" => $count,
+        ]);
+    }
+
+    public function listLayananMedis()
+    {
+        $data = LayananMedis::all();
+        return view('admin.layanan-medis.index', [
+            'data' => $data
+        ]);
+    }
+
+    public function createLayananMedis()
+    {
+        return view('admin.layanan-medis.form-create-layanan-medis');
+    }
+
+    public function storeLayananMedis(Request $request)
+    {
+        if($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = 'layanan_medis_'.time().'.'.$extension;
+            $file->move(upload_path('files/gambar_layanan_medis/'), $file_name);
+        } else {
+            $file_name = null;
+        }
+
+        $slug = str_replace(' ', '-', $request->judul);
+        
+        $data = new LayananMedis();
+        $data->slug = $slug;
+        $data->judul = $request->judul;
+        $data->image = $file_name;
+        $data->konten = $request->konten;
+        $data->save();
+
+        return redirect()->route('listLayananMedis')->with([
+            'success' => true,
+            'message' => 'Data layanan medis berhasil ditambahkan!'
+        ]);
+    }
+
+    public function getDataLayananMedis()
+    {
+        $data = LayananMedis::all();
+        return DataTables::of($data)->make(true);
+    }
+
+    public function deleteLayananMedis(Request $request)
+    {
+        $id = $request->id;
+        LayananMedis::find($id)->delete();
+        return redirect()->route('listLayananMedis')->with([
+            'success' => true,
+            'message' => 'Data layanan medis berhasil dihapus!'
+        ]);
+    }
+
+    public function editLayananMedis($id)
+    {
+        $data = LayananMedis::find($id);
+        return view('admin.layanan-medis.form-edit-layanan-medis', [
+            'data' => $data
+        ]);
+    }
+
+    public function updateLayananMedis(Request $request, $id)
+    {
+        $data = LayananMedis::find($id);
+
+        if($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $extension = $file->getClientOriginalExtension();
+            $file_name = 'layanan_medis_'.time().'.'.$extension;
+            $file->move(upload_path('files/gambar_layanan_medis/'), $file_name);
+        } else {
+            $file_name = $data->image;
+        }
+
+        $slug = str_replace(' ', '-', $request->judul);
+
+        LayananMedis::where('id', $id)
+            ->update([
+                'slug' => $slug,
+                'judul' => $request->judul,
+                'image' => $file_name,
+                'konten' => $request->konten
+            ]);
+
+        return redirect()->route('listLayananMedis')->with([
+            'success' => true,
+            'message' => 'Data layanan medis berhasil diubah!'
+        ]);
+    }
+
+    public function layananMedis($slug)
+    {
+        return view('compro.layanan-medis', [
+            'slug' => $slug
         ]);
     }
 }

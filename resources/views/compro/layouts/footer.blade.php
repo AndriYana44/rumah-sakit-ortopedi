@@ -3,8 +3,8 @@
       <div class="row px-md-3">
         <div class="col-sm-6 col-lg-4 py-3 d-flex flex-column align-items-center">
           <ul class="footer-menu">
-            <div class="logo-wrapper py-2 px-2" style="background-color: azure; border-radius: 8px;">
-              <img src="{{ asset('assets/images/logos/logo.png') }}" alt="logo" width="250">
+            <div class="logo-wrapper">
+              <img src="{{ asset('assets/images/logos/logo-white.png') }}" alt="logo" width="250">
             </div>
             <li class="mt-3"><span>SOSIAL MEDIA</span></li>
             <div class="social-mini-button mt-2">

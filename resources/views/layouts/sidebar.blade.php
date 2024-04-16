@@ -67,6 +67,12 @@
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">Display</span>
             </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('listLayananMedis') }}">
+                    <span><i class="fa fa-desktop"></i></span>
+                    <span>Layanan Medis</span>
+                </a>
+            </li>
             <li class="sidebar-item has-submenu">
                 <a class="sidebar-link" href="#">
                     <span><i class="fa fa-desktop"></i></span>
