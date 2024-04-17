@@ -127,7 +127,7 @@
               <div class="card-body">
                 <div class="d-flex justify-content-center align-items-center flex-column">
                   <img src="{{ asset('') }}files/gambar_layanan_medis/{{ $item->image }}" style="width:150px; height:150px;" alt="gambar" class="img-fluid">
-                  <h5 class="mt-3 slug">{{ $item->judul }}</h5>
+                  <h5 class="mt-3 slug" data-slug="{{ $item->slug }}">{{ $item->judul }}</h5>
                 </div>
               </div>
             </div>
@@ -144,7 +144,7 @@
     <script>
       $(document).ready(function () {
         $('.layanan-card').on('click', function() {
-          var slug = $(this).find('.slug').text();
+          var slug = $(this).find('.slug').data('slug');
           var url = '{{ route("layananMedis", ":slug") }}';
           url = url.replace(':slug', slug);
           window.location.href = url;

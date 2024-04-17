@@ -78,7 +78,7 @@ class LayananController extends Controller
             $file_name = null;
         }
 
-        $slug = str_replace(' ', '-', $request->judul);
+        $slug = str_replace(' ', '-', strtolower($request->judul));
         
         $data = new LayananMedis();
         $data->slug = $slug;
@@ -130,7 +130,7 @@ class LayananController extends Controller
             $file_name = $data->image;
         }
 
-        $slug = str_replace(' ', '-', $request->judul);
+        $slug = str_replace(' ', '-', strtolower($request->judul));
 
         LayananMedis::where('id', $id)
             ->update([
@@ -148,8 +148,11 @@ class LayananController extends Controller
 
     public function layananMedis($slug)
     {
+        $data = LayananMedis::where('slug', $slug)->first();
+        $all_layanan = LayananMedis::all();
         return view('compro.layanan-medis', [
-            'slug' => $slug
+            'data' => $data,
+            'all_layanan' => $all_layanan
         ]);
     }
 }
