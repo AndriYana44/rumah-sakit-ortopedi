@@ -32,6 +32,11 @@
               </div>
             </div>
             <h2 class="post-title h1">{{ $item->judul }}</h2>
+            <style>
+              .post-content * {
+                text-align: justify;
+              }
+            </style>
             <div class="post-content">
               {!! $item->konten !!}
             </div>

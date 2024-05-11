@@ -46,11 +46,26 @@
             <div class="card-body">
               <div class="row">
                 @if($data != null)
-                @foreach ($data->jadwalDokter as $item)
-                {{-- @dd($item) --}}
+                @foreach ($dataMap as $key => $item)
+                
                 <div class="col-sm-6">
                   <div class="card card-dokter mt-3">
+                    <div class="card-header bg-primary">
+                      <span class="text-white">Spesialis {{ $key }}</span>
+                    </div>
                     <div class="card-body">
+                      <div class="dokter-wrapper d-flex align-items-center">
+                        <table class="table table-stripped">
+                          @foreach ($item as $m)
+                          <tr>
+                            <td>{{ $m['nama'] }}</td>
+                            <td>{{ $m['jam_mulai'] }} - {{ $m['jam_selesai'] }}</td>
+                          </tr>
+                          @endforeach
+                        </table>
+                      </div>
+                    </div>
+                    {{-- <div class="card-body">
                       <div class="dokter-wrapper d-flex align-items-center">
                         <div class="rounded-circle-container">
                           @if ($item->dokter->foto == null)
@@ -65,13 +80,14 @@
                           <small class="jadwal" style="color: #999;">{{ $item->jamMulai->jam . ' - ' . $item->jamSelesai->jam }}</small>
                         </div>
                       </div>
-                    </div>
+                    </div> --}}
                     <div class="aksi-dokter">
                       <span>Lihat profile dokter</span>
                       <span id="konsultasi">Jadwalkan konsultasi</span>
                     </div>
                   </div>
                 </div>
+                
                 @endforeach
                 @endif
                 <div class="mt-4" style="width: 100%; display:flex; justify-content:center; align-items:center;">

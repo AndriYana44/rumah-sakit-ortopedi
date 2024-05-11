@@ -39,10 +39,10 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <style>
-          #nav-item-dokter, #nav-item-postingan {
+          #nav-item-dokter, #nav-item-postingan, #nav-item-about {
             position: relative;
           }
-          .dokter-dropdown, .postingan-dropdown {
+          .dokter-dropdown, .postingan-dropdown, .about-dropdown {
             display: none;
             z-index: 99999;
             border-top: 3px solid #2a4988;
@@ -52,13 +52,13 @@
             width: 180px;
             transition: .5s;
           }
-          .dokter-dropdown ul, .postingan-dropdown ul{
+          .dokter-dropdown ul, .postingan-dropdown ul, .about-dropdown ul{
             list-style: none;
           }
-          .dokter-dropdown ul li, .postingan-dropdown ul li{
+          .dokter-dropdown ul li, .postingan-dropdown ul li, .about-dropdown ul li{
             padding: 8px 5px;
           }
-          .dokter-dropdown ul li a, .postingan-dropdown ul li a{
+          .dokter-dropdown ul li a, .postingan-dropdown ul li a, .about-dropdown ul li a{
             color: #999;
             padding: 5px 0;
             transition: .3s;
@@ -69,6 +69,11 @@
             color: #555;
           }
           .postingan-dropdown ul li a:hover {
+            text-decoration: none;
+            color: #555;
+          }
+
+          .about-dropdown ul li a:hover {
             text-decoration: none;
             color: #555;
           }
@@ -101,9 +106,17 @@
               </div>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('about') }}">Tentang Kami</a>
+            <li class="nav-item dropdown" id="nav-item-about">
+              <span class="nav-link dropdown-toggle" id="nav-link-about">Tentang Kami</span>
+              {{-- <a class="nav-link dropdown-toggle" id="nav-link-dokter" href="#">Dokter </a>  --}}
+              <div class="about-dropdown">
+                <ul>
+                  <li><a href="{{ route('about') }}">Profil</a></li>
+                  <li><a href="{{ route('sambutan') }}">Sambutan</a></li>
+                </ul>
+              </div>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="{{ route('contact') }}">Kontak</a>
             </li>

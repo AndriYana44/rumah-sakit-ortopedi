@@ -110,7 +110,7 @@
                                         </div>
                                         <div class="button">
                                             <a href="{{ route('doctorProfile', ['id' => $item->id]) }}"><small>Lihat Profile Dokter</small></a>
-                                            <a href="#" id="konsultasi"><small>Jadwalkan Konsultasi</small></a>
+                                            <a href="https://wa.me/+628118996581" target="_blank" id="konsultasi"><small>Jadwalkan Konsultasi</small></a>
                                         </div>
                                     </div>
                                 </div>
@@ -213,13 +213,6 @@
       url = url.replace(':hari', hari);
       console.log(url);
       window.location.href = url;
-    });
-
-    $('#konsultasi').click(function() {
-      let newWindow = window.open("", "_blank");
-      if(newWindow) {
-        newWindow.location.href = 'https://wa.me/0895612206018';
-      }
     });
   });
 </script>

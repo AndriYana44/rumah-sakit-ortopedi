@@ -78,6 +78,19 @@
                 flex-direction: column;
                 font-size: 14px;
             }
+            .jam-praktik {
+                display: inline-block;
+                color: #46579f;
+               position: absolute;
+               right: 50px;
+            }
+
+            @media only screen and (max-width: 1250px) {
+                .jam-praktik {
+                    display: none;
+                }
+            }
+
             @media only screen and (max-width: 768px) {
                 .profile-dokter {
                     flex-direction: column;
@@ -89,6 +102,7 @@
         </style>
 
         @foreach ($data as $item)
+        {{-- {{ dd($item) }} --}}
         <div class="profile-dokter">
             <div class="image-wrapper">
                 @if ($item->foto == null)
@@ -106,22 +120,42 @@
             <div class="informasi-dokter">
                 <span class="graduation">
                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                    <span class="mb-2"><strong>Riwayat Pendidikan</strong></span>
+                    <span class="mb-2"><strong>Pendidikan Dokter</strong></span>
                     @foreach ($item->dokterDetail as $dd)  
                         <span>{{ strtoupper($dd->pendidikan) }}: {{ $dd->jurusan }} {{ $dd->nama_kampus }} {{ $dd->tahun_lulus }}</span>
                     @endforeach
                 </span>
-                <span class="sertifikat mt-5">
+                <span class="spesialis mt-4">
+                    <i class="fa fa-user-md" aria-hidden="true"></i>
+                    <span class="mb-2"><strong>Pendidikan Spesialis</strong></span>
+                    <span>{{ $item->keterangan }}</span>
+                </span>
+                <span class="sertifikat mt-4">
                     <i class="fa fa-certificate" aria-hidden="true"></i>
                     <span class="mb-2"><strong>Seminar / Course</strong></span>
                     <span>Tumbuh Kembang</span>
                 </span>
-                <span class="award mt-5">
-                    <i class="fa fa-trophy" aria-hidden="true"></i>
-                    <span class="mb-2"><strong>Prestasi & Penghargaan</strong></span>
-                    <span>-</span>
-                </span>
             </div>
+            <span class="jam-praktik mt-4">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <span class="mb-2"><strong>Jam Praktik</strong></span>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Jam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($item->hari as $key => $h)
+                            <tr>
+                                <td>{{ $h->hari }}</td>
+                                <td>{{ $item->jamMulai[$key]->jam }} - {{ $item->jamSelesai[$key]->jam }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </span>
         </div>
         @endforeach
     </div>

@@ -111,4 +111,9 @@ class HomeController extends Controller
             'promo' => $promo
         ]);
     }
+
+    public function sambutan()
+    {
+        return view('compro.sambutan');
+    }
 }

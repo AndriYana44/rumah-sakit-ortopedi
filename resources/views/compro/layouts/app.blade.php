@@ -148,6 +148,16 @@
         $(".postingan-dropdown").hide();
     });
 
+    // Menanggapi mouse masuk ke nav-link-about
+    $("#nav-link-about, .about-dropdown").mouseenter(function() {
+        $(".about-dropdown").show();
+    });
+
+    // menanggapi mouse keluar dari about-dropdown atau nav-link-about
+    $("#nav-link-about, .about-dropdown").mouseleave(function() {
+        $(".about-dropdown").hide();
+    });
+
   });
 </script>
 @yield('script')

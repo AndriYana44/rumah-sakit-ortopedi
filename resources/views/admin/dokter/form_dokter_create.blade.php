@@ -6,6 +6,33 @@
 @endsection
 
 @section('content')
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Tambah Spesialis
+    </button>
+    <hr>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('createSpesialis') }}" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Spesialis</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control" name="spesialis" placeholder="Spesialis...">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
     <h3>Tambah Dokter Aktif</h3>
     <hr>
     <form id="form-dokter-create" action="{{ route('dokter.store') }}" method="POST" enctype="multipart/form-data">
@@ -22,7 +49,12 @@
             <div class="col-6">
                 <div class="mb-3">
                     <label for="spesialis" class="form-label">Spesialis <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="spesialis" id="spesialis" placeholder="...">
+                    <select name="spesialis" id="spesialis" class="select2">
+                        <option value=""></option>
+                        @foreach ($spesialis as $spesialis)
+                            <option value="{{ $spesialis->spesialis }}">{{ $spesialis->spesialis }}</option>
+                        @endforeach
+                    </select>
                     <small class="error text-danger" id="spesialis-error"></small>
                 </div>
             </div>
@@ -78,7 +110,7 @@
 
             <div class="col-12">
                 <div class="mb-3">
-                    <label for="nip" class="form-label">Keterangan</label>
+                    <label for="nip" class="form-label">Riwayat Spesialis</label>
                     <textarea class="form-control" name="keterangan" id="keterangan"></textarea>
                 </div>
             </div>
@@ -94,13 +126,13 @@
             </div>
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                    <label for="email" class="form-label">Email</label>
                     <input type="text" class="form-control" id="email" name="email" placeholder="...">
                     <small class="error text-danger" id="email-error"></small>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="alamat" class="form-label">Alamat <span class="text-danger">*</span></label>
+                <label for="alamat" class="form-label">Alamat</label>
                 <textarea class="form-control" name="alamat" id="alamat" placeholder="..."></textarea>
                 <small class="error text-danger" id="alamat-error"></small>
             </div>
@@ -115,6 +147,20 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            // select2
+            $('.select2').select2({
+                placeholder: 'Pilih Spesialis',
+                width: '100%'
+            });
+            // sweet alert
+            @if (session('success'))
+                Swal.fire(
+                    'Success!',
+                    '{{ session('success') }}',
+                    'success'
+                );
+            @endif
+
             var cloneClick = 0;
             $('#clone-pendidikan').on('click', function() {
                 cloneClick += 1;
@@ -178,9 +224,7 @@
                 $('.error').text('');
                 var formData = {
                     nama: $('#nama').val(),
-                    spesialis: $('#spesialis').val(),
-                    email: $('#email').val(),
-                    alamat: $('#alamat').val(),
+                    spesialis: $('#spesialis').val()
                 }
 
                 var constraints = {
@@ -191,19 +235,6 @@
                         }
                     },
                     spesialis: {
-                        presence: {
-                            allowEmpty: false,
-                            message: 'tidak boleh kosong!'
-                        }
-                    },
-                    email: {
-                        presence: {
-                            allowEmpty: false,
-                            message: 'tidak boleh kosong!'
-                        },
-                        email: true
-                    },
-                    alamat: {
                         presence: {
                             allowEmpty: false,
                             message: 'tidak boleh kosong!'

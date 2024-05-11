@@ -1,15 +1,25 @@
 @extends('compro.layouts.app')
 @section('content')
     
-    <div class="container">
-        <div class="card my-5">
-            <div class="card-header">
-                <span>Pemberitahuan</span>
+    @foreach($promo as $key => $item)
+    <div class="col-sm-6 py-3">
+        <div class="card-blog">
+            <div class="header">
+                <a href="{{ route('promotion', $item->slug) }}" class="post-thumb">
+                    <img src="{{ asset('') }}files\gambar_promo\{{ $item->gambar }}" alt="gambar-berita">
+                </a>
             </div>
-            <div class="card-body py-3">
-                <h3>Mohon Maaf</h3>
-                <h3>Halaman ini sedang dalam proses pengembangan !! </h3>
+            <div class="body">
+                <h5 class="post-title" style="font-weight: 600"><a href="{{ route('promotion', $item->slug) }}">{{ $item->judul }}</a></h5>
+                <div class="konten-promo" style="color: #999">
+                    {!! $item->konten !!}
+                </div>
+                <div class="site-info">
+                    <span class="mai-time"></span> Berlaku sampai:  {{ $item->deadline }}
+                </div>
             </div>
         </div>
     </div>
+    @endforeach
+    
 @endsection

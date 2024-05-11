@@ -82,7 +82,7 @@
          
           @foreach ($layanan as $key => $ly) 
           <div class="mx-2">
-            <div class="card card-layanan" id="card-layanan" style="width: 18rem;">
+            <div class="card card-layanan" data-id="{{ $ly->id }}" id="card-layanan" style="width: 18rem;">
               <img src="{{ asset('') }}files/gambar_layanan/{{ $ly->gambar }}" class="card-img-top" alt="layanan-image">
               <div class="card-body">
                 <h6 class="card-subtitle mb-2 text-muted">{{ $ly->layanan }}</h6>
@@ -514,6 +514,14 @@
     //     }
     //   })
     // });
+
+    $('.card-layanan').click(function(e) {
+      var id = $(this).data('id');
+      var routeTemplate = "{{ route('layananDetail', ['id' => ':id']) }}";
+      var route = routeTemplate.replace(':id', id);
+
+      window.location.href = route;
+    });
   });
 
     $('.slick-wrapper').slick({

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Hari;
 use App\Models\Admin\Jam;
 use App\Models\DokterDetail;
+use App\Models\Spesialis;
 
 class DokterController extends Controller
 {
@@ -38,15 +39,20 @@ class DokterController extends Controller
     // create
     public function create()
     {
-        return view('admin.dokter.form_dokter_create');
+        $spesialis = Spesialis::all();
+        return view('admin.dokter.form_dokter_create', [
+            'spesialis' => $spesialis
+        ]);
     }
 
     // edit
     public function edit($id)
     {
+        $spesialis = Spesialis::all();
         $data = Dokter::with(['dokterDetail'])->where('id', $id)->get();
         return view('admin.dokter.form_dokter_edit', [
-            'data' => $data
+            'data' => $data,
+            'spesialis' => $spesialis
         ]);
     }
 

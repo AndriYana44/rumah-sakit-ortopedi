@@ -59,7 +59,7 @@
               <style>
                 #content * {
                   width: 100%;
-                  text-align: left;
+                  text-align: justify;
                 }
               </style>
               <div class="content" id="content" style="color: #777;">

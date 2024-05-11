@@ -14,7 +14,8 @@
 <style>
     .content * {
         width: 100%;
-        text-align: left;
+        text-align: justify;
+        color: #777;
     }
 </style>
 

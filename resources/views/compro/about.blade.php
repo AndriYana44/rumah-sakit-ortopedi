@@ -115,6 +115,8 @@
       </div>
     </div>
 
+    {{-- {{ dd($layananMedis) }} --}}
+    @if(!$layananMedis->isEmpty())
     <div class="fasilitas-wrapper  wow zoomIn">
       <div class="container py-5">
         <h1>Layanan medis & perawatan</h1>
@@ -137,6 +139,7 @@
         </div>
       </div>
     </div>
+    @endif
   </div>
 @endsection
 
