@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\LayananController;
 use App\Http\Controllers\Admin\PendaftaranBerobatController;
 use App\Http\Controllers\Compro\PostController;
 use App\Http\Controllers\Middle\ComproApiController;
+use App\Http\Controllers\PartnerAsuransiController;
 use App\Http\Controllers\PromoController;
 use App\Models\LayananUnggulan;
 
@@ -172,6 +173,15 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('pendaftaran-berobat')->group(function() {
             Route::get('/', [PendaftaranBerobatController::class, 'index'])->name('listPendaftaranBerobat');
             Route::get('/detail/{id}', [PendaftaranBerobatController::class, 'pasienDetail'])->name('detailPasien');
+        });
+
+        Route::prefix('partner')->group(function() {
+            Route::get('/', [PartnerAsuransiController::class, 'index'])->name('partnerAsuransi');
+            Route::get('/create',[PartnerAsuransiController::class,'create'])->name('partner-asuransi.create');
+            Route::get('/edit/{id}',[PartnerAsuransiController::class,'edit'])->name('partner-asuransi.edit');
+            Route::post('/store',[PartnerAsuransiController::class,'store'])->name('partner-asuransi.store');
+            Route::post('/update/{id}',[PartnerAsuransiController::class,'update'])->name('partner-asuransi.update');
+            Route::delete('/delete/{id}',[PartnerAsuransiController::class,'delete'])->name('partner-asuransi.delete');
         });
     });
 

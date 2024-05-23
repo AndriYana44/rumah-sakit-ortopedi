@@ -123,3 +123,21 @@ Breadcrumbs::for('dashboard_layanan_medis_create', function (BreadcrumbTrail $tr
     $trail->parent('dashboard_layanan_medis');
     $trail->push('Tambah', route('listLayananMedis.create'));
 });
+
+// home > partner asuransi
+Breadcrumbs::for('dashboard_partner_asuransi', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Partner Asuransi', route('partnerAsuransi'));
+});
+
+// home > partner asuransi > create
+Breadcrumbs::for('dashboard_partner_asuransi_create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_partner_asuransi');
+    $trail->push('Tambah', route('partner-asuransi.create'));
+});
+
+// home > partner asuransi > edit
+Breadcrumbs::for('dashboard_partner_asuransi_edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard_partner_asuransi');
+    $trail->push('Edit', route('partner-asuransi.edit', ['id' => 1]));
+});

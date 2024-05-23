@@ -53,7 +53,7 @@
                     <span class="hide-menu">Kategori</span>
                 </a>
             </li>
-            <li class="sidebar-item">
+            {{-- <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('listPendaftaranBerobat') }}" aria-expanded="false">
                     <span>
                     <i class="fa fa-list-ol"></i>
@@ -61,11 +61,17 @@
                     <span class="hide-menu">Pendaftaran Berobat</span>
                     <i class="fa fa-circle" style="font-size: 10px; color: red; float:right;" aria-hidden="true"></i>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">Display</span>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('partnerAsuransi') }}">
+                    <span><i class="fa fa-desktop"></i></span>
+                    <span>Partner & Asuransi</span>
+                </a>
             </li>
             <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('listLayananMedis') }}">
@@ -95,23 +101,6 @@
                     <li><a class="sidebar-link" href="{{ route('layanan') }}">
                         <i class="fa fa-hashtag"></i>
                         Layanan Unggulan
-                    </a></li>
-                </ul>
-            </li>
-            <li class="sidebar-item has-submenu">
-                <a class="sidebar-link" href="#">
-                    <span><i class="fa fa-desktop"></i></span>
-                    <span>Tampilan Compro</span>
-                    <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="submenu collapse">
-                    <li><a class="sidebar-link" href="#">
-                        <i class="fa fa-hashtag"></i>
-                        Banner
-                    </a></li>
-                    <li><a class="sidebar-link" href="#">
-                        <i class="fa fa-hashtag"></i>
-                        Paragraf
                     </a></li>
                 </ul>
             </li>

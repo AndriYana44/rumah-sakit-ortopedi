@@ -9,7 +9,7 @@
             <li class="breadcrumb-item active" aria-current="page">Dokter</li>
           </ol>
         </nav>
-        <h1 class="font-weight-normal">Dokter Kami</h1>
+        <h1 class="font-weight-normal">Jadwal Praktik Dokter</h1>
         <button type="button" class="btn btn-primary btn-jadwal mt-5">Jadwal praktek hari ini</button>
       </div> <!-- .container -->
     </div> <!-- .banner-section -->
@@ -55,7 +55,7 @@
                     </div>
                     <div class="card-body">
                       <div class="dokter-wrapper d-flex align-items-center">
-                        <table class="table table-stripped">
+                        <table class="table table-striped table-bordered">
                           @foreach ($item as $m)
                           <tr>
                             <td>{{ $m['nama'] }}</td>

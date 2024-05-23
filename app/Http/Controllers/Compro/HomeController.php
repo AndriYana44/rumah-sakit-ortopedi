@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     //
-
     public function index (){
         // dokter with relation
         $spesialis = Dokter::select("spesialis")->distinct()->get();

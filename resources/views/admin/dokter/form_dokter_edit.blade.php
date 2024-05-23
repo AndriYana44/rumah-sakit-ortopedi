@@ -125,7 +125,7 @@
                     <div class="col-2">
                         <div class="mb-3">
                             <label for="pendidikan" class="form-label">Pendidikan <span class="text-danger">*</span></label>
-                            <select name="pendidikan[]" class="form-control pendidikan">
+                            <select name="pendidikan[]" class="form-control pendidikan" required>
                                 <option value=""></option>
                                 <option value="s1">S1</option>
                                 <option value="s2">S2</option>
@@ -137,21 +137,21 @@
                     <div class="col-3">
                         <div class="mb-3">
                             <label for="jurusan" class="form-label">Fakultas/Jurusan <span class="text-danger">*</span></label>
-                            <input type="text" name="jurusan[]" class="form-control jurusan">
+                            <input type="text" name="jurusan[]" class="form-control jurusan" required>
                             <small class="error text-danger jurusan-error"></small>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="mb-3">
                             <label for="univ" class="form-label">Universitas <span class="text-danger">*</span></label>
-                            <input type="text" name="univ[]" class="form-control univ">
+                            <input type="text" name="univ[]" class="form-control univ" required>
                             <small class="error text-danger univ-error"></small>
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="mb-3">
                             <label for="lulus" class="form-label">Tahun Lulus <span class="text-danger">*</span></label>
-                            <select name="lulus[]" class="form-control lulus">
+                            <select name="lulus[]" class="form-control lulus" required>
                                 <option value=""></option>
                                 @php $currentYear = date("Y"); @endphp
                                 @for ($year = $currentYear; $year >= $currentYear - 50; $year--) 
@@ -173,7 +173,7 @@
             <div class="col-12">
                 <div class="mb-3">
                     <label for="keterangan" class="form-label">Riwayat Spesialis <span class="text-danger">*</span></label>
-                    <textarea class="form-control" name="keterangan" id="keterangan">{{ $item->keterangan }}</textarea>
+                    <textarea class="form-control" name="keterangan" id="keterangan" required>{{ $item->keterangan }}</textarea>
                 </div>
             </div>
             <div class="col-6">
