@@ -196,6 +196,16 @@ class DokterController extends Controller
         ]);
     }
 
+    // reset jadwal
+    public function resetJadwal($id)
+    {
+        // delete data jadwal dokter
+        DokterJadwal::where('dokter_id', $id)->delete();
+
+        return redirect()->route('dokter.jadwal')
+            ->with('success', 'Data berhasil direset');
+    }
+
     // store jadwal
     public function updateJadwal(Request $request)
     {

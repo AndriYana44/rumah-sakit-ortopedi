@@ -21,7 +21,6 @@
           <div class="card">
             <div class="card-body">
               <div class="row">
-                {{-- @dd($item) --}}
                 <div class="col-md-8">
                   @if($data->first() != null)
                     @foreach ($data as $item)
@@ -120,11 +119,18 @@
                     @endforeach
                   @endif
                   <div class="d-flex justify-content-center align-items-center">
-                    {{ $data->links('pagination::bootstrap-4') }}
+                    {{-- if filtered --}}
+                    @if($search != null)
+                      {{ $data->appends(['dokter' => $search])->links('pagination::bootstrap-4') }}
+                    @elseif($spesialis != null)
+                      {{ $data->appends(['spesialis' => $spesialis_filter])->links('pagination::bootstrap-4') }}
+                    @else
+                      {{ $data->links('pagination::bootstrap-4') }}
+                    @endif
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <form action="{{ route('doctorsProfileFilter') }}" method="POST" class="my-3">
+                  <form action="{{ route('doctorsProfileFilter') }}" method="GET" class="my-3">
                     @csrf
                     <div class="form-group d-flex">
                       <input type="text" placeholder="Cari dokter.." value="{{ $search != null ? $search : '' }}" name="dokter" class="form-control">
@@ -132,7 +138,7 @@
                     </div>
                   </form>
                   <hr>
-                  <form action="{{ route('doctorsProfileFilter') }}" method="POST" class="my-3">
+                  <form action="{{ route('doctorsProfileFilter') }}" method="GET" class="my-3">
                     @csrf
                       <div class="card mt-2">
                           <div class="card-header">

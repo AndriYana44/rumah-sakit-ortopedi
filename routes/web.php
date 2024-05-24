@@ -102,6 +102,7 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/delete/{id}', [DokterController::class, 'destroy'])->name('dokter.delete');
             Route::prefix('jadwal')->group(function () {
                 Route::get('/edit/{id}', [DokterController::class, 'editJadwal'])->name('dokter.jadwal.edit');
+                Route::get('/reset/{id}', [DokterController::class, 'resetJadwal'])->name('dokter.jadwal.reset');
                 Route::post('/update', [DokterController::class, 'updateJadwal'])->name('dokter.jadwal.update');
             });
         });

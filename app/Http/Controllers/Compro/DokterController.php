@@ -30,6 +30,7 @@ class DokterController extends Controller
         })->get();
         
         $dataMap['Orthopaedi Dan Traumatologi'] = [];
+        $dataMap['Obstetri dan Ginekologi'] = [];
         $dataMap['Kedokteran Olahraga'] = [];
         $dataMap['Okupasi'] = [];
         $dataMap['Kebidanan & Kandungan'] = [];
@@ -89,26 +90,53 @@ class DokterController extends Controller
 
     public function profile(Request $request)
     {
+        $dokter_filter = $request->input('dokter');
+        $spesialis_filter = $request->input('spesialis');
+
+        
         $dokterAll = Dokter::all();
-        $data = Dokter::with(['hari', 'jamMulai', 'jamSelesai']);
         $spesialis = DB::select('select distinct spesialis from m_dokter');
         
-        if(request()->isMethod('post')) {
-            if(isset($request->spesialis)) {
-                $data = $data->where('spesialis', $request->spesialis);
-            }
-            
-            if(isset($request->dokter)) {
-                $data = $data->where('nama_dokter', 'like', '%' . $request->dokter . '%');
-            }
+        $data = Dokter::with(['hari', 'jamMulai', 'jamSelesai']);
+        if($dokter_filter) {;
+            $data = $data->where('nama_dokter', 'like', '%' . $request->dokter . '%');
+        }
+        if($spesialis_filter) {
+            $data = $data->where('spesialis', $request->spesialis);
         }
         
+        $data = $data->whereHas('hari', function($query) {
+            $query->where('hari', '!=', null);
+        });
+
+        $data = $data->orderByRaw("FIELD(spesialis,      
+            'Gigi',
+            'Umum', 
+            'Urologi', 
+            'Saraf', 
+            'Paru', 
+            'Kedokteran Jiwa',
+            'Jantung', 
+            'Kulit & Kelamin', 
+            'Anak',
+            'Akupuntur Medik',
+            'Bedah Umum',
+            'Penyakit Dalam',
+            'Kebidanan & Kandungan',
+            'Okupasi', 
+            'Kedokteran Olahraga',
+            'Orthopaedi Dan Traumatologi'
+        ) desc");
+
+        $data = $data->orderByRaw("nama_dokter LIKE '%isa an nagib%' DESC");
+
         $data = $data->paginate(6);
 
         return view('compro.doctors-profile', [
-            'search' => isset($request->dokter) ? $request->dokter : null,
-            'data' => $data,
+            'search' => $dokter_filter,
+            'spesialis_filter' => $spesialis_filter,
             'spesialis' => $spesialis,
+            'data' => $data,
             'dokter_all' => $dokterAll,
         ]); 
     }
